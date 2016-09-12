@@ -8,9 +8,12 @@ import melihovv.PetriDish.factories.GeneralFactory;
  */
 public class Bird extends ActiveFieldObject {
 
+    private final int DEFAULT_SIZE = 64;
+
     public Bird( GeneralFactory generalFactory ) {
 
         super( generalFactory );
+        setSize( DEFAULT_SIZE );
     }
 
     public void update(long elapsedTime) {
