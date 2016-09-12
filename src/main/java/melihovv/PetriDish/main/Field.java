@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Field {
 
     private final static int FIELD_WIDTH = 5000;
-    private final static int FIELD_HEIGH = 3750;
+    private final static int FIELD_HEIGHT = 3750;
 
     private static Field _instance;
     private ArrayList< FieldObject > _fieldObjects = new ArrayList<>();
@@ -55,9 +55,9 @@ public class Field {
         return FIELD_WIDTH;
     }
 
-    public static int getFieldHeigh() {
+    public static int getFieldHeight() {
 
-        return FIELD_HEIGH;
+        return FIELD_HEIGHT;
     }
 
     public ArrayList< FieldObject > getFieldObjects() {
