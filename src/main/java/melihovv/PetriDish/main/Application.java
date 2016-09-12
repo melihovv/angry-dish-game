@@ -7,7 +7,7 @@ import melihovv.PetriDish.views.GameView;
 import java.awt.*;
 
 /**
- * Base game class which starts the game, controls its view and model, sets window size.
+ * Basic game class which starts the game, controls its view and model, sets window size.
  * Extends GTGE Game class.
  */
 public class Application extends Game {
