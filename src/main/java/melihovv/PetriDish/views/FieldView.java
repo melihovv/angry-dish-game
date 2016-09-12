@@ -3,6 +3,7 @@ package melihovv.PetriDish.views;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 import melihovv.PetriDish.events.FieldObjectListener;
+import melihovv.PetriDish.factories.FieldObjectsViewFactory;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.main.Application;
 
@@ -21,6 +22,7 @@ public class FieldView implements FieldObjectListener{
 
     Background _background;
     private ArrayList< FieldObjectView > _fieldObjectViews = new ArrayList<>();
+    private FieldObjectsViewFactory _fieldObjectViewFactory = new FieldObjectsViewFactory();
 
     public FieldView() {
 
@@ -53,7 +55,7 @@ public class FieldView implements FieldObjectListener{
     @Override
     public void fieldObjectAdded( FieldObject fieldObject ) {
 
-        FieldObjectView fieldObjectView = new FieldObjectView();
+        FieldObjectView fieldObjectView = _fieldObjectViewFactory.createFieldObjectView( fieldObject );
         fieldObjectView.setBackground( _background );
         _fieldObjectViews.add( fieldObjectView );
     }
