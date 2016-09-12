@@ -2,6 +2,7 @@ package melihovv.PetriDish.factories;
 
 import melihovv.PetriDish.main.Application;
 import melihovv.PetriDish.main.Field;
+import melihovv.PetriDish.views.FieldObjectView;
 import melihovv.PetriDish.views.FieldView;
 
 /**
@@ -22,5 +23,10 @@ public class GeneralFactory {
 
         FieldView fieldView = new FieldView();
         return  fieldView;
+    }
+
+    public FieldObjectView createFieldObjectView() {
+
+        return new FieldObjectView();
     }
 }
