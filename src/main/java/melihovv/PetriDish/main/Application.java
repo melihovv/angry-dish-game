@@ -2,6 +2,8 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.object.Background;
+import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
@@ -20,11 +22,13 @@ public class Application extends Game {
 
     private GameView _gameView;
     private GameModel _gameModel;
+    private PlayerController _playerController;
 
     public Application( GeneralFactory generalFactory ) {
 
         _gameView = new GameView( generalFactory.createFieldView() );
         _gameModel = new GameModel(generalFactory);
+        _playerController = new PlayerController();
     }
 
     @Override
@@ -33,8 +37,9 @@ public class Application extends Game {
     }
 
     @Override
-    public void update( long l ) {
+    public void update( long elapsedTime ) {
 
+        _gameModel.update( elapsedTime );
     }
 
     @Override
@@ -68,5 +73,19 @@ public class Application extends Game {
     public static int getScreenHeight() {
 
         return SCREEN_HEIGHT;
+    }
+
+    public PlayerController getPlayerController() {
+
+        return _playerController;
+    }
+
+    private class PlayerController implements FieldObjectController {
+
+        @Override
+        public void controlMovement( Bird bird ) {
+
+
+        }
     }
 }
