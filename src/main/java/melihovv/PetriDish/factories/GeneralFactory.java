@@ -1,5 +1,6 @@
 package melihovv.PetriDish.factories;
 
+import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.main.Application;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectView;
@@ -29,5 +30,10 @@ public class GeneralFactory {
     public FieldObjectView createFieldObjectView() {
 
         return new FieldObjectView();
+    }
+
+    public FieldObjectController createPlayerController() {
+
+        return _application.getPlayerController();
     }
 }

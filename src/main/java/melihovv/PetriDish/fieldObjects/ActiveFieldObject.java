@@ -1,5 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
+import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
 
 /**
@@ -8,8 +9,20 @@ import melihovv.PetriDish.factories.GeneralFactory;
  */
 public class ActiveFieldObject extends FieldObject {
 
+    private FieldObjectController _controller;
+
     public ActiveFieldObject( GeneralFactory generalFactory ) {
 
         super( generalFactory );
+    }
+
+    public FieldObjectController getController() {
+
+        return _controller;
+    }
+
+    public void setController( FieldObjectController controller ) {
+
+        _controller = controller;
     }
 }
