@@ -1,8 +1,6 @@
-package melihovv.PetriDish;
+package melihovv.PetriDish.main;
 
-import com.golden.gamedev.GameLoader;
-
-import java.awt.*;
+import melihovv.PetriDish.main.Application;
 
 public class PetriDish {
     public static void main(String[] args) {

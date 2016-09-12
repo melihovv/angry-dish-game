@@ -1,7 +1,8 @@
-package melihovv.PetriDish;
+package melihovv.PetriDish.main;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
+import melihovv.PetriDish.views.GameView;
 
 import java.awt.*;
 

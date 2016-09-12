@@ -1,4 +1,4 @@
-package melihovv.PetriDish;
+package melihovv.PetriDish.main;
 
 /**
  * Base game model class which controls game logic.
