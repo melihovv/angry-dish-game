@@ -2,6 +2,7 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
+import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
@@ -19,9 +20,9 @@ public class Application extends Game {
     private GameView _gameView;
     private GameModel _gameModel;
 
-    public Application() {
+    public Application( GeneralFactory generalFactory ) {
 
-        _gameView = new GameView(new FieldView());
+        _gameView = new GameView( generalFactory.createFieldView() );
         _gameModel = new GameModel();
     }
 

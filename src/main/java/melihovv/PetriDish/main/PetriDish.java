@@ -1,5 +1,6 @@
 package melihovv.PetriDish.main;
 
+import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Application;
 
 /**
@@ -9,7 +10,8 @@ public class PetriDish {
 
     public static void main(String[] args) {
 
-        Application application = new Application();
+        GeneralFactory generalFactory = new GeneralFactory();
+        Application application = generalFactory.createApplication();
         application.startApplication();
     }
 }
