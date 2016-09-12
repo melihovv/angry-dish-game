@@ -2,6 +2,7 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
+import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ public class Application extends Game {
 
     public Application() {
 
-        _gameView = new GameView();
+        _gameView = new GameView(new FieldView());
         _gameModel = new GameModel();
     }
 
@@ -35,8 +36,9 @@ public class Application extends Game {
     }
 
     @Override
-    public void render( Graphics2D graphics2D ) {
+    public void render( Graphics2D g2d ) {
 
+        _gameView.render( g2d );
     }
 
     public void startApplication() {
