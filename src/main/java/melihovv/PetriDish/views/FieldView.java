@@ -2,21 +2,25 @@ package melihovv.PetriDish.views;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
+import melihovv.PetriDish.events.FieldObjectListener;
+import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.main.Application;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * A class represents the appearance of a game field.
  */
-public class FieldView {
+public class FieldView implements FieldObjectListener{
 
     private final static String BACKGROUND_PATH = "src/main/resources/background.jpg";
 
     Background _background;
+    private ArrayList< FieldObjectView > _fieldObjectViews = new ArrayList<>();
 
     public FieldView() {
 
@@ -39,5 +43,26 @@ public class FieldView {
     public Background getBackground() {
 
         return _background;
+    }
+
+    @Override
+    public void fieldObjectAdded( FieldObject fieldObject ) {
+
+        FieldObjectView fieldObjectView = new FieldObjectView();
+        fieldObjectView.setBackground( _background );
+        _fieldObjectViews.add( fieldObjectView );
+    }
+
+    @Override
+    public void fieldObjectDeleted( FieldObject fieldObject ) {
+
+        for(FieldObjectView objectView : _fieldObjectViews) {
+
+            if(fieldObject.equals( objectView.getFieldObject() )) {
+
+                _fieldObjectViews.remove( objectView );
+                return;
+            }
+        }
     }
 }
