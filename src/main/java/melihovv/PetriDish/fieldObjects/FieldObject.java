@@ -22,6 +22,11 @@ public abstract class FieldObject {
         _fieldObjectView = generalFactory.createFieldObjectView();
     }
 
+    public void update(long elapsedTime) {
+
+        _fieldObjectView.update( elapsedTime );
+    }
+
     public int getSize() {
 
         return _size;
