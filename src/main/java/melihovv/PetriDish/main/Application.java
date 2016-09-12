@@ -85,7 +85,20 @@ public class Application extends Game {
         @Override
         public void controlMovement( Bird bird ) {
 
+            /* Getting base mouse coordinates */
+            int baseMouseX = bsInput.getMouseX();
+            int baseMouseY = bsInput.getMouseY();
 
+            /* Getting background coordinates */
+            Background background = _gameView.getFieldView().getBackground();
+            int backgroundX = ( int ) background.getX();
+            int backgroundY = ( int ) background.getY();
+
+            /* Getting mouse coordinates on field */
+            int mouseX = baseMouseX + backgroundX;
+            int mouseY = baseMouseY + backgroundY;
+
+            bird.setDestination( new Point(mouseX,mouseY) );
         }
     }
 }
