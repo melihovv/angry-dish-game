@@ -10,11 +10,7 @@ import java.awt.*;
  */
 public abstract class FieldObject {
 
-    private final static int DEFAULT_SPEED = 1;
-
     private int _size;
-    private double _speed;
-    private Point _destination;
     private FieldObjectView _fieldObjectView;
 
     public FieldObject( GeneralFactory generalFactory ) {
@@ -35,29 +31,11 @@ public abstract class FieldObject {
     public void setSize( int size ) {
 
         _size = size;
-        // #TODO: Adjust speed when size has changed?
-        _speed = DEFAULT_SPEED;
-    }
-
-    public Point getDestination() {
-
-        if( _destination == null ) {
-
-            return new Point( 0, 0 );
-        }
-
-        return _destination;
-    }
-
-    public void setDestination( Point destination ) {
-
-        _destination = destination;
     }
 
     public void setPosition( Point position ) {
 
         _fieldObjectView.setPosition( new Point( position ) );
-        _destination = new Point( position );
     }
 
     public Point getPosition() {
