@@ -44,6 +44,7 @@ public class ActiveFieldObject extends FieldObject {
             /* Getting distance to the next position */
             int xDistance = nextPosition.x - currentPosition.x - ( getSize() / 2 );
             int yDistance = nextPosition.y - currentPosition.y - ( getSize() / 2 );
+            int distance = ( int ) Math.sqrt( ( xDistance * xDistance ) + ( yDistance * yDistance ) );
 
             /* Changing speed to move */
             if( ( ( xDistance * xDistance ) + ( yDistance * yDistance ) ) <= ( STOP_RADIUS * STOP_RADIUS ) ) {
@@ -53,8 +54,9 @@ public class ActiveFieldObject extends FieldObject {
 
             } else {
 
-                //TODO: More complicated formula?
-                fieldObjectView.setSpeed( DEFAULT_SPEED,DEFAULT_SPEED );
+                fieldObjectView.setSpeed(
+                        Math.min( _speed, distance / BREAK_COEFFICIENT ) * xDistance / ( Math.abs( xDistance ) + Math.abs( yDistance ) ),
+                        Math.min( _speed, distance / BREAK_COEFFICIENT ) * yDistance / ( Math.abs( xDistance ) + Math.abs( yDistance ) ) );
             }
 
             /* Checking borders to stop moving */
@@ -71,13 +73,13 @@ public class ActiveFieldObject extends FieldObject {
             }
 
             /* Top border */
-            if( currentPosition.y <= 0 && fieldObjectView.getVerticalSpeed() < 0) {
+            if( currentPosition.y <= 0 && fieldObjectView.getVerticalSpeed() < 0 ) {
 
                 fieldObjectView.setVerticalSpeed( 0 );
             }
 
             /* Bottom border */
-            if( (currentPosition.y + getSize()) >= Field.getFieldHeight() && fieldObjectView.getVerticalSpeed() > 0) {
+            if( ( currentPosition.y + getSize() ) >= Field.getFieldHeight() && fieldObjectView.getVerticalSpeed() > 0 ) {
 
                 fieldObjectView.setVerticalSpeed( 0 );
             }
