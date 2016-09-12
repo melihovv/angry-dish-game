@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 public class FieldView implements FieldObjectListener{
 
+    // #TODO: Move resources folder out of src?
     private final static String BACKGROUND_PATH = "src/main/resources/background.jpg";
 
     Background _background;

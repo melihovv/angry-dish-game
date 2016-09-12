@@ -32,6 +32,14 @@ public class Field {
         fireObjectDeleted( object );
     }
 
+    public void update( long elapsedTime ) {
+
+        for( FieldObject object : _fieldObjects ) {
+
+            object.update( elapsedTime );
+        }
+    }
+
     public static Field getInstance() {
 
         if( _instance == null ) {

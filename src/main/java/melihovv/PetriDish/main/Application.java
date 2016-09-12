@@ -3,6 +3,7 @@ package melihovv.PetriDish.main;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
@@ -23,7 +24,7 @@ public class Application extends Game {
     public Application( GeneralFactory generalFactory ) {
 
         _gameView = new GameView( generalFactory.createFieldView() );
-        _gameModel = new GameModel();
+        _gameModel = new GameModel(generalFactory);
     }
 
     @Override
@@ -39,10 +40,17 @@ public class Application extends Game {
     @Override
     public void render( Graphics2D g2d ) {
 
+        FieldView fieldView = _gameView.getFieldView();
+        Bird player = _gameModel.getPlayer();
+        int playerX = player.getPosition().x;
+        int playerY = player.getPosition().y;
+        fieldView.getBackground().setToCenter( playerX,playerY,player.getSize(),player.getSize() );
         _gameView.render( g2d );
     }
 
     public void startApplication() {
+
+        _gameModel.startGame();
 
         GameLoader gameLoader = new GameLoader();
         gameLoader.setup(

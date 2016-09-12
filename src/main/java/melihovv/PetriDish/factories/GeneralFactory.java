@@ -22,6 +22,7 @@ public class GeneralFactory {
     public FieldView createFieldView() {
 
         FieldView fieldView = new FieldView();
+        Field.getInstance().addObjectListener( fieldView );
         return  fieldView;
     }
 
