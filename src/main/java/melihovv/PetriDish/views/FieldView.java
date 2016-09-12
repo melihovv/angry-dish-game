@@ -38,6 +38,11 @@ public class FieldView implements FieldObjectListener{
     public void render( Graphics2D g2d ) {
 
         _background.render( g2d );
+
+        for(FieldObjectView objectView : _fieldObjectViews) {
+
+            objectView.render( g2d );
+        }
     }
 
     public Background getBackground() {
