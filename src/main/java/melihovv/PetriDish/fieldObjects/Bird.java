@@ -19,5 +19,10 @@ public class Bird extends ActiveFieldObject {
     public void update(long elapsedTime) {
 
         super.update( elapsedTime );
+
+        if(getController() != null) {
+
+            getController().controlMovement( this );
+        }
     }
 }
