@@ -11,7 +11,7 @@ import melihovv.PetriDish.views.FieldObjectView;
 public class FieldObjectsViewFactory {
 
     private final static String BIRD = "src/main/resources/heroes/birds/main_hero.png";
-    private final static String PIG = "src/main/resources/heroes/pigs/pig64px.png";
+    private final static String PIG = "src/main/resources/heroes/pigs/pig32px.png";
 
     public FieldObjectView createFieldObjectView( FieldObject fieldObject) {
 

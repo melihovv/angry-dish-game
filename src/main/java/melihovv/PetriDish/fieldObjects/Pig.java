@@ -8,7 +8,7 @@ import melihovv.PetriDish.factories.GeneralFactory;
  */
 public class Pig extends InactiveFieldObject{
 
-    private final static int DEFAULT_SIZE = 64;
+    private final static int DEFAULT_SIZE = 32;
 
     public Pig( GeneralFactory generalFactory ) {
 
