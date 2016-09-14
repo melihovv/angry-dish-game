@@ -1,0 +1,35 @@
+{
+  "name": "petri-dish",
+  "version": "0.0.1",
+  "description": "Petri dish game",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/melihovv/petri-dish.git"
+  },
+  "keywords": [
+    "petri dish"
+  ],
+  "authors": "Alexander Melihov <amelihovv@ya.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/melihovv/petri-dish/issues"
+  },
+  "homepage": "https://gitlab.com/melihovv/petri-dish#README",
+  "contributors": [
+    {
+      "name": "Alexander Petrenko",
+      "email": "gafk555@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "ghooks": "^1.3.2"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "mvn site"
+    }
+  }
+}
