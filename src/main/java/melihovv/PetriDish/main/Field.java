@@ -5,6 +5,7 @@ import melihovv.PetriDish.fieldObjects.FieldObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class represents game field.
@@ -40,6 +41,19 @@ public class Field {
         }
     }
 
+    public void addFieldObjectToRandomPosition( FieldObject object ) {
+
+        Random randomizer = new Random();
+
+        /* Getting random position coordinates */
+        int x = randomizer.nextInt( FIELD_WIDTH );
+        int y = randomizer.nextInt( FIELD_HEIGHT );
+
+        Point randomPosition = new Point( x, y );
+
+        addFieldObject( object, randomPosition );
+    }
+
     public static Field getInstance() {
 
         if( _instance == null ) {
@@ -65,25 +79,25 @@ public class Field {
         return _fieldObjects;
     }
 
-    public void addObjectListener(FieldObjectListener objectListener) {
+    public void addObjectListener( FieldObjectListener objectListener ) {
 
         _fieldObjectListeners.add( objectListener );
     }
 
-    public void deleteObjectListener(FieldObjectListener objectListener) {
+    public void deleteObjectListener( FieldObjectListener objectListener ) {
 
         _fieldObjectListeners.remove( objectListener );
     }
 
     private void fireObjectAdded( FieldObject fieldObject ) {
 
-        for( FieldObjectListener objectListener : _fieldObjectListeners) {
+        for( FieldObjectListener objectListener : _fieldObjectListeners ) {
 
             objectListener.fieldObjectAdded( fieldObject );
         }
     }
 
-    private void fireObjectDeleted(FieldObject fieldObject) {
+    private void fireObjectDeleted( FieldObject fieldObject ) {
 
         for( FieldObjectListener objectListener : _fieldObjectListeners ) {
 
