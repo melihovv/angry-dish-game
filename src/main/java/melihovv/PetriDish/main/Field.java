@@ -51,7 +51,42 @@ public class Field {
 
         Point randomPosition = new Point( x, y );
 
-        addFieldObject( object, randomPosition );
+        if(isPositionFree( randomPosition,object )) {
+
+            addFieldObject( object, randomPosition );
+        }
+    }
+
+    public boolean isPositionFree( Point position, FieldObject object ) {
+
+        int x = position.x;
+        int y = position.y;
+        int halfObjectSize = object.getSize() / 2;
+
+        /* Checking field borders */
+        if( x - halfObjectSize < 0 ||
+                x + halfObjectSize >= FIELD_WIDTH ||
+                y - halfObjectSize < 0 ||
+                y + halfObjectSize >= FIELD_HEIGHT ) {
+
+            return false;
+        }
+
+        /* Checking overlays with other field objects */
+        for( FieldObject fieldObject : _fieldObjects ) {
+
+            int x1 = fieldObject.getPosition().x;
+            int y1 = fieldObject.getPosition().y;
+
+            double distanceBetweenCenters = Math.sqrt( ( x - x1 ) * ( x - x1 ) + ( y - y1 ) * ( y - y1 ) );
+
+            if(distanceBetweenCenters <= (object.getSize() + fieldObject.getSize()) / 2.0) {
+
+                return  false;
+            }
+        }
+
+        return  true;
     }
 
     public static Field getInstance() {

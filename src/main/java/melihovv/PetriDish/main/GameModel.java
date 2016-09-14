@@ -40,7 +40,7 @@ public class GameModel {
         _player = ( Bird ) factory.createFieldObject( "Bird",_generalFactory );
         _playerController = _generalFactory.createPlayerController();
         _player.setController( _playerController );
-        
+
         Field.getInstance().addFieldObject( _player, new Point( DEFAULT_PLAYER_X_POSITION, DEFAULT_PLAYER_Y_POSITION ) );
 
         /* Creating pigs */
