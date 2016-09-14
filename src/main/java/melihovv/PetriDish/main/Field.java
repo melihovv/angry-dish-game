@@ -1,5 +1,6 @@
 package melihovv.PetriDish.main;
 
+import com.golden.gamedev.object.SpriteGroup;
 import melihovv.PetriDish.events.FieldObjectListener;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
@@ -20,16 +21,20 @@ public class Field {
     private ArrayList< FieldObject > _fieldObjects = new ArrayList<>();
     private ArrayList< FieldObjectListener > _fieldObjectListeners = new ArrayList<>();
 
+    private SpriteGroup _spriteGroup = new SpriteGroup( "Collision Object Group" );
+
     public void addFieldObject( FieldObject object, Point position ) {
 
         object.setPosition( position );
         _fieldObjects.add( object );
+        _spriteGroup.add( object.getObjectView() );
         fireObjectAdded( object );
     }
 
     public void removeFieldObject( FieldObject object ) {
 
         _fieldObjects.remove( object );
+        _spriteGroup.remove( object.getObjectView() );
         fireObjectDeleted( object );
     }
 
@@ -51,7 +56,7 @@ public class Field {
 
         Point randomPosition = new Point( x, y );
 
-        if(isPositionFree( randomPosition,object )) {
+        if( isPositionFree( randomPosition, object ) ) {
 
             addFieldObject( object, randomPosition );
         }
@@ -80,13 +85,13 @@ public class Field {
 
             double distanceBetweenCenters = Math.sqrt( ( x - x1 ) * ( x - x1 ) + ( y - y1 ) * ( y - y1 ) );
 
-            if(distanceBetweenCenters <= (object.getSize() + fieldObject.getSize()) / 2.0) {
+            if( distanceBetweenCenters <= ( object.getSize() + fieldObject.getSize() ) / 2.0 ) {
 
-                return  false;
+                return false;
             }
         }
 
-        return  true;
+        return true;
     }
 
     public static Field getInstance() {
@@ -112,6 +117,11 @@ public class Field {
     public ArrayList< FieldObject > getFieldObjects() {
 
         return _fieldObjects;
+    }
+
+    public SpriteGroup getSpriteGroup() {
+
+        return _spriteGroup;
     }
 
     public void addObjectListener( FieldObjectListener objectListener ) {

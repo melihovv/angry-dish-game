@@ -1,5 +1,7 @@
 package melihovv.PetriDish.main;
 
+import com.golden.gamedev.object.CollisionManager;
+import com.golden.gamedev.object.SpriteGroup;
 import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
@@ -19,8 +21,8 @@ public class GameModel {
 
     private Bird _player;
     private GeneralFactory _generalFactory;
+    private CollisionManager _collisionManager;
     private FieldObjectController _playerController;
-
 
     public GameModel( GeneralFactory generalFactory ) {
 
@@ -30,6 +32,8 @@ public class GameModel {
     public void update( long elapsedTime ) {
 
         Field.getInstance().update( elapsedTime );
+
+        _collisionManager.checkCollision();
     }
 
     public void startGame() {
@@ -49,6 +53,10 @@ public class GameModel {
             Pig pig = ( Pig ) factory.createFieldObject( "Pig",_generalFactory );
             Field.getInstance().addFieldObjectToRandomPosition( pig );
         }
+
+        /* Setting up collision manager */
+        SpriteGroup spriteGroup = Field.getInstance().getSpriteGroup();
+        _collisionManager = new BirdToPigCollision( spriteGroup,spriteGroup );
     }
 
     public Bird getPlayer() {
