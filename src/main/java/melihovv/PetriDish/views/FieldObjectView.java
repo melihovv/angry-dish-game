@@ -16,7 +16,7 @@ public class FieldObjectView extends Sprite {
 
     private FieldObject _fieldObject;
 
-    public void createObjectView() {
+    public void createObjectView(String imagePath) {
 
         int fieldObjectSize = _fieldObject.getSize();
 
@@ -26,7 +26,7 @@ public class FieldObjectView extends Sprite {
         // TODO: Add if-clause to check object type
         try {
 
-            BufferedImage hero = ImageIO.read( new File( "src/main/resources/heroes/main_hero.png" ) );
+            BufferedImage hero = ImageIO.read( new File( imagePath ) );
             g2d.drawImage(
                     hero,
                     ( fieldObjectSize - hero.getWidth() ) / 2,
