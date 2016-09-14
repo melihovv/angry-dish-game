@@ -5,7 +5,7 @@ import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldObjectView;
 
 /**
- * A factory to create field object views based in field object type.
+ * A factory to create field object views based on field object type.
  */
 public class FieldObjectsViewFactory {
 

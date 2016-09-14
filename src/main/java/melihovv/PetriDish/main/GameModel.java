@@ -1,6 +1,7 @@
 package melihovv.PetriDish.main;
 
 import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
@@ -25,7 +26,7 @@ public class GameModel {
         _generalFactory = generalFactory;
     }
 
-    public void update(long elapsedTime) {
+    public void update( long elapsedTime ) {
 
         Field.getInstance().update( elapsedTime );
     }
@@ -33,12 +34,12 @@ public class GameModel {
     public void startGame() {
 
         /* Creating main player and its controller */
-        _player = new Bird( _generalFactory );
+        _player = ( Bird ) new FieldObjectsFactory().createFieldObject( "Bird",_generalFactory );
         _playerController = _generalFactory.createPlayerController();
         _player.setController( _playerController );
 
 
-        Field.getInstance().addFieldObject( _player,new Point(DEFAULT_PLAYER_X_POSITION,DEFAULT_PLAYER_Y_POSITION) );
+        Field.getInstance().addFieldObject( _player, new Point( DEFAULT_PLAYER_X_POSITION, DEFAULT_PLAYER_Y_POSITION ) );
     }
 
     public Bird getPlayer() {
