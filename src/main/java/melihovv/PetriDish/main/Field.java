@@ -26,6 +26,8 @@ public class Field {
     private SpriteGroup _pigsGroup = new SpriteGroup( "Pig Group" );
     private SpriteGroup _birdsGroup = new SpriteGroup( "Bird Group" );
 
+    private int _pigsCounter;
+
     public void addFieldObject( FieldObject object, Point position ) {
 
         object.setPosition( position );
@@ -80,6 +82,7 @@ public class Field {
         if( isPositionFree( randomPosition, object ) ) {
 
             addFieldObject( object, randomPosition );
+            ++_pigsCounter;
         }
     }
 
@@ -155,6 +158,11 @@ public class Field {
             return  null;
         }
 
+    }
+
+    public int getPigsCounter() {
+
+        return _pigsCounter;
     }
 
     public void addObjectListener( FieldObjectListener objectListener ) {
