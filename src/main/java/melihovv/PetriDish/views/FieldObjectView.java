@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * A class represents the appearance of a basic field object.
@@ -17,7 +18,7 @@ public class FieldObjectView extends Sprite {
 
     private FieldObject _fieldObject;
 
-    public void createObjectView(final String imagePath) {
+    public void createObjectView(final URI imagePath) {
         int fieldObjectSize = _fieldObject.getSize();
 
         BufferedImage image = new BufferedImage(
