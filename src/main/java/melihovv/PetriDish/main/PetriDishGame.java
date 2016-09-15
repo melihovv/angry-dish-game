@@ -26,11 +26,11 @@ public class Application extends Game {
 
     // #TODO: Uncomment the line below when game is ready
     //{distribute=true;}
-    public Application( GeneralFactory generalFactory ) {
+    public Application(GeneralFactory generalFactory) {
 
         _gameModel = new GameModel(generalFactory);
         _playerController = new PlayerController();
-        _gameView = new GameView( generalFactory.createFieldView(),_gameModel );
+        _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
     }
 
     @Override
@@ -39,20 +39,20 @@ public class Application extends Game {
     }
 
     @Override
-    public void update( long elapsedTime ) {
+    public void update(long elapsedTime) {
 
-        _gameModel.update( elapsedTime );
+        _gameModel.update(elapsedTime);
     }
 
     @Override
-    public void render( Graphics2D g2d ) {
+    public void render(Graphics2D g2d) {
 
         FieldView fieldView = _gameView.getFieldView();
         Bird player = _gameModel.getPlayer();
         int playerX = player.getPosition().x;
         int playerY = player.getPosition().y;
-        fieldView.getBackground().setToCenter( playerX,playerY,player.getSize(),player.getSize() );
-        _gameView.render( g2d );
+        fieldView.getBackground().setToCenter(playerX, playerY, player.getSize(), player.getSize());
+        _gameView.render(g2d);
     }
 
     public void startApplication() {
@@ -62,8 +62,8 @@ public class Application extends Game {
         GameLoader gameLoader = new GameLoader();
         gameLoader.setup(
                 this,
-                new Dimension( SCREEN_WIDTH, SCREEN_HEIGHT ),
-                false );
+                new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT),
+                false);
         gameLoader.start();
     }
 
@@ -85,7 +85,7 @@ public class Application extends Game {
     private class PlayerController implements FieldObjectController {
 
         @Override
-        public void controlMovement( Bird bird ) {
+        public void controlMovement(Bird bird) {
 
             /* Getting base mouse coordinates */
             int baseMouseX = bsInput.getMouseX();
@@ -93,14 +93,14 @@ public class Application extends Game {
 
             /* Getting background coordinates */
             Background background = _gameView.getFieldView().getBackground();
-            int backgroundX = ( int ) background.getX();
-            int backgroundY = ( int ) background.getY();
+            int backgroundX = (int) background.getX();
+            int backgroundY = (int) background.getY();
 
             /* Getting mouse coordinates on field */
             int mouseX = baseMouseX + backgroundX;
             int mouseY = baseMouseY + backgroundY;
 
-            bird.setDestination( new Point(mouseX,mouseY) );
+            bird.setDestination(new Point(mouseX, mouseY));
         }
     }
 }
