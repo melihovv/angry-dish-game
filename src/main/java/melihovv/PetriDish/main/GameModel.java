@@ -38,7 +38,10 @@ public class GameModel {
         FieldObjectsFactory factory = new FieldObjectsFactory();
 
         /* Creating main player and its controller */
-        _player = (Bird) factory.createFieldObject("Bird", _generalFactory);
+        _player = (Bird) factory.createFieldObject(
+                Bird.class,
+                _generalFactory);
+
         _playerController = _generalFactory.createPlayerController();
         _player.setController(_playerController);
 
@@ -50,7 +53,10 @@ public class GameModel {
         /* Creating pigs */
         for (int i = 0; i < PIGS_COUNT; ++i) {
 
-            Pig pig = (Pig) factory.createFieldObject("Pig", _generalFactory);
+            Pig pig = (Pig) factory.createFieldObject(
+                    Pig.class,
+                    _generalFactory);
+
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
 
