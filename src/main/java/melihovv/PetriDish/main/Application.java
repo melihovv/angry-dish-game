@@ -28,9 +28,9 @@ public class Application extends Game {
     //{distribute=true;}
     public Application( GeneralFactory generalFactory ) {
 
-        _gameView = new GameView( generalFactory.createFieldView() );
         _gameModel = new GameModel(generalFactory);
         _playerController = new PlayerController();
+        _gameView = new GameView( generalFactory.createFieldView(),_gameModel );
     }
 
     @Override
