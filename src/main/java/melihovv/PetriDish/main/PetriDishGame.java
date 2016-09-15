@@ -9,16 +9,17 @@ import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 /**
- * Basic game class which starts the game, controls its view and model, sets window size.
- * Extends GTGE Game class.
+ * Basic game class which starts the game, controls its view and model, sets
+ * window size.
  */
-public class Application extends Game {
-
-    private final static int SCREEN_WIDTH = 1280;
-    private final static int SCREEN_HEIGHT = 720;
+public class PetriDishGame extends Game {
+    private static final int SCREEN_WIDTH = 1280;
+    private static final int SCREEN_HEIGHT = 720;
 
     private GameView _gameView;
     private GameModel _gameModel;
@@ -26,45 +27,10 @@ public class Application extends Game {
 
     // #TODO: Uncomment the line below when game is ready
     //{distribute=true;}
-    public Application(GeneralFactory generalFactory) {
-
+    public PetriDishGame(final GeneralFactory generalFactory) {
         _gameModel = new GameModel(generalFactory);
         _playerController = new PlayerController();
         _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
-    }
-
-    @Override
-    public void initResources() {
-
-    }
-
-    @Override
-    public void update(long elapsedTime) {
-
-        _gameModel.update(elapsedTime);
-    }
-
-    @Override
-    public void render(Graphics2D g2d) {
-
-        FieldView fieldView = _gameView.getFieldView();
-        Bird player = _gameModel.getPlayer();
-        int playerX = player.getPosition().x;
-        int playerY = player.getPosition().y;
-        fieldView.getBackground().setToCenter(playerX, playerY, player.getSize(), player.getSize());
-        _gameView.render(g2d);
-    }
-
-    public void startApplication() {
-
-        _gameModel.startGame();
-
-        GameLoader gameLoader = new GameLoader();
-        gameLoader.setup(
-                this,
-                new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT),
-                false);
-        gameLoader.start();
     }
 
     public static int getScreenWidth() {
@@ -77,16 +43,50 @@ public class Application extends Game {
         return SCREEN_HEIGHT;
     }
 
-    public PlayerController getPlayerController() {
+    @Override
+    public void initResources() {
+    }
 
+    @Override
+    public void update(final long elapsedTime) {
+        _gameModel.update(elapsedTime);
+    }
+
+    @Override
+    public void render(final Graphics2D g2d) {
+        FieldView fieldView = _gameView.getFieldView();
+        Bird player = _gameModel.getPlayer();
+        int playerX = player.getPosition().x;
+        int playerY = player.getPosition().y;
+        fieldView.getBackground().setToCenter(
+                playerX,
+                playerY,
+                player.getSize(),
+                player.getSize()
+        );
+        _gameView.render(g2d);
+    }
+
+    public void startApplication() {
+        _gameModel.startGame();
+
+        GameLoader gameLoader = new GameLoader();
+        gameLoader.setup(
+                this,
+                new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT),
+                false
+        );
+        gameLoader.start();
+    }
+
+    public PlayerController getPlayerController() {
         return _playerController;
     }
 
     private class PlayerController implements FieldObjectController {
 
         @Override
-        public void controlMovement(Bird bird) {
-
+        public void controlMovement(final Bird bird) {
             /* Getting base mouse coordinates */
             int baseMouseX = bsInput.getMouseX();
             int baseMouseY = bsInput.getMouseY();

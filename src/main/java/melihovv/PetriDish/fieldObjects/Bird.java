@@ -4,25 +4,20 @@ import melihovv.PetriDish.factories.GeneralFactory;
 
 /**
  * A class represents main game character which is a player.
- * Extends ActiveFieldObject.
  */
 public class Bird extends ActiveFieldObject {
+    private static final int DEFAULT_SIZE = 64;
 
-    private final int DEFAULT_SIZE = 64;
-
-    public Bird( GeneralFactory generalFactory ) {
-
-        super( generalFactory );
-        setSize( DEFAULT_SIZE );
+    public Bird(final GeneralFactory generalFactory) {
+        super(generalFactory);
+        setSize(DEFAULT_SIZE);
     }
 
-    public void update(long elapsedTime) {
+    public void update(final long elapsedTime) {
+        super.update(elapsedTime);
 
-        super.update( elapsedTime );
-
-        if(getController() != null) {
-
-            getController().controlMovement( this );
+        if (getController() != null) {
+            getController().controlMovement(this);
         }
     }
 }

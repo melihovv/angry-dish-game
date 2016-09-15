@@ -4,7 +4,8 @@ import com.golden.gamedev.object.Sprite;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,58 +17,53 @@ public class FieldObjectView extends Sprite {
 
     private FieldObject _fieldObject;
 
-    public void createObjectView(String imagePath) {
-
+    public void createObjectView(final String imagePath) {
         int fieldObjectSize = _fieldObject.getSize();
 
-        BufferedImage image = new BufferedImage( fieldObjectSize, fieldObjectSize, BufferedImage.TYPE_INT_ARGB );
+        BufferedImage image = new BufferedImage(
+                fieldObjectSize,
+                fieldObjectSize,
+                BufferedImage.TYPE_INT_ARGB
+        );
         Graphics2D g2d = image.createGraphics();
 
         // TODO: Add if-clause to check object type
         try {
-
-            BufferedImage hero = ImageIO.read( new File( imagePath ) );
+            BufferedImage hero = ImageIO.read(new File(imagePath));
             g2d.drawImage(
                     hero,
-                    ( fieldObjectSize - hero.getWidth() ) / 2,
-                    ( fieldObjectSize - hero.getHeight() ) / 2,
-                    null );
+                    (fieldObjectSize - hero.getWidth()) / 2,
+                    (fieldObjectSize - hero.getHeight()) / 2,
+                    null);
 
-        } catch( IOException e ) {
-
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         /* GTGE super class method */
-        setImage( image );
+        setImage(image);
     }
 
     @Override
-    public void update( long elapsedTime ) {
-
-        super.update( elapsedTime );
-        //#TODO: resize if model size has changed
-    }
-
-    public void setPosition( Point point ) {
-
-        setX( point.x );
-        setY( point.y );
+    public void update(final long elapsedTime) {
+        super.update(elapsedTime);
+        // TODO: resize if model size has changed
     }
 
     public Point getPosition() {
+        return new Point((int) getX(), (int) getY());
+    }
 
-        Point position = new Point( ( int ) getX(), ( int ) getY() );
-        return position;
+    public void setPosition(final Point point) {
+        setX(point.x);
+        setY(point.y);
     }
 
     public FieldObject getFieldObject() {
-
         return _fieldObject;
     }
 
-    public void setFieldObject( FieldObject fieldObject ) {
-
+    public void setFieldObject(final FieldObject fieldObject) {
         _fieldObject = fieldObject;
     }
 }

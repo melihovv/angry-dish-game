@@ -7,5 +7,5 @@ import melihovv.PetriDish.fieldObjects.Bird;
  */
 public interface FieldObjectController {
 
-    void controlMovement( Bird bird );
+    void controlMovement(Bird bird);
 }

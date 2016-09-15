@@ -1,7 +1,7 @@
 package melihovv.PetriDish.factories;
 
 import melihovv.PetriDish.controllers.FieldObjectController;
-import melihovv.PetriDish.main.Application;
+import melihovv.PetriDish.main.PetriDishGame;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectView;
 import melihovv.PetriDish.views.FieldView;
@@ -11,11 +11,11 @@ import melihovv.PetriDish.views.FieldView;
  */
 public class GeneralFactory {
 
-    private Application _application;
+    private PetriDishGame _application;
 
-    public Application createApplication() {
+    public PetriDishGame createApplication() {
 
-        Application application = new Application( this );
+        PetriDishGame application = new PetriDishGame(this);
         _application = application;
         return _application;
     }
@@ -23,8 +23,8 @@ public class GeneralFactory {
     public FieldView createFieldView() {
 
         FieldView fieldView = new FieldView();
-        Field.getInstance().addObjectListener( fieldView );
-        return  fieldView;
+        Field.getInstance().addObjectListener(fieldView);
+        return fieldView;
     }
 
     public FieldObjectView createFieldObjectView() {
