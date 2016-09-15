@@ -24,6 +24,8 @@ public class Application extends Game {
     private GameModel _gameModel;
     private PlayerController _playerController;
 
+    // #TODO: Uncomment the line below when game is ready
+    //{distribute=true;}
     public Application( GeneralFactory generalFactory ) {
 
         _gameView = new GameView( generalFactory.createFieldView() );

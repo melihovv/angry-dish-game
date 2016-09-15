@@ -18,6 +18,7 @@ public class ActiveFieldObject extends FieldObject {
     private final static double BREAK_COEFFICIENT = 500;
 
     private double _speed;
+    private int _eatenPigsCounter;
     private Point _destination;
     private FieldObjectController _controller;
 
@@ -86,6 +87,12 @@ public class ActiveFieldObject extends FieldObject {
         }
     }
 
+    public void eat(FieldObject object) {
+
+        Field.getInstance().removeFieldObject( object );
+        ++_eatenPigsCounter;
+    }
+
     public FieldObjectController getController() {
 
         return _controller;
@@ -124,5 +131,10 @@ public class ActiveFieldObject extends FieldObject {
 
         super.setPosition( position );
         _destination = new Point( position );
+    }
+
+    public int getEatenPigsCounter() {
+
+        return _eatenPigsCounter;
     }
 }

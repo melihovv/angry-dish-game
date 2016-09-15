@@ -2,7 +2,9 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.object.SpriteGroup;
 import melihovv.PetriDish.events.FieldObjectListener;
+import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
+import melihovv.PetriDish.fieldObjects.Pig;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,20 +23,39 @@ public class Field {
     private ArrayList< FieldObject > _fieldObjects = new ArrayList<>();
     private ArrayList< FieldObjectListener > _fieldObjectListeners = new ArrayList<>();
 
-    private SpriteGroup _spriteGroup = new SpriteGroup( "Collision Object Group" );
+    private SpriteGroup _pigsGroup = new SpriteGroup( "Pig Group" );
+    private SpriteGroup _birdsGroup = new SpriteGroup( "Bird Group" );
 
     public void addFieldObject( FieldObject object, Point position ) {
 
         object.setPosition( position );
         _fieldObjects.add( object );
-        _spriteGroup.add( object.getObjectView() );
+
+        if(object instanceof Bird) {
+
+            _birdsGroup.add( object.getObjectView() );
+
+        } else  if(object instanceof Pig) {
+
+            _pigsGroup.add( object.getObjectView() );
+        }
+
         fireObjectAdded( object );
     }
 
     public void removeFieldObject( FieldObject object ) {
 
         _fieldObjects.remove( object );
-        _spriteGroup.remove( object.getObjectView() );
+
+        if(object instanceof Bird) {
+
+            _birdsGroup.remove( object.getObjectView() );
+
+        } else  if(object instanceof Pig) {
+
+            _pigsGroup.remove( object.getObjectView() );
+        }
+
         fireObjectDeleted( object );
     }
 
@@ -119,9 +140,21 @@ public class Field {
         return _fieldObjects;
     }
 
-    public SpriteGroup getSpriteGroup() {
+    public SpriteGroup getSpriteGroup(Class objectsType) {
 
-        return _spriteGroup;
+        if(objectsType.equals( Bird.class )) {
+
+            return _birdsGroup;
+
+        } else if(objectsType.equals( Pig.class )) {
+
+            return _pigsGroup;
+
+        } else {
+
+            return  null;
+        }
+
     }
 
     public void addObjectListener( FieldObjectListener objectListener ) {

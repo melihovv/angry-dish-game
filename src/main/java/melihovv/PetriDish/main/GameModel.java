@@ -55,8 +55,9 @@ public class GameModel {
         }
 
         /* Setting up collision manager */
-        SpriteGroup spriteGroup = Field.getInstance().getSpriteGroup();
-        _collisionManager = new BirdToPigCollision( spriteGroup,spriteGroup );
+        SpriteGroup birdsGroup = Field.getInstance().getSpriteGroup(Bird.class);
+        SpriteGroup pigsGroup = Field.getInstance().getSpriteGroup( Pig.class );
+        _collisionManager = new BirdToPigCollision( birdsGroup,pigsGroup );
     }
 
     public Bird getPlayer() {
