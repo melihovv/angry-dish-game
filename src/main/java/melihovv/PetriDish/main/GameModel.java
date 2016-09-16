@@ -8,6 +8,7 @@ import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
 
@@ -19,6 +20,11 @@ public class GameModel {
      * The amount of pigs(game object) on start of the game.
      */
     private static final int PIGS_COUNT = 50;
+
+    /**
+     * The amount of wooden obstacles(game object) on start of the game.
+     */
+    private static final int WOODEN_OBSTACLES_COUNT = 20;
 
     /**
      * The x coordinate of player position on start of the game.
@@ -96,6 +102,17 @@ public class GameModel {
                     _generalFactory);
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
+        }
+
+        /* Creating wooden obstacles */
+        for (int i = 0; i < WOODEN_OBSTACLES_COUNT; ++i) {
+
+            WoodenObstacle obstacle =
+                    (WoodenObstacle) factory.createFieldObject(
+                            WoodenObstacle.class,
+                            _generalFactory);
+
+            Field.getInstance().addFieldObjectToRandomPosition(obstacle);
         }
 
         /* Setting up collision manager */

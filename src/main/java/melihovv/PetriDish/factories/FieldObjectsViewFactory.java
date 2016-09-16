@@ -3,6 +3,7 @@ package melihovv.PetriDish.factories;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 import melihovv.PetriDish.views.FieldObjectView;
 
 import java.net.URI;
@@ -27,6 +28,12 @@ public class FieldObjectsViewFactory {
             "/heroes/pigs/pig32px.png";
 
     /**
+     * The path to wooden obstacle image.
+     */
+    private static final String WOODEN_OBSTACLE =
+            "/obstacles/wooden_brick.png";
+
+    /**
      * Creates and instance of FieldObjectView class based on field object type.
      * @param fieldObject field object as a source of type.
      * @return an instance of FieldObjectView class with the same type as
@@ -43,11 +50,14 @@ public class FieldObjectsViewFactory {
         try {
             if (fieldObject instanceof Bird) {
                 imageUri = getClass().getResource(BIRD).toURI();
-                objectView.createObjectView(imageUri);
             } else if (fieldObject instanceof Pig) {
                 imageUri = getClass().getResource(PIG).toURI();
-                objectView.createObjectView(imageUri);
+            } else if (fieldObject instanceof WoodenObstacle) {
+                imageUri = getClass().getResource(WOODEN_OBSTACLE).toURI();
             }
+
+            objectView.createObjectView(imageUri);
+
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
