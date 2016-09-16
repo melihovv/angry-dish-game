@@ -55,6 +55,7 @@ public class ActiveFieldObject extends FieldObject {
      */
     public ActiveFieldObject(final GeneralFactory generalFactory) {
         super(generalFactory);
+        _speed = DEFAULT_SPEED;
     }
 
     /**
@@ -160,7 +161,6 @@ public class ActiveFieldObject extends FieldObject {
     public void setSize(final int size) {
         super.setSize(size);
         // #TODO: Adjust speed when size has changed?
-        _speed = DEFAULT_SPEED;
     }
 
     /**

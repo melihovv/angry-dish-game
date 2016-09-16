@@ -5,6 +5,7 @@ import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
 import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
@@ -142,7 +143,7 @@ public class PetriDishGame extends Game {
          * @param bird player to control.
          */
         @Override
-        public void controlMovement(final Bird bird) {
+        public void controlMovement(final ActiveFieldObject bird) {
             /* Getting base mouse coordinates */
             int baseMouseX = bsInput.getMouseX();
             int baseMouseY = bsInput.getMouseY();
