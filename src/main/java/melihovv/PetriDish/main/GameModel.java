@@ -2,6 +2,7 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.SpriteGroup;
+import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;

@@ -1,4 +1,4 @@
-package melihovv.PetriDish.main;
+package melihovv.PetriDish.collisions;
 
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
