@@ -82,7 +82,7 @@ public class ActiveFieldObject extends FieldObject {
             int yDistance = nextPosition.y - currentPosition.y
                     - (getSize() / 2);
             int distance = (int) Math
-                    .sqrt((xDistance * xDistance) + (yDistance * yDistance));
+                    .sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 
             /* Changing speed to move */
             if ((Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
@@ -91,7 +91,7 @@ public class ActiveFieldObject extends FieldObject {
                 _destination = null;
             } else {
                 double min = Math.min(_speed, distance / BREAK_COEFFICIENT);
-                int x = (Math.abs(xDistance) + Math.abs(yDistance));
+                int x = Math.abs(xDistance) + Math.abs(yDistance);
 
                 fieldObjectView.setSpeed(
                         min * xDistance / x,
