@@ -12,22 +12,54 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * A class represents game field.
+ * The class represents game field.
  * Singleton class.
  */
 public class Field {
+    /**
+     * The width of the field.Depends on background image size.
+     */
     private static final int FIELD_WIDTH = 5000;
+
+    /**
+     * The height of the field.Depends on background image size.
+     */
     private static final int FIELD_HEIGHT = 3750;
 
+    /**
+     * The only one instance of the class due to its singleton pattern.
+     */
     private static Field _instance;
+
+    /**
+     * The set of field objects.
+     */
     private List<FieldObject> _fieldObjects = new ArrayList<>();
+
+    /**
+     * The set of field listeners.
+     */
     private List<FieldObjectListener> _fieldObjectListeners = new ArrayList<>();
 
+    /**
+     * The collision sprite group for pigs(game object type).
+     */
     private SpriteGroup _pigsGroup = new SpriteGroup("Pig Group");
+
+    /**
+     * The collision sprite group for birds(game object type).
+     */
     private SpriteGroup _birdsGroup = new SpriteGroup("Bird Group");
 
+    /**
+     * The actual amount of pigs on the field.
+     */
     private int _pigsCounter;
 
+    /**
+     * The getter for _instance class member.
+     * @return value of _instance.
+     */
     public static Field getInstance() {
         if (_instance == null) {
             _instance = new Field();
@@ -36,14 +68,27 @@ public class Field {
         return _instance;
     }
 
+    /**
+     * The getter for FIELD_WIDTH class member.
+     * @return value of FIELD_WIDTH.
+     */
     public static int getFieldWidth() {
         return FIELD_WIDTH;
     }
 
+    /**
+     * The getter for FIELD_HEIGHT class member.
+     * @return value of FIELD_HEIGHT.
+     */
     public static int getFieldHeight() {
         return FIELD_HEIGHT;
     }
 
+    /**
+     * Adds object to the specified field position.
+     * @param object object to add.
+     * @param position position of the added object.
+     */
     public void addFieldObject(final FieldObject object, final Point position) {
         object.setPosition(position);
         _fieldObjects.add(object);
@@ -57,6 +102,10 @@ public class Field {
         fireObjectAdded(object);
     }
 
+    /**
+     * Removes object from the field.
+     * @param object object to remove.
+     */
     public void removeFieldObject(final FieldObject object) {
         _fieldObjects.remove(object);
 
@@ -69,12 +118,20 @@ public class Field {
         fireObjectDeleted(object);
     }
 
+    /**
+     * Updates field variables.
+     * @param elapsedTime time passed after the last update.
+     */
     public void update(final long elapsedTime) {
         for (FieldObject object : _fieldObjects) {
             object.update(elapsedTime);
         }
     }
 
+    /**
+     * Adds object to a random field position.
+     * @param object object to add.
+     */
     public void addFieldObjectToRandomPosition(final FieldObject object) {
         Random randomizer = new Random();
 
@@ -90,6 +147,12 @@ public class Field {
         }
     }
 
+    /**
+     * Checks if field position is free.
+     * @param position position to check.
+     * @param object object which is desired to be added.
+     * @return is position free.
+     */
     public boolean isPositionFree(
             final Point position,
             final FieldObject object
@@ -124,10 +187,19 @@ public class Field {
         return true;
     }
 
+    /**
+     * The getter for _fieldObjects class member.
+     * @return value of _fieldObjects.
+     */
     public List<FieldObject> getFieldObjects() {
         return _fieldObjects;
     }
 
+    /**
+     * The getter for sprite group class members.
+     * @param objectsType type of objects in sprite group.
+     * @return sprite group of objects with specified type.
+     */
     public SpriteGroup getSpriteGroup(final Class objectsType) {
         if (objectsType.equals(Bird.class)) {
             return _birdsGroup;
@@ -138,24 +210,44 @@ public class Field {
         }
     }
 
+    /**
+     * The getter for _pigsCounter class member.
+     * @return value of _pigsCounter.
+     */
     public int getPigsCounter() {
         return _pigsCounter;
     }
 
+    /**
+     * Adds field listener.
+     * @param objectListener listener to add.
+     */
     public void addObjectListener(final FieldObjectListener objectListener) {
         _fieldObjectListeners.add(objectListener);
     }
 
+    /**
+     * Removes field listener.
+     * @param objectListener listener to remove.
+     */
     public void deleteObjectListener(final FieldObjectListener objectListener) {
         _fieldObjectListeners.remove(objectListener);
     }
 
+    /**
+     * Fires the event of adding field object to all field listeners.
+     * @param fieldObject added field object.
+     */
     private void fireObjectAdded(final FieldObject fieldObject) {
         for (FieldObjectListener objectListener : _fieldObjectListeners) {
             objectListener.fieldObjectAdded(fieldObject);
         }
     }
 
+    /**
+     * Fires the event of deleting field object to all field listeners.
+     * @param fieldObject deleted field object.
+     */
     private void fireObjectDeleted(final FieldObject fieldObject) {
         for (FieldObjectListener objectListener : _fieldObjectListeners) {
             objectListener.fieldObjectDeleted(fieldObject);

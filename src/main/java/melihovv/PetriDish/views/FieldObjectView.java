@@ -12,12 +12,18 @@ import java.io.IOException;
 import java.net.URI;
 
 /**
- * A class represents the appearance of a basic field object.
+ * The class represents the appearance of a basic field object.
  */
 public class FieldObjectView extends Sprite {
-
+    /**
+     * The field object associated with the current field object view.
+     */
     private FieldObject _fieldObject;
 
+    /**
+     * Creates field object wiew based on image path.
+     * @param imagePath field object view image path.
+     */
     public void createObjectView(final URI imagePath) {
         int fieldObjectSize = _fieldObject.getSize();
 
@@ -45,25 +51,46 @@ public class FieldObjectView extends Sprite {
         setImage(image);
     }
 
+    /**
+     * Updates field object view image.
+     * @param elapsedTime time passed after the last update.
+     */
     @Override
     public void update(final long elapsedTime) {
         super.update(elapsedTime);
         // TODO: resize if model size has changed
     }
 
+    /**
+     * The getter for the field object view position.
+     * @return field object view position
+     */
     public Point getPosition() {
         return new Point((int) getX(), (int) getY());
     }
 
+    /**
+     * The setter for the field object view position.
+     */
     public void setPosition(final Point point) {
         setX(point.x);
         setY(point.y);
     }
 
+    /**
+     * The getter for the field object associated with the current field object
+     * view.
+     * @return field object associated with the current field object view.
+     */
     public FieldObject getFieldObject() {
         return _fieldObject;
     }
 
+    /**
+     * The setter for the field object associated with the current field object
+     * view.
+     * @param fieldObject field object to set.
+     */
     public void setFieldObject(final FieldObject fieldObject) {
         _fieldObject = fieldObject;
     }

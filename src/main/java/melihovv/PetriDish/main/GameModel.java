@@ -11,29 +11,66 @@ import melihovv.PetriDish.fieldObjects.Pig;
 import java.awt.Point;
 
 /**
- * Base game model class which controls game logic.
+ * The base game model class which controls game logic.
  */
 public class GameModel {
-
+    /**
+     * The amount of pigs(game object) on start of the game.
+     */
     private static final int PIGS_COUNT = 50;
+
+    /**
+     * The x coordinate of player position on start of the game.
+     */
     private static final int DEFAULT_PLAYER_X_POSITION = 2500;
+
+    /**
+     * The y coordinate of player position on start of the game.
+     */
     private static final int DEFAULT_PLAYER_Y_POSITION = 1875;
 
+    /**
+     * The main player of the game.
+     */
     private Bird _player;
+
+    /**
+     * The general game factory to create basic game components.
+     */
     private GeneralFactory _generalFactory;
-    private CollisionManager _collisionManager;
+
+    /**
+     * The collision manager to control collisions between the player and pigs.
+     */
+    private CollisionManager _playerToPigsCollisionManager;
+
+    /**
+     * The player controller to control player's behaviour.
+     */
     private FieldObjectController _playerController;
 
+    /**
+     * The basic constructor for class members initialization.
+     * @param generalFactory general game factory to create basic game
+     *                       components.
+     */
     public GameModel(final GeneralFactory generalFactory) {
         _generalFactory = generalFactory;
     }
 
+    /**
+     * Updates game model variables.
+     * @param elapsedTime time passed after the last update.
+     */
     public void update(final long elapsedTime) {
         Field.getInstance().update(elapsedTime);
 
-        _collisionManager.checkCollision();
+        _playerToPigsCollisionManager.checkCollision();
     }
 
+    /**
+     * Starts the game by creating its objects and setting up main components.
+     */
     public void startGame() {
         FieldObjectsFactory factory = new FieldObjectsFactory();
 
@@ -63,9 +100,15 @@ public class GameModel {
         /* Setting up collision manager */
         SpriteGroup birdsGroup = Field.getInstance().getSpriteGroup(Bird.class);
         SpriteGroup pigsGroup = Field.getInstance().getSpriteGroup(Pig.class);
-        _collisionManager = new BirdToPigCollision(birdsGroup, pigsGroup);
+        _playerToPigsCollisionManager = new BirdToPigCollision(
+                birdsGroup,
+                pigsGroup);
     }
 
+    /**
+     * The getter for _player class member.
+     * @return value of _player.
+     */
     public Bird getPlayer() {
         return _player;
     }

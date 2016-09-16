@@ -9,15 +9,29 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
- * A factory to create field object views based on field object type.
+ * The factory to create instances of FieldObjectView class based on field
+ * object
+ * type.
  */
 public class FieldObjectsViewFactory {
+    /**
+     * The path to bird image.
+     */
     private static final String BIRD =
             "/heroes/birds/main_hero.png";
 
+    /**
+     * The path to pig image.
+     */
     private static final String PIG =
             "/heroes/pigs/pig32px.png";
 
+    /**
+     * Creates and instance of FieldObjectView class based on field object type.
+     * @param fieldObject field object as a source of type.
+     * @return an instance of FieldObjectView class with the same type as
+     * specified field object has.
+     */
     public FieldObjectView createFieldObjectView(
             final FieldObject fieldObject
     ) {

@@ -8,29 +8,68 @@ import melihovv.PetriDish.views.FieldObjectView;
 import java.awt.Point;
 
 /**
- * A class represents movable field object which do move and can interact with
+ * The class represents movable field object which do move and can interact with
  * other objects.
  */
 public class ActiveFieldObject extends FieldObject {
+
+    /**
+     * The radius around the object where it starts decreasing its speed.
+     */
     private static final int STOP_RADIUS = 15;
+
+    /**
+     * The default object speed.
+     */
     private static final int DEFAULT_SPEED = 1;
+
+    /**
+     * The stopping factor.
+     */
     private static final double BREAK_COEFFICIENT = 500;
 
+    /**
+     * The speed of the object.
+     */
     private double _speed;
+
+    /**
+     * The amount of eaten pigs.
+     */
     private int _eatenPigsCounter;
+
+    /**
+     * The destination point. Object moves towards it point.
+     */
     private Point _destination;
+
+    /**
+     * The object controller.
+     */
     private FieldObjectController _controller;
 
+    /**
+     * The basic constructor for class members initialization.
+     * @param generalFactory general game factory to create basic game
+     *                       components.
+     */
     public ActiveFieldObject(final GeneralFactory generalFactory) {
         super(generalFactory);
     }
 
+    /**
+     * Updates object state.
+     * @param elapsedTime time passed after the last update.
+     */
     @Override
     public void update(final long elapsedTime) {
         move();
         super.update(elapsedTime);
     }
 
+    /**
+     * Moves the object to its destination point.
+     */
     public void move() {
         if (_destination != null) {
             Point currentPosition = getPosition();
@@ -87,19 +126,36 @@ public class ActiveFieldObject extends FieldObject {
         }
     }
 
+    /**
+     * Eats field object. Simply deletes it from the field and increases
+     * eaten pigs counter.
+     * @param object object to eat.
+     */
     public void eat(final FieldObject object) {
         Field.getInstance().removeFieldObject(object);
         ++_eatenPigsCounter;
     }
 
+    /**
+     * The getter for _controller class member.
+     * @return value of _controller.
+     */
     public FieldObjectController getController() {
         return _controller;
     }
 
+    /**
+     * The setter for _controller class member/
+     * @param controller value to set.
+     */
     public void setController(final FieldObjectController controller) {
         _controller = controller;
     }
 
+    /**
+     * The setter for _size class member.
+     * @param size value to set.
+     */
     @Override
     public void setSize(final int size) {
         super.setSize(size);
@@ -107,6 +163,10 @@ public class ActiveFieldObject extends FieldObject {
         _speed = DEFAULT_SPEED;
     }
 
+    /**
+     * The getter for _destination class member.
+     * @return value of _destination.
+     */
     public Point getDestination() {
         if (_destination == null) {
             return new Point(0, 0);
@@ -115,16 +175,28 @@ public class ActiveFieldObject extends FieldObject {
         return _destination;
     }
 
+    /**
+     * The setter for _destination class member.
+     * @param destination value to set.
+     */
     public void setDestination(final Point destination) {
         _destination = destination;
     }
 
+    /**
+     * The setter for _position class member.
+     * @param position value to set.
+     */
     @Override
     public void setPosition(final Point position) {
         super.setPosition(position);
         _destination = new Point(position);
     }
 
+    /**
+     * The getter for _eatenPigsCounter class member.
+     * @return value of _eatenPigsCounter.
+     */
     public int getEatenPigsCounter() {
         return _eatenPigsCounter;
     }

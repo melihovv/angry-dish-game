@@ -7,19 +7,30 @@ import melihovv.PetriDish.views.FieldObjectView;
 import melihovv.PetriDish.views.FieldView;
 
 /**
- * A factory to create basic game objects.
+ * The factory to create instances of basic game objects.
  */
 public class GeneralFactory {
+    /**
+     * The instance of PetriDishGame class.
+     */
+    private PetriDishGame _petriDishGame;
 
-    private PetriDishGame _application;
-
-    public PetriDishGame createApplication() {
+    /**
+     * Creates an instance of PetriDishGame class and saves its.
+     * @return PetriDishGame class instance.
+     */
+    public PetriDishGame createPetriDishGame() {
 
         PetriDishGame application = new PetriDishGame(this);
-        _application = application;
-        return _application;
+        _petriDishGame = application;
+        return _petriDishGame;
     }
 
+    /**
+     * Creates an instance of FieldView class and adds it to the field's
+     * listeners.
+     * @return FieldView class instance.
+     */
     public FieldView createFieldView() {
 
         FieldView fieldView = new FieldView();
@@ -27,13 +38,21 @@ public class GeneralFactory {
         return fieldView;
     }
 
+    /**
+     * Creates an instance of FieldObjectView class.
+     * @return an instance of FieldObjectView class.
+     */
     public FieldObjectView createFieldObjectView() {
 
         return new FieldObjectView();
     }
 
+    /**
+     * Creates an instance of PlayerController class.
+     * @return an instance of PlayerController class.
+     */
     public FieldObjectController createPlayerController() {
 
-        return _application.getPlayerController();
+        return _petriDishGame.getPlayerController();
     }
 }
