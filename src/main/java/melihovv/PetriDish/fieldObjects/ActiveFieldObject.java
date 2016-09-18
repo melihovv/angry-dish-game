@@ -131,7 +131,7 @@ public class ActiveFieldObject extends FieldObject {
     }
 
     /**
-     * The setter for _controller class member/
+     * The setter for _controller class member.
      * @param controller value to set.
      */
     public void setController(final FieldObjectController controller) {

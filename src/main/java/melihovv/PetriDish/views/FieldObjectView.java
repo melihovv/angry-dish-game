@@ -22,6 +22,7 @@ public class FieldObjectView extends Sprite {
 
     /**
      * Creates field object wiew based on image path.
+     *
      * @param imagePath field object view image path.
      */
     public void createObjectView(final URI imagePath) {
@@ -53,6 +54,7 @@ public class FieldObjectView extends Sprite {
 
     /**
      * Updates field object view image.
+     *
      * @param elapsedTime time passed after the last update.
      */
     @Override
@@ -63,6 +65,7 @@ public class FieldObjectView extends Sprite {
 
     /**
      * The getter for the field object view position.
+     *
      * @return field object view position
      */
     public Point getPosition() {
@@ -71,6 +74,8 @@ public class FieldObjectView extends Sprite {
 
     /**
      * The setter for the field object view position.
+     *
+     * @param point value to set.
      */
     public void setPosition(final Point point) {
         setX(point.x);
@@ -80,6 +85,7 @@ public class FieldObjectView extends Sprite {
     /**
      * The getter for the field object associated with the current field object
      * view.
+     *
      * @return field object associated with the current field object view.
      */
     public FieldObject getFieldObject() {
@@ -89,6 +95,7 @@ public class FieldObjectView extends Sprite {
     /**
      * The setter for the field object associated with the current field object
      * view.
+     *
      * @param fieldObject field object to set.
      */
     public void setFieldObject(final FieldObject fieldObject) {

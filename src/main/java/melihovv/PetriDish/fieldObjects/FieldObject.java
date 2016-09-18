@@ -46,6 +46,8 @@ public abstract class FieldObject {
 
     /**
      * The setter for _size class member.
+     *
+     * @param size value of _size.
      */
     public void setSize(final int size) {
         _size = size;
