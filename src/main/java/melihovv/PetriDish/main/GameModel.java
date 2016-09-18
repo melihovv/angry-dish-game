@@ -6,6 +6,8 @@ import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
 import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.events.BirdListener;
+import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
@@ -13,11 +15,12 @@ import melihovv.PetriDish.fieldObjects.Pig;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * The base game model class which controls game logic.
  */
-public class GameModel {
+public class GameModel implements BirdListener {
     /**
      * The amount of pigs(game object) on start of the game.
      */
@@ -47,6 +50,11 @@ public class GameModel {
      * The factory to create field objects.
      */
     private FieldObjectsFactory _fieldObjectsFactory;
+
+    /**
+     * The set of model listeners.
+     */
+    private ArrayList<ModelListener> _modelListeners = new ArrayList<>();
 
     /**
      * The main player of the game.
@@ -125,6 +133,7 @@ public class GameModel {
 
         _playerController = _generalFactory.createPlayerController();
         _player.setController(_playerController);
+        _player.addBirdListener(this);
 
         Field.getInstance().addFieldObject(
                 _player,
@@ -180,5 +189,58 @@ public class GameModel {
      */
     public Bird getPlayer() {
         return _player;
+    }
+
+    /**
+     * Adds model listener.
+     *
+     * @param modelListener listener to add.
+     */
+    public void addModelListener(final ModelListener modelListener) {
+        _modelListeners.add(modelListener);
+    }
+
+    /**
+     * Removes model listener.
+     *
+     * @param modelListener listener to remove.
+     */
+    public void deleteModelListener(final BirdListener modelListener) {
+        _modelListeners.remove(modelListener);
+    }
+
+    /**
+     * Fires the event of hitting the wooden obstacle by a bird to all model
+     * listeners.
+     */
+    private void fireBirdHitWoodenObstacle() {
+        for (ModelListener modelListener : _modelListeners) {
+            modelListener.birdHitWoodenObstacle();
+        }
+    }
+
+    /**
+     * Fires the event of eating a pig by a bird to all model listeners.
+     */
+    private void fireBirdEatPig() {
+        for (ModelListener modelListener : _modelListeners) {
+            modelListener.birdEatPig();
+        }
+    }
+
+    /**
+     * The reaction on bird hit wooden obstacle event.
+     */
+    @Override
+    public void woodenObstacleHit() {
+            fireBirdHitWoodenObstacle();
+    }
+
+    /**
+     * The reaction on pig eat bird event.
+     */
+    @Override
+    public void pigEaten() {
+            fireBirdEatPig();
     }
 }

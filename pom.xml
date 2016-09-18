@@ -45,7 +45,7 @@
           <linkXref>true</linkXref>
           <sourceEncoding>utf-8</sourceEncoding>
           <targetJdk>1.8</targetJdk>
-          <minimumTokens>30</minimumTokens>
+          <minimumTokens>50</minimumTokens>
         </configuration>
       </plugin>
 

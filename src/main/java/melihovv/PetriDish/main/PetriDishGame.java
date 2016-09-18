@@ -4,21 +4,30 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
 import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
+import javax.swing.Timer;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * The basic game class which starts the game, controls its view and model, sets
  * window size.
  */
-public class PetriDishGame extends Game {
+public class PetriDishGame extends Game implements ModelListener {
+    /**
+     * The time to play sound again.
+     */
+    private static final int REPEAT_SOUND_TIMER_TIME = 1000;
+
     /**
      * The width of the game screen.
      */
@@ -29,6 +38,15 @@ public class PetriDishGame extends Game {
      */
     private static final int SCREEN_HEIGHT = 720;
 
+    /**
+     * The flag to control whether the game is able to play sound or not.
+     */
+    private boolean _canPlaySound = true;
+
+    /**
+     * The timer to set _canPlaySound variable to true.
+     */
+    private Timer _repeatSoundTimer;
     /**
      * The part of the game which controls its appearance.
      */
@@ -46,19 +64,35 @@ public class PetriDishGame extends Game {
 
     // #TODO: Uncomment the line below when game is ready
     //{distribute=true;}
+
     /**
      * The basic constructor for class members initialization.
+     *
      * @param generalFactory general game factory to create basic game
      *                       components.
      */
     public PetriDishGame(final GeneralFactory generalFactory) {
         _gameModel = new GameModel(generalFactory);
+        _gameModel.addModelListener(this);
         _playerController = new PlayerController();
         _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
+
+        /* Setting up the timer */
+        _repeatSoundTimer = new Timer(
+                REPEAT_SOUND_TIMER_TIME,
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(final ActionEvent e) {
+                        _canPlaySound = true;
+                    }
+                });
+        _repeatSoundTimer.setRepeats(false);
+        _repeatSoundTimer.stop();
     }
 
     /**
      * The getter for SCREEN_WIDTH class member.
+     *
      * @return value of SCREEN_WIDTH.
      */
     public static int getScreenWidth() {
@@ -68,6 +102,7 @@ public class PetriDishGame extends Game {
 
     /**
      * The getter for SCREEN_HEIGHT class member.
+     *
      * @return value of SCREEN_HEIGHT.
      */
     public static int getScreenHeight() {
@@ -84,6 +119,7 @@ public class PetriDishGame extends Game {
 
     /**
      * Updates game variables.
+     *
      * @param elapsedTime time passed after the last update.
      */
     @Override
@@ -93,6 +129,7 @@ public class PetriDishGame extends Game {
 
     /**
      * Renders game screen.
+     *
      * @param g2d graphics to render on.
      */
     @Override
@@ -127,10 +164,32 @@ public class PetriDishGame extends Game {
 
     /**
      * The getter for _playerController class member.
+     *
      * @return value of _playerController.
      */
     public PlayerController getPlayerController() {
         return _playerController;
+    }
+
+    /**
+     * The reaction on bird eat pig event.
+     */
+    @Override
+    public void birdEatPig() {
+        bsSound.play("/sounds/pig_grunt.wav");
+    }
+
+    /**
+     * The reaction on bird hit wooden obstacle event.
+     */
+    @Override
+    public void birdHitWoodenObstacle() {
+        if (_canPlaySound) {
+            bsSound.play("/sounds/hit_wood.wav");
+            bsSound.play("/sounds/bird_ouch.wav");
+            _canPlaySound = false;
+            _repeatSoundTimer.start();
+        }
     }
 
     /**
@@ -140,6 +199,7 @@ public class PetriDishGame extends Game {
 
         /**
          * Controls basic player movement.
+         *
          * @param bird player to control.
          */
         @Override
