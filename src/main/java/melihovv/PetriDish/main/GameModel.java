@@ -2,6 +2,7 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.SpriteGroup;
+import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
 import melihovv.PetriDish.controllers.FieldObjectController;
@@ -38,6 +39,16 @@ public class GameModel {
     private static final int DEFAULT_PLAYER_Y_POSITION = 1875;
 
     /**
+     * The amount of time before new pig is created.
+     */
+    private static final int PIGS_CREATINON_TIME = 10000;
+
+    /**
+     * The factory to create field objects.
+     */
+    private FieldObjectsFactory _fieldObjectsFactory;
+
+    /**
      * The main player of the game.
      */
     private Bird _player;
@@ -59,21 +70,30 @@ public class GameModel {
     private CollisionManager _playerToWoodenObstaclesCollisionManager;
 
     /**
+     * The timer to create new pigs when the time's up.
+     */
+    private Timer _pigsCreationTimer;
+
+    /**
      * The player controller to control player's behaviour.
      */
     private FieldObjectController _playerController;
 
     /**
      * The basic constructor for class members initialization.
+     *
      * @param generalFactory general game factory to create basic game
      *                       components.
      */
     public GameModel(final GeneralFactory generalFactory) {
         _generalFactory = generalFactory;
+        _fieldObjectsFactory = new FieldObjectsFactory();
+        _pigsCreationTimer = new Timer(PIGS_CREATINON_TIME);
     }
 
     /**
      * Updates game model variables.
+     *
      * @param elapsedTime time passed after the last update.
      */
     public void update(final long elapsedTime) {
@@ -81,16 +101,25 @@ public class GameModel {
 
         _playerToPigsCollisionManager.checkCollision();
         _playerToWoodenObstaclesCollisionManager.checkCollision();
+
+        if (_pigsCreationTimer.action(elapsedTime)) {
+            System.out.println("God damn! A new pig is here!");
+
+            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(
+                    Pig.class,
+                    _generalFactory);
+
+            Field.getInstance().addFieldObjectToRandomPosition(pig);
+        }
     }
 
     /**
      * Starts the game by creating its objects and setting up main components.
      */
     public void startGame() {
-        FieldObjectsFactory factory = new FieldObjectsFactory();
 
         /* Creating main player and its controller */
-        _player = (Bird) factory.createFieldObject(
+        _player = (Bird) _fieldObjectsFactory.createFieldObject(
                 Bird.class,
                 _generalFactory);
 
@@ -105,7 +134,7 @@ public class GameModel {
         /* Creating pigs */
         for (int i = 0; i < PIGS_COUNT; ++i) {
 
-            Pig pig = (Pig) factory.createFieldObject(
+            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(
                     Pig.class,
                     _generalFactory);
 
@@ -116,7 +145,7 @@ public class GameModel {
         for (int i = 0; i < WOODEN_OBSTACLES_COUNT; ++i) {
 
             WoodenObstacle obstacle =
-                    (WoodenObstacle) factory.createFieldObject(
+                    (WoodenObstacle) _fieldObjectsFactory.createFieldObject(
                             WoodenObstacle.class,
                             _generalFactory);
 
@@ -146,6 +175,7 @@ public class GameModel {
 
     /**
      * The getter for _player class member.
+     *
      * @return value of _player.
      */
     public Bird getPlayer() {
