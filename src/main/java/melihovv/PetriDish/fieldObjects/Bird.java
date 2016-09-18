@@ -1,6 +1,7 @@
 package melihovv.PetriDish.fieldObjects;
 
 import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.main.Field;
 
 import java.awt.Point;
 
@@ -17,6 +18,11 @@ public class Bird extends ActiveFieldObject {
      * The new position adjustment when hits a wooden obstacle.
      */
     private static final int POS_ADJUSTMENT = 400;
+
+    /**
+     * The amount of eaten pigs.
+     */
+    private int _eatenPigsCounter;
 
     /**
      * The basic constructor for class members initialization.
@@ -84,5 +90,23 @@ public class Bird extends ActiveFieldObject {
         }
 
         setDestination(newPos);
+    }
+
+    /**
+     * Eats field object. Simply deletes it from the field and increases
+     * eaten pigs counter.
+     * @param object object to eat.
+     */
+    public void eat(final FieldObject object) {
+        Field.getInstance().removeFieldObject(object);
+        ++_eatenPigsCounter;
+    }
+
+    /**
+     * The getter for _eatenPigsCounter class member.
+     * @return value of _eatenPigsCounter.
+     */
+    public int getEatenPigsCounter() {
+        return _eatenPigsCounter;
     }
 }

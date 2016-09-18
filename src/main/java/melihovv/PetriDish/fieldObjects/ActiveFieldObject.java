@@ -34,11 +34,6 @@ public class ActiveFieldObject extends FieldObject {
     private double _speed;
 
     /**
-     * The amount of eaten pigs.
-     */
-    private int _eatenPigsCounter;
-
-    /**
      * The destination point. Object moves towards it point.
      */
     private Point _destination;
@@ -128,16 +123,6 @@ public class ActiveFieldObject extends FieldObject {
     }
 
     /**
-     * Eats field object. Simply deletes it from the field and increases
-     * eaten pigs counter.
-     * @param object object to eat.
-     */
-    public void eat(final FieldObject object) {
-        Field.getInstance().removeFieldObject(object);
-        ++_eatenPigsCounter;
-    }
-
-    /**
      * The getter for _controller class member.
      * @return value of _controller.
      */
@@ -191,13 +176,5 @@ public class ActiveFieldObject extends FieldObject {
     public void setPosition(final Point position) {
         super.setPosition(position);
         _destination = new Point(position);
-    }
-
-    /**
-     * The getter for _eatenPigsCounter class member.
-     * @return value of _eatenPigsCounter.
-     */
-    public int getEatenPigsCounter() {
-        return _eatenPigsCounter;
     }
 }
