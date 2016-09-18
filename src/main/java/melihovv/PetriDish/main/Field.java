@@ -5,6 +5,7 @@ import melihovv.PetriDish.events.FieldObjectListener;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -44,12 +45,20 @@ public class Field {
     /**
      * The collision sprite group for pigs(game object type).
      */
-    private SpriteGroup _pigsGroup = new SpriteGroup("Pig Group");
+    private SpriteGroup _pigsGroup =
+            new SpriteGroup("Pig Group");
 
     /**
      * The collision sprite group for birds(game object type).
      */
-    private SpriteGroup _birdsGroup = new SpriteGroup("Bird Group");
+    private SpriteGroup _birdsGroup =
+            new SpriteGroup("Bird Group");
+
+    /**
+     * The collision sprite group for wooden obstacles(game object type).
+     */
+    private SpriteGroup _woodenObstacles =
+            new SpriteGroup("Wooden obstacle Group");
 
     /**
      * The actual amount of pigs on the field.
@@ -58,6 +67,7 @@ public class Field {
 
     /**
      * The getter for _instance class member.
+     *
      * @return value of _instance.
      */
     public static Field getInstance() {
@@ -70,6 +80,7 @@ public class Field {
 
     /**
      * The getter for FIELD_WIDTH class member.
+     *
      * @return value of FIELD_WIDTH.
      */
     public static int getFieldWidth() {
@@ -78,6 +89,7 @@ public class Field {
 
     /**
      * The getter for FIELD_HEIGHT class member.
+     *
      * @return value of FIELD_HEIGHT.
      */
     public static int getFieldHeight() {
@@ -86,7 +98,8 @@ public class Field {
 
     /**
      * Adds object to the specified field position.
-     * @param object object to add.
+     *
+     * @param object   object to add.
      * @param position position of the added object.
      */
     public void addFieldObject(final FieldObject object, final Point position) {
@@ -97,6 +110,8 @@ public class Field {
             _birdsGroup.add(object.getObjectView());
         } else if (object instanceof Pig) {
             _pigsGroup.add(object.getObjectView());
+        } else if (object instanceof WoodenObstacle) {
+            _woodenObstacles.add(object.getObjectView());
         }
 
         fireObjectAdded(object);
@@ -104,6 +119,7 @@ public class Field {
 
     /**
      * Removes object from the field.
+     *
      * @param object object to remove.
      */
     public void removeFieldObject(final FieldObject object) {
@@ -113,6 +129,8 @@ public class Field {
             _birdsGroup.remove(object.getObjectView());
         } else if (object instanceof Pig) {
             _pigsGroup.remove(object.getObjectView());
+        } else if (object instanceof WoodenObstacle) {
+            _woodenObstacles.remove(object.getObjectView());
         }
 
         fireObjectDeleted(object);
@@ -120,6 +138,7 @@ public class Field {
 
     /**
      * Updates field variables.
+     *
      * @param elapsedTime time passed after the last update.
      */
     public void update(final long elapsedTime) {
@@ -130,6 +149,7 @@ public class Field {
 
     /**
      * Adds object to a random field position.
+     *
      * @param object object to add.
      */
     public void addFieldObjectToRandomPosition(final FieldObject object) {
@@ -149,8 +169,9 @@ public class Field {
 
     /**
      * Checks if field position is free.
+     *
      * @param position position to check.
-     * @param object object which is desired to be added.
+     * @param object   object which is desired to be added.
      * @return is position free.
      */
     public boolean isPositionFree(
@@ -189,6 +210,7 @@ public class Field {
 
     /**
      * The getter for _fieldObjects class member.
+     *
      * @return value of _fieldObjects.
      */
     public List<FieldObject> getFieldObjects() {
@@ -197,6 +219,7 @@ public class Field {
 
     /**
      * The getter for sprite group class members.
+     *
      * @param objectsType type of objects in sprite group.
      * @return sprite group of objects with specified type.
      */
@@ -205,6 +228,8 @@ public class Field {
             return _birdsGroup;
         } else if (objectsType.equals(Pig.class)) {
             return _pigsGroup;
+        } else if (objectsType.equals(WoodenObstacle.class)) {
+            return _woodenObstacles;
         } else {
             return null;
         }
@@ -212,6 +237,7 @@ public class Field {
 
     /**
      * The getter for _pigsCounter class member.
+     *
      * @return value of _pigsCounter.
      */
     public int getPigsCounter() {
@@ -220,6 +246,7 @@ public class Field {
 
     /**
      * Adds field listener.
+     *
      * @param objectListener listener to add.
      */
     public void addObjectListener(final FieldObjectListener objectListener) {
@@ -228,6 +255,7 @@ public class Field {
 
     /**
      * Removes field listener.
+     *
      * @param objectListener listener to remove.
      */
     public void deleteObjectListener(final FieldObjectListener objectListener) {
@@ -236,6 +264,7 @@ public class Field {
 
     /**
      * Fires the event of adding field object to all field listeners.
+     *
      * @param fieldObject added field object.
      */
     private void fireObjectAdded(final FieldObject fieldObject) {
@@ -246,6 +275,7 @@ public class Field {
 
     /**
      * Fires the event of deleting field object to all field listeners.
+     *
      * @param fieldObject deleted field object.
      */
     private void fireObjectDeleted(final FieldObject fieldObject) {

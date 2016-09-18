@@ -8,10 +8,10 @@ import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldObjectView;
 
 /**
- * The collision manager that controls collisions between a player
- * (bird) and pigs.
+ * The collision manager that controls collisions between a player (bird) and
+ * wooden obstacles.
  */
-public class BirdToPigCollision extends BasicCollisionGroup {
+public class BirdToWoodenObstacleCollision extends BasicCollisionGroup {
     /**
      * The debug class member to count the amount collided function calls.
      */
@@ -19,10 +19,11 @@ public class BirdToPigCollision extends BasicCollisionGroup {
 
     /**
      * The basic constructor which sets collision groups.
+     *
      * @param group1 first collision group.
      * @param group2 second collision group.
      */
-    public BirdToPigCollision(
+    public BirdToWoodenObstacleCollision(
             final SpriteGroup group1,
             final SpriteGroup group2
     ) {
@@ -30,28 +31,31 @@ public class BirdToPigCollision extends BasicCollisionGroup {
         pixelPerfectCollision = true;
     }
 
-
     /**
      * The collision implementation. Sets the actions when collision is
      * detected.
-     * Bird eats pig.
+     * Bird stops when hit wooden obstacle.
+     *
      * @param s1 first collision sprite.
      * @param s2 second collision sprite.
      */
+
     @Override
     public void collided(final Sprite s1, final Sprite s2) {
         // TODO: Delete 2 lines below
         System.out.print(++_counter);
-        System.out.println(".A Bird has just eaten a pig!");
+        System.out.println(".Ooops! We've just hit that piece of wood!");
 
         FieldObjectView fieldObjectView1 = (FieldObjectView) s1;
-        FieldObjectView fieldObjectView2 = (FieldObjectView) s2;
-
         FieldObject fieldObject1 = fieldObjectView1.getFieldObject();
+
+        FieldObjectView fieldObjectView2 = (FieldObjectView) s2;
         FieldObject fieldObject2 = fieldObjectView2.getFieldObject();
 
         if (fieldObject1 instanceof Bird) {
-            ((Bird) fieldObject1).eat(fieldObject2);
+
+            Bird player = (Bird) fieldObject1;
+            player.flyAwayFromObstacle(fieldObject2);
         }
     }
 }

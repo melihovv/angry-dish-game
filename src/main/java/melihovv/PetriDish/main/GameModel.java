@@ -3,6 +3,7 @@ package melihovv.PetriDish.main;
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.SpriteGroup;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
+import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
 import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
@@ -52,6 +53,12 @@ public class GameModel {
     private CollisionManager _playerToPigsCollisionManager;
 
     /**
+     * The collision manager to control collisions between the player and
+     * wooden obstacles.
+     */
+    private CollisionManager _playerToWoodenObstaclesCollisionManager;
+
+    /**
      * The player controller to control player's behaviour.
      */
     private FieldObjectController _playerController;
@@ -73,6 +80,7 @@ public class GameModel {
         Field.getInstance().update(elapsedTime);
 
         _playerToPigsCollisionManager.checkCollision();
+        _playerToWoodenObstaclesCollisionManager.checkCollision();
     }
 
     /**
@@ -116,11 +124,24 @@ public class GameModel {
         }
 
         /* Setting up collision manager */
-        SpriteGroup birdsGroup = Field.getInstance().getSpriteGroup(Bird.class);
-        SpriteGroup pigsGroup = Field.getInstance().getSpriteGroup(Pig.class);
-        _playerToPigsCollisionManager = new BirdToPigCollision(
-                birdsGroup,
-                pigsGroup);
+        SpriteGroup birdsGroup =
+                Field.getInstance().getSpriteGroup(Bird.class);
+
+        SpriteGroup pigsGroup =
+                Field.getInstance().getSpriteGroup(Pig.class);
+
+        SpriteGroup woodenObstaclesGroup =
+                Field.getInstance().getSpriteGroup(WoodenObstacle.class);
+
+        _playerToPigsCollisionManager =
+                new BirdToPigCollision(
+                        birdsGroup,
+                        pigsGroup);
+
+        _playerToWoodenObstaclesCollisionManager =
+                new BirdToWoodenObstacleCollision(
+                        birdsGroup,
+                        woodenObstaclesGroup);
     }
 
     /**
