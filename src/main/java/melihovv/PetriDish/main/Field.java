@@ -110,6 +110,7 @@ public class Field {
             _birdsGroup.add(object.getObjectView());
         } else if (object instanceof Pig) {
             _pigsGroup.add(object.getObjectView());
+            ++_pigsCounter;
         } else if (object instanceof WoodenObstacle) {
             _woodenObstacles.add(object.getObjectView());
         }
@@ -163,7 +164,6 @@ public class Field {
 
         if (isPositionFree(randomPosition, object)) {
             addFieldObject(object, randomPosition);
-            ++_pigsCounter;
         }
     }
 
