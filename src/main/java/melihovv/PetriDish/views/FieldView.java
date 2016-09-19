@@ -82,7 +82,7 @@ public class FieldView implements FieldObjectListener {
      */
     @Override
     public void fieldObjectAdded(final FieldObject fieldObject) {
-        FieldObjectView fieldObjectView = fieldObject.getObjectView();
+        FieldObjectView fieldObjectView = fieldObject.getFieldObjectView();
         fieldObjectView.setBackground(_background);
         _fieldObjectViews.add(fieldObjectView);
     }

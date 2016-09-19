@@ -107,12 +107,12 @@ public class Field {
         _fieldObjects.add(object);
 
         if (object instanceof Bird) {
-            _birdsGroup.add(object.getObjectView());
+            _birdsGroup.add(object.getFieldObjectView());
         } else if (object instanceof Pig) {
-            _pigsGroup.add(object.getObjectView());
+            _pigsGroup.add(object.getFieldObjectView());
             ++_pigsCounter;
         } else if (object instanceof WoodenObstacle) {
-            _woodenObstacles.add(object.getObjectView());
+            _woodenObstacles.add(object.getFieldObjectView());
         }
 
         fireObjectAdded(object);
@@ -127,11 +127,11 @@ public class Field {
         _fieldObjects.remove(object);
 
         if (object instanceof Bird) {
-            _birdsGroup.remove(object.getObjectView());
+            _birdsGroup.remove(object.getFieldObjectView());
         } else if (object instanceof Pig) {
-            _pigsGroup.remove(object.getObjectView());
+            _pigsGroup.remove(object.getFieldObjectView());
         } else if (object instanceof WoodenObstacle) {
-            _woodenObstacles.remove(object.getObjectView());
+            _woodenObstacles.remove(object.getFieldObjectView());
         }
 
         fireObjectDeleted(object);

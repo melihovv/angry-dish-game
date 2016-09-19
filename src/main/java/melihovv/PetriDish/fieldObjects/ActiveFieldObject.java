@@ -70,7 +70,7 @@ public abstract class ActiveFieldObject extends FieldObject {
         if (_destination != null) {
             Point currentPosition = getPosition();
             Point nextPosition = getDestination();
-            FieldObjectView fieldObjectView = getObjectView();
+            FieldObjectView fieldObjectView = getFieldObjectView();
 
             /* Getting distance to the next position */
             int xDistance = nextPosition.x - currentPosition.x
@@ -150,6 +150,7 @@ public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * The getter for _destination class member.
+     *
      * @return value of _destination.
      */
     public Point getDestination() {

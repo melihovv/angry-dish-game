@@ -69,18 +69,18 @@ public abstract class FieldObject {
     }
 
     /**
-     * The getter for _fieldObjectView class member.
-     * @return value of _fieldObjectView.
-     */
-    public FieldObjectView getObjectView() {
-        return _fieldObjectView;
-    }
-
-    /**
      * Getter for _fieldObjectView class member.
      * @return value of _fieldObjectView.
      */
     public FieldObjectView getFieldObjectView() {
         return _fieldObjectView;
+    }
+
+    /**
+     * Setter for _fieldObjectView class member.
+     * @param fieldObjectView value to set.
+     */
+    public void setFieldObjectView(final FieldObjectView fieldObjectView) {
+        _fieldObjectView = fieldObjectView;
     }
 }
