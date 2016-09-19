@@ -3,7 +3,7 @@ package melihovv.PetriDish.fieldObjects;
 import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
-import melihovv.PetriDish.views.FieldObjectView;
+import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
 import java.awt.Point;
 
@@ -11,7 +11,7 @@ import java.awt.Point;
  * The class represents movable field object which do move and can interact with
  * other objects.
  */
-public class ActiveFieldObject extends FieldObject {
+public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * The radius around the object where it starts decreasing its speed.

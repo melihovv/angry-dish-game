@@ -18,7 +18,7 @@ public class Pig extends InactiveFieldObject {
      */
     public Pig(final GeneralFactory generalFactory) {
         super(generalFactory);
-
         setSize(DEFAULT_SIZE);
+        _fieldObjectView = generalFactory.createFieldObjectView(this);
     }
 }

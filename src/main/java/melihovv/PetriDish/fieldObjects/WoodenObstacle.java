@@ -20,5 +20,6 @@ public class WoodenObstacle extends InactiveFieldObject {
     public WoodenObstacle(final GeneralFactory generalFactory) {
         super(generalFactory);
         setSize(DEFAULT_SIZE);
+        _fieldObjectView = generalFactory.createFieldObjectView(this);
     }
 }

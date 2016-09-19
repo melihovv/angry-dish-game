@@ -1,56 +1,31 @@
-package melihovv.PetriDish.views;
+package melihovv.PetriDish.views.FieldObjectViews;
 
 import com.golden.gamedev.object.Sprite;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
-import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
 
 /**
  * The class represents the appearance of a basic field object.
  */
-public class FieldObjectView extends Sprite {
+public abstract class FieldObjectView extends Sprite {
     /**
      * The field object associated with the current field object view.
      */
     private FieldObject _fieldObject;
 
     /**
-     * Creates field object wiew based on image path.
-     *
-     * @param imagePath field object view image path.
+     * The basic constructor for class members initialization.
+     * @param fieldObject object for the object view.
      */
-    public void createObjectView(final URI imagePath) {
-        int fieldObjectSize = _fieldObject.getSize();
-
-        BufferedImage image = new BufferedImage(
-                fieldObjectSize,
-                fieldObjectSize,
-                BufferedImage.TYPE_INT_ARGB
-        );
-        Graphics2D g2d = image.createGraphics();
-
-        // TODO: Add if-clause to check object type
-        try {
-            BufferedImage hero = ImageIO.read(new File(imagePath));
-            g2d.drawImage(
-                    hero,
-                    (fieldObjectSize - hero.getWidth()) / 2,
-                    (fieldObjectSize - hero.getHeight()) / 2,
-                    null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        /* GTGE super class method */
-        setImage(image);
+    public FieldObjectView(final FieldObject fieldObject) {
+        _fieldObject = fieldObject;
     }
+
+    /**
+     * Creates field object view.
+     */
+    public abstract void createObjectView();
 
     /**
      * Updates field object view image.
@@ -101,4 +76,10 @@ public class FieldObjectView extends Sprite {
     public void setFieldObject(final FieldObject fieldObject) {
         _fieldObject = fieldObject;
     }
+
+    /**
+     * Getter for the field object image path.
+     * @return image path.
+     */
+    public abstract String getImagePath();
 }

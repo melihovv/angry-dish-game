@@ -1,9 +1,16 @@
 package melihovv.PetriDish.factories;
 
 import melihovv.PetriDish.controllers.FieldObjectController;
-import melihovv.PetriDish.main.PetriDishGame;
+import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.fieldObjects.FieldObject;
+import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 import melihovv.PetriDish.main.Field;
-import melihovv.PetriDish.views.FieldObjectView;
+import melihovv.PetriDish.main.PetriDishGame;
+import melihovv.PetriDish.views.FieldObjectViews.BirdView;
+import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
+import melihovv.PetriDish.views.FieldObjectViews.PigView;
+import melihovv.PetriDish.views.FieldObjectViews.WoodenObstacleView;
 import melihovv.PetriDish.views.FieldView;
 
 /**
@@ -17,6 +24,7 @@ public class GeneralFactory {
 
     /**
      * Creates an instance of PetriDishGame class and saves its.
+     *
      * @return PetriDishGame class instance.
      */
     public PetriDishGame createPetriDishGame() {
@@ -29,6 +37,7 @@ public class GeneralFactory {
     /**
      * Creates an instance of FieldView class and adds it to the field's
      * listeners.
+     *
      * @return FieldView class instance.
      */
     public FieldView createFieldView() {
@@ -39,16 +48,30 @@ public class GeneralFactory {
     }
 
     /**
-     * Creates an instance of FieldObjectView class.
+     * Creates an instance of FieldObjectView subclass.
+     *
+     * @param fieldObject object of object view.
      * @return an instance of FieldObjectView class.
      */
-    public FieldObjectView createFieldObjectView() {
+    public FieldObjectView createFieldObjectView(final FieldObject
+                                                         fieldObject) {
 
-        return new FieldObjectView();
+        FieldObjectView fieldObjectView = null;
+
+        if (fieldObject instanceof Pig) {
+            fieldObjectView = new PigView(fieldObject);
+        } else if (fieldObject instanceof Bird) {
+            fieldObjectView = new BirdView(fieldObject);
+        } else if (fieldObject instanceof WoodenObstacle) {
+            fieldObjectView = new WoodenObstacleView(fieldObject);
+        }
+
+        return fieldObjectView;
     }
 
     /**
      * Creates an instance of PlayerController class.
+     *
      * @return an instance of PlayerController class.
      */
     public FieldObjectController createPlayerController() {

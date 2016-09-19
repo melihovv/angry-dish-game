@@ -1,7 +1,7 @@
 package melihovv.PetriDish.fieldObjects;
 
 import melihovv.PetriDish.factories.GeneralFactory;
-import melihovv.PetriDish.views.FieldObjectView;
+import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
 import java.awt.Point;
 
@@ -25,7 +25,6 @@ public abstract class FieldObject {
      *                       components.
      */
     public FieldObject(final GeneralFactory generalFactory) {
-        _fieldObjectView = generalFactory.createFieldObjectView();
     }
 
     /**
@@ -74,6 +73,14 @@ public abstract class FieldObject {
      * @return value of _fieldObjectView.
      */
     public FieldObjectView getObjectView() {
+        return _fieldObjectView;
+    }
+
+    /**
+     * Getter for _fieldObjectView class member.
+     * @return value of _fieldObjectView.
+     */
+    public FieldObjectView getFieldObjectView() {
         return _fieldObjectView;
     }
 }

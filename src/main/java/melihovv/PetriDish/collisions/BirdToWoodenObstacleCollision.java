@@ -5,7 +5,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
-import melihovv.PetriDish.views.FieldObjectView;
+import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
 /**
  * The collision manager that controls collisions between a player (bird) and
