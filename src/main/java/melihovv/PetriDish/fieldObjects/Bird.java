@@ -41,7 +41,7 @@ public class Bird extends ActiveFieldObject {
     public Bird(final GeneralFactory generalFactory) {
         super(generalFactory);
         setSize(DEFAULT_SIZE);
-        _fieldObjectView = generalFactory.createFieldObjectView(this);
+        setFieldObjectView(generalFactory.createFieldObjectView(this));
     }
 
     /**
