@@ -245,9 +245,10 @@ public class GameModel implements BirdListener {
     /**
      * Fires the event of hitting the wooden obstacle by a bird to all model
      * listeners.
+     *
+     * @param event event object.
      */
-    private void fireBirdHitWoodenObstacle() {
-        EventObject event = new EventObject(this);
+    private void fireBirdHitWoodenObstacle(final EventObject event) {
         for (ModelListener modelListener : _modelListeners) {
             modelListener.birdHitWoodenObstacle(event);
         }
@@ -255,9 +256,10 @@ public class GameModel implements BirdListener {
 
     /**
      * Fires the event of eating a pig by a bird to all model listeners.
+     *
+     * @param event event object.
      */
-    private void fireBirdEatPig() {
-        EventObject event = new EventObject(this);
+    private void fireBirdEatPig(final EventObject event) {
         for (ModelListener modelListener : _modelListeners) {
             modelListener.birdEatPig(event);
         }
@@ -266,20 +268,20 @@ public class GameModel implements BirdListener {
     /**
      * The reaction on bird hit wooden obstacle event.
      *
-     * @param e
+     * @param event event object.
      */
     @Override
     public void woodenObstacleHit(final EventObject event) {
-        fireBirdHitWoodenObstacle();
+        fireBirdHitWoodenObstacle(event);
     }
 
     /**
      * The reaction on pig eat bird event.
      *
-     * @param event
+     * @param event event object.
      */
     @Override
     public void pigEaten(final EventObject event) {
-        fireBirdEatPig();
+        fireBirdEatPig(event);
     }
 }

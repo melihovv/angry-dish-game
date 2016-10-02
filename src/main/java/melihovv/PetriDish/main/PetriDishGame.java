@@ -191,20 +191,24 @@ public class PetriDishGame extends Game implements ModelListener {
 
     /**
      * The reaction on bird eat pig event.
+     *
      * @param event
      */
     @Override
     public void birdEatPig(final EventObject event) {
-        bsSound.play("/sounds/pig_grunt.wav");
+        if (event.getSource().equals(_gameModel.getPlayer())) {
+            bsSound.play("/sounds/pig_grunt.wav");
+        }
     }
 
     /**
      * The reaction on bird hit wooden obstacle event.
+     *
      * @param event
      */
     @Override
     public void birdHitWoodenObstacle(final EventObject event) {
-        if (_canPlaySound) {
+        if (event.getSource().equals(_gameModel.getPlayer()) && _canPlaySound) {
             bsSound.play("/sounds/hit_wood.wav");
             bsSound.play("/sounds/bird_ouch.wav");
             _canPlaySound = false;
