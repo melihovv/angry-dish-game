@@ -5,10 +5,10 @@ import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 /**
  * The interface containing methods to control computer players.
  */
-public interface AIController {
+public interface AIController extends ActiveFieldObjectController {
     /**
      * The method to control computer players.
-     * @param bird controlled computer player.
+     * @param object controlled computer player.
      */
-    void controlMovement(ActiveFieldObject bird);
+    void controlMovement(ActiveFieldObject object);
 }
