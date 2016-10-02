@@ -218,6 +218,23 @@ public class Field {
     }
 
     /**
+     * Returns field objects with the specified type.
+     * @param objectType object type.
+     * @return field objects with the specified type.
+     */
+    public List<? extends FieldObject> getFieldObjects(Class objectType) {
+        List<FieldObject> objects = new ArrayList<>();
+
+        for(FieldObject object : _fieldObjects) {
+            if(object.getClass().equals(objectType)) {
+                objects.add(object);
+            }
+        }
+
+        return objects;
+    }
+
+    /**
      * The getter for sprite group class members.
      *
      * @param objectsType type of objects in sprite group.

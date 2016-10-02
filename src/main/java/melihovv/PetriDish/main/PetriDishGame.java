@@ -7,6 +7,7 @@ import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
@@ -16,6 +17,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * The basic game class which starts the game, controls its view and model, sets
@@ -196,7 +200,6 @@ public class PetriDishGame extends Game implements ModelListener {
      */
     private class PlayerController
             implements melihovv.PetriDish.controllers.PlayerController {
-
         /**
          * Controls basic player movement.
          *
@@ -218,6 +221,44 @@ public class PetriDishGame extends Game implements ModelListener {
             int mouseY = baseMouseY + backgroundY;
 
             bird.setDestination(new Point(mouseX, mouseY));
+        }
+    }
+
+    /**
+     * The AI controller class which controls computer player's behaviour.
+     */
+    private class AIController
+            implements melihovv.PetriDish.controllers.AIController {
+        /**
+         * The probability to change destination point.
+         */
+        private static final double CHANGE_DESTINATION_PROBABILITY = 0.015;
+
+        /**
+         * Controls basic computer player movement.
+         *
+         * @param bird computer player to control.
+         */
+        @Override
+        public void controlMovement(ActiveFieldObject bird) {
+            Random randomizer = new Random();
+            int fieldWidth = Field.getFieldWidth();
+            int fieldHeight = Field.getFieldHeight();
+            List<ActiveFieldObject> objects = (List<ActiveFieldObject>) Field
+                    .getInstance().getFieldObjects
+                    (ActiveFieldObject.class);
+
+            /* Setting a new destination for all computer players */
+            for(ActiveFieldObject object : objects) {
+                if(Math.random() < CHANGE_DESTINATION_PROBABILITY) {
+                    Point newDestination = new Point(
+                            randomizer.nextInt(fieldWidth),
+                            randomizer.nextInt(fieldHeight)
+                    );
+
+                    object.setDestination(newDestination);
+                }
+            }
         }
     }
 }
