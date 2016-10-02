@@ -5,6 +5,7 @@ import melihovv.PetriDish.events.FieldObjectListener;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
@@ -61,6 +62,12 @@ public class Field {
             new SpriteGroup("Wooden obstacle Group");
 
     /**
+     * The collision sprite group for main player.
+     */
+    private SpriteGroup _mainPlayer =
+            new SpriteGroup("Main Player Group");
+
+    /**
      * The actual amount of pigs on the field.
      */
     private int _pigsCounter;
@@ -106,7 +113,10 @@ public class Field {
         object.setPosition(position);
         _fieldObjects.add(object);
 
-        if (object instanceof Bird) {
+        if (object instanceof RedBird) {
+            _mainPlayer.add(object.getFieldObjectView());
+            _birdsGroup.add(object.getFieldObjectView());
+        } else if (object instanceof Bird) {
             _birdsGroup.add(object.getFieldObjectView());
         } else if (object instanceof Pig) {
             _pigsGroup.add(object.getFieldObjectView());
@@ -126,7 +136,10 @@ public class Field {
     public void removeFieldObject(final FieldObject object) {
         _fieldObjects.remove(object);
 
-        if (object instanceof Bird) {
+        if (object instanceof RedBird) {
+            _mainPlayer.remove(object.getFieldObjectView());
+            _birdsGroup.remove(object.getFieldObjectView());
+        } else if (object instanceof Bird) {
             _birdsGroup.remove(object.getFieldObjectView());
         } else if (object instanceof Pig) {
             _pigsGroup.remove(object.getFieldObjectView());
@@ -231,7 +244,9 @@ public class Field {
      * @return sprite group of objects with specified type.
      */
     public SpriteGroup getSpriteGroup(final Class objectsType) {
-        if (objectsType.equals(Bird.class)) {
+        if (objectsType.equals(RedBird.class)) {
+            return _mainPlayer;
+        } else if (objectsType.equals(Bird.class)) {
             return _birdsGroup;
         } else if (objectsType.equals(Pig.class)) {
             return _pigsGroup;

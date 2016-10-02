@@ -5,6 +5,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
+import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
 import melihovv.PetriDish.controllers.AIController;
 import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.events.BirdListener;
@@ -88,6 +89,12 @@ public class GameModel implements BirdListener {
     private CollisionManager _playerToWoodenObstaclesCollisionManager;
 
     /**
+     * The collision manager to control collisions between the player and
+     * computer birds.
+     */
+    private CollisionManager _playerToComputerBirdsCollisionManager;
+
+    /**
      * The timer to create new pigs when the time's up.
      */
     private Timer _pigsCreationTimer;
@@ -124,6 +131,7 @@ public class GameModel implements BirdListener {
 
         _playerToPigsCollisionManager.checkCollision();
         _playerToWoodenObstaclesCollisionManager.checkCollision();
+        _playerToComputerBirdsCollisionManager.checkCollision();
 
         if (_pigsCreationTimer.action(elapsedTime)) {
             System.out.println("God damn! A new pig is here!");
@@ -205,15 +213,26 @@ public class GameModel implements BirdListener {
         SpriteGroup woodenObstaclesGroup =
                 Field.getInstance().getSpriteGroup(WoodenObstacle.class);
 
+        SpriteGroup mainPlayerGroup =
+                Field.getInstance().getSpriteGroup(RedBird.class);
+
         _playerToPigsCollisionManager =
                 new BirdToPigCollision(
                         birdsGroup,
-                        pigsGroup);
+                        pigsGroup
+                );
 
         _playerToWoodenObstaclesCollisionManager =
                 new BirdToWoodenObstacleCollision(
                         birdsGroup,
-                        woodenObstaclesGroup);
+                        woodenObstaclesGroup
+                );
+
+        _playerToComputerBirdsCollisionManager =
+                new PlayerToComputerBirdCollision(
+                        mainPlayerGroup,
+                        birdsGroup
+                );
     }
 
     /**
@@ -267,6 +286,18 @@ public class GameModel implements BirdListener {
     }
 
     /**
+     * Fires the event of fighting computer controlled bird by a player bird to
+     * all model listeners.
+     *
+     * @param event event object.
+     */
+    private void firePlayerFoughtComputerBird(final EventObject event) {
+        for (ModelListener modelListener : _modelListeners) {
+            modelListener.playerFoughtComputerBird(event);
+        }
+    }
+
+    /**
      * The reaction on bird hit wooden obstacle event.
      *
      * @param event event object.
@@ -286,5 +317,15 @@ public class GameModel implements BirdListener {
 
         ActiveFieldObject object = (ActiveFieldObject) event.getSource();
         fireBirdEatPig(event);
+    }
+
+    /**
+     * The reaction on player fight computer bird event.
+     *
+     * @param event event object.
+     */
+    @Override
+    public void foughtComputerBird(final EventObject event) {
+        firePlayerFoughtComputerBird(event);
     }
 }

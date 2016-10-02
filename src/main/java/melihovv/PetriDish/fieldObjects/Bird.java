@@ -139,7 +139,7 @@ public abstract class Bird extends ActiveFieldObject {
     /**
      * Fires the event of hitting the wooden obstacle to all bird listeners.
      */
-    private void fireWoodenObstacleHit() {
+    protected void fireWoodenObstacleHit() {
         EventObject event = new EventObject(this);
         for (BirdListener birdListener : _birdListeners) {
             birdListener.woodenObstacleHit(event);
@@ -149,10 +149,20 @@ public abstract class Bird extends ActiveFieldObject {
     /**
      * Fires the event of eating a pig to all bird listeners.
      */
-    private void firePigEaten() {
+    protected void firePigEaten() {
         EventObject event = new EventObject(this);
         for (BirdListener birdListener : _birdListeners) {
             birdListener.pigEaten(event);
+        }
+    }
+
+    /**
+     * Fires the event of fighting computer bird to all bird listeners.
+     */
+    protected void fireFoughtComputerBird() {
+        EventObject event = new EventObject(this);
+        for (BirdListener birdListener : _birdListeners) {
+            birdListener.foughtComputerBird(event);
         }
     }
 

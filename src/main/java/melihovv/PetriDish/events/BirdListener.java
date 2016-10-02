@@ -20,4 +20,12 @@ public interface BirdListener extends EventListener {
      * @param event event object.
      */
     void pigEaten(final EventObject event);
+
+    /**
+     * The method to fire the event of fighting computer controlled bird by a
+     * player bird.
+     *
+     * @param event event object.
+     */
+    void foughtComputerBird(final EventObject event);
 }

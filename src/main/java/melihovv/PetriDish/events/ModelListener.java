@@ -20,4 +20,12 @@ public interface ModelListener extends EventListener {
      * @param event event object.
      */
     void birdHitWoodenObstacle(final EventObject event);
+
+    /**
+     * The method to fire the event of fighting computer controlled bird by a
+     * player bird.
+     *
+     * @param event event object.
+     */
+    void playerFoughtComputerBird(final EventObject event);
 }

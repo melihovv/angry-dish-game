@@ -41,6 +41,14 @@ public class RedBird extends Bird {
     }
 
     /**
+     * Fights computer controlled birds.
+     */
+    public void fight() {
+        fireFoughtComputerBird();
+    }
+
+
+    /**
      * The getter for _totalAmountOfEatenPigs class member.
      *
      * @return value of _totalAmountOfEatenPigs.
