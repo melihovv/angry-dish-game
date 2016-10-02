@@ -17,6 +17,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EventObject;
 import java.util.List;
 import java.util.Random;
 
@@ -190,17 +191,19 @@ public class PetriDishGame extends Game implements ModelListener {
 
     /**
      * The reaction on bird eat pig event.
+     * @param event
      */
     @Override
-    public void birdEatPig() {
+    public void birdEatPig(final EventObject event) {
         bsSound.play("/sounds/pig_grunt.wav");
     }
 
     /**
      * The reaction on bird hit wooden obstacle event.
+     * @param event
      */
     @Override
-    public void birdHitWoodenObstacle() {
+    public void birdHitWoodenObstacle(final EventObject event) {
         if (_canPlaySound) {
             bsSound.play("/sounds/hit_wood.wav");
             bsSound.play("/sounds/bird_ouch.wav");

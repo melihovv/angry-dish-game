@@ -1,16 +1,23 @@
 package melihovv.PetriDish.events;
 
+import java.util.EventListener;
+import java.util.EventObject;
+
 /**
  * The class represents listener interface for model events.
  */
-public interface ModelListener {
+public interface ModelListener extends EventListener {
     /**
      * The method to fire the event of eating a pig by a bird.
+     *
+     * @param event event object.
      */
-    void birdEatPig();
+    void birdEatPig(final EventObject event);
 
     /**
      * The method to fire the event of hitting a wooden obstacle by a bird.
+     *
+     * @param event event object.
      */
-    void birdHitWoodenObstacle();
+    void birdHitWoodenObstacle(final EventObject event);
 }

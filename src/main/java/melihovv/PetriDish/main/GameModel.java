@@ -19,6 +19,7 @@ import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.EventObject;
 
 /**
  * The base game model class which controls game logic.
@@ -246,8 +247,9 @@ public class GameModel implements BirdListener {
      * listeners.
      */
     private void fireBirdHitWoodenObstacle() {
+        EventObject event = new EventObject(this);
         for (ModelListener modelListener : _modelListeners) {
-            modelListener.birdHitWoodenObstacle();
+            modelListener.birdHitWoodenObstacle(event);
         }
     }
 
@@ -255,24 +257,29 @@ public class GameModel implements BirdListener {
      * Fires the event of eating a pig by a bird to all model listeners.
      */
     private void fireBirdEatPig() {
+        EventObject event = new EventObject(this);
         for (ModelListener modelListener : _modelListeners) {
-            modelListener.birdEatPig();
+            modelListener.birdEatPig(event);
         }
     }
 
     /**
      * The reaction on bird hit wooden obstacle event.
+     *
+     * @param e
      */
     @Override
-    public void woodenObstacleHit() {
+    public void woodenObstacleHit(final EventObject event) {
         fireBirdHitWoodenObstacle();
     }
 
     /**
      * The reaction on pig eat bird event.
+     *
+     * @param event
      */
     @Override
-    public void pigEaten() {
+    public void pigEaten(final EventObject event) {
         fireBirdEatPig();
     }
 }
