@@ -3,7 +3,6 @@ package melihovv.PetriDish.main;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.object.Background;
-import melihovv.PetriDish.controllers.FieldObjectController;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
@@ -195,7 +194,8 @@ public class PetriDishGame extends Game implements ModelListener {
     /**
      * The player controller class which controls player's behaviour.
      */
-    private class PlayerController implements FieldObjectController {
+    private class PlayerController
+            implements melihovv.PetriDish.controllers.PlayerController {
 
         /**
          * Controls basic player movement.

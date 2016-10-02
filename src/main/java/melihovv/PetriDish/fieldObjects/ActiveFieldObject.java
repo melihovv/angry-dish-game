@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
@@ -41,7 +41,7 @@ public abstract class ActiveFieldObject extends FieldObject {
     /**
      * The object controller.
      */
-    private FieldObjectController _controller;
+    private PlayerController _controller;
 
     /**
      * The basic constructor for class members initialization.
@@ -126,7 +126,7 @@ public abstract class ActiveFieldObject extends FieldObject {
      * The getter for _controller class member.
      * @return value of _controller.
      */
-    public FieldObjectController getController() {
+    public PlayerController getController() {
         return _controller;
     }
 
@@ -134,7 +134,7 @@ public abstract class ActiveFieldObject extends FieldObject {
      * The setter for _controller class member.
      * @param controller value to set.
      */
-    public void setController(final FieldObjectController controller) {
+    public void setController(final PlayerController controller) {
         _controller = controller;
     }
 

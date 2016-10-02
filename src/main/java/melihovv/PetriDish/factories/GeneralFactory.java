@@ -1,6 +1,6 @@
 package melihovv.PetriDish.factories;
 
-import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.Pig;
@@ -74,7 +74,7 @@ public class GeneralFactory {
      *
      * @return an instance of PlayerController class.
      */
-    public FieldObjectController createPlayerController() {
+    public PlayerController createPlayerController() {
 
         return _petriDishGame.getPlayerController();
     }

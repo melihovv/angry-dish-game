@@ -5,7 +5,7 @@ import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 /**
  * The interface containing methods to control active field objects behaviour.
  */
-public interface FieldObjectController {
+public interface PlayerController {
     /**
      * The method to control field object movement.
      * @param bird controlled field object.

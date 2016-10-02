@@ -5,7 +5,7 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
-import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
@@ -85,7 +85,7 @@ public class GameModel implements BirdListener {
     /**
      * The player controller to control player's behaviour.
      */
-    private FieldObjectController _playerController;
+    private PlayerController _playerController;
 
     /**
      * The basic constructor for class members initialization.
