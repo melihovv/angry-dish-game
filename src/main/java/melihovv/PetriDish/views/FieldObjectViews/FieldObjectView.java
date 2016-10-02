@@ -16,6 +16,7 @@ public abstract class FieldObjectView extends Sprite {
 
     /**
      * The basic constructor for class members initialization.
+     *
      * @param fieldObject object for the object view.
      */
     public FieldObjectView(final FieldObject fieldObject) {
@@ -26,17 +27,6 @@ public abstract class FieldObjectView extends Sprite {
      * Creates field object view.
      */
     public abstract void createObjectView();
-
-    /**
-     * Updates field object view image.
-     *
-     * @param elapsedTime time passed after the last update.
-     */
-    @Override
-    public void update(final long elapsedTime) {
-        super.update(elapsedTime);
-        // TODO: resize if model size has changed
-    }
 
     /**
      * The getter for the field object view position.
@@ -79,6 +69,7 @@ public abstract class FieldObjectView extends Sprite {
 
     /**
      * Getter for the field object image path.
+     *
      * @return image path.
      */
     public abstract String getImagePath();

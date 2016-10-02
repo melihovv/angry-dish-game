@@ -14,7 +14,7 @@ public class RedBird extends Bird {
     /**
      * The amount of eaten pigs.
      */
-    private int _eatenPigsCounter;
+    private int _totalAmountOfEatenPigs;
 
     /**
      * The basic constructor for class members initialization.
@@ -37,15 +37,15 @@ public class RedBird extends Bird {
     @Override
     public void eat(final FieldObject object) {
         super.eat(object);
-        ++_eatenPigsCounter;
+        ++_totalAmountOfEatenPigs;
     }
 
     /**
-     * The getter for _eatenPigsCounter class member.
+     * The getter for _totalAmountOfEatenPigs class member.
      *
-     * @return value of _eatenPigsCounter.
+     * @return value of _totalAmountOfEatenPigs.
      */
-    public int getEatenPigsCounter() {
-        return _eatenPigsCounter;
+    public int getTotalAmountOfEatenPigs() {
+        return _totalAmountOfEatenPigs;
     }
 }

@@ -11,6 +11,7 @@ import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
@@ -282,6 +283,8 @@ public class GameModel implements BirdListener {
      */
     @Override
     public void pigEaten(final EventObject event) {
+
+        ActiveFieldObject object = (ActiveFieldObject) event.getSource();
         fireBirdEatPig(event);
     }
 }

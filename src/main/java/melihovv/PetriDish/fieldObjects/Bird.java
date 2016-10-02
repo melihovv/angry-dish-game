@@ -3,6 +3,7 @@ package melihovv.PetriDish.fieldObjects;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
+import melihovv.PetriDish.views.FieldObjectViews.ActiveFieldObjectView;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -25,6 +26,17 @@ public abstract class Bird extends ActiveFieldObject {
     private List<BirdListener> _birdListeners = new ArrayList<>();
 
     /**
+     * The amount of eaten pigs after the last growth.
+     */
+    private int _eatenPigsAfterGrowth;
+
+    /**
+     * The amount of eaten objects to grow. An active field object must eat this
+     * amount to grow to a next size.
+     */
+    private int _birdsToGrowth;
+
+    /**
      * The basic constructor for class members initialization.
      *
      * @param generalFactory general game factory to create basic game
@@ -32,6 +44,7 @@ public abstract class Bird extends ActiveFieldObject {
      */
     public Bird(final GeneralFactory generalFactory) {
         super(generalFactory);
+        _birdsToGrowth = 1;
     }
 
     /**
@@ -100,6 +113,8 @@ public abstract class Bird extends ActiveFieldObject {
      */
     public void eat(final FieldObject object) {
         Field.getInstance().removeFieldObject(object);
+        ++_eatenPigsAfterGrowth;
+        resize();
         firePigEaten();
     }
 
@@ -138,6 +153,27 @@ public abstract class Bird extends ActiveFieldObject {
         EventObject event = new EventObject(this);
         for (BirdListener birdListener : _birdListeners) {
             birdListener.pigEaten(event);
+        }
+    }
+
+    /**
+     * Increases bird size if it ate enough birds.
+     */
+    private void resize() {
+
+        if (_eatenPigsAfterGrowth >= _birdsToGrowth) {
+
+            int currentSize = ((ActiveFieldObjectView) getFieldObjectView())
+                    .getOvalSize();
+
+            ((ActiveFieldObjectView) getFieldObjectView())
+                    .setOvalSize(++currentSize);
+
+            getFieldObjectView().createObjectView();
+            refreshSpeed();
+
+            ++_birdsToGrowth;
+            _eatenPigsAfterGrowth = 0;
         }
     }
 }
