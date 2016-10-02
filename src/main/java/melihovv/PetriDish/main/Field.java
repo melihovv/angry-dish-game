@@ -219,14 +219,15 @@ public class Field {
 
     /**
      * Returns field objects with the specified type.
+     *
      * @param objectType object type.
      * @return field objects with the specified type.
      */
-    public List<? extends FieldObject> getFieldObjects(Class objectType) {
+    public List<? extends FieldObject> getFieldObjects(final Class objectType) {
         List<FieldObject> objects = new ArrayList<>();
 
-        for(FieldObject object : _fieldObjects) {
-            if(object.getClass().equals(objectType)) {
+        for (FieldObject object : _fieldObjects) {
+            if (object.getClass().equals(objectType)) {
                 objects.add(object);
             }
         }

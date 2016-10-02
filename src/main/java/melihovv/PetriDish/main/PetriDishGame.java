@@ -7,7 +7,6 @@ import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
-import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
@@ -17,7 +16,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -240,17 +238,17 @@ public class PetriDishGame extends Game implements ModelListener {
          * @param bird computer player to control.
          */
         @Override
-        public void controlMovement(ActiveFieldObject bird) {
+        public void controlMovement(final ActiveFieldObject bird) {
             Random randomizer = new Random();
             int fieldWidth = Field.getFieldWidth();
             int fieldHeight = Field.getFieldHeight();
-            List<ActiveFieldObject> objects = (List<ActiveFieldObject>) Field
-                    .getInstance().getFieldObjects
-                    (ActiveFieldObject.class);
+            List<ActiveFieldObject> objects =
+                    (List<ActiveFieldObject>) Field.getInstance()
+                            .getFieldObjects(ActiveFieldObject.class);
 
             /* Setting a new destination for all computer players */
-            for(ActiveFieldObject object : objects) {
-                if(Math.random() < CHANGE_DESTINATION_PROBABILITY) {
+            for (ActiveFieldObject object : objects) {
+                if (Math.random() < CHANGE_DESTINATION_PROBABILITY) {
                     Point newDestination = new Point(
                             randomizer.nextInt(fieldWidth),
                             randomizer.nextInt(fieldHeight)

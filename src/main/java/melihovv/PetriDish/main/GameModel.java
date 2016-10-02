@@ -12,9 +12,10 @@ import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -59,7 +60,7 @@ public class GameModel implements BirdListener {
     /**
      * The main player of the game.
      */
-    private Bird _player;
+    private RedBird _player;
 
     /**
      * The general game factory to create basic game components.
@@ -127,8 +128,8 @@ public class GameModel implements BirdListener {
     public void startGame() {
 
         /* Creating main player and its controller */
-        _player = (Bird) _fieldObjectsFactory.createFieldObject(
-                Bird.class,
+        _player = (RedBird) _fieldObjectsFactory.createFieldObject(
+                RedBird.class,
                 _generalFactory);
 
         _playerController = _generalFactory.createPlayerController();
@@ -187,7 +188,7 @@ public class GameModel implements BirdListener {
      *
      * @return value of _player.
      */
-    public Bird getPlayer() {
+    public RedBird getPlayer() {
         return _player;
     }
 

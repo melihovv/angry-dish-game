@@ -6,7 +6,7 @@ import melihovv.PetriDish.fieldObjects.FieldObject;
 /**
  * The class represents the appearance of a bird.
  */
-public class BirdView extends ActiveFieldObjectView {
+public class RedBirdView extends ActiveFieldObjectView {
     /**
      * The path to the bird image.
      */
@@ -16,7 +16,7 @@ public class BirdView extends ActiveFieldObjectView {
      * The basic constructor for class members initialization.
      * @param fieldObject object for the object view.
      */
-    public BirdView(final FieldObject fieldObject) {
+    public RedBirdView(final FieldObject fieldObject) {
         super(fieldObject);
     }
 

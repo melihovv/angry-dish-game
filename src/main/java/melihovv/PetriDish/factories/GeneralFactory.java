@@ -1,13 +1,10 @@
 package melihovv.PetriDish.factories;
 
 import melihovv.PetriDish.controllers.PlayerController;
-import melihovv.PetriDish.fieldObjects.Bird;
-import melihovv.PetriDish.fieldObjects.FieldObject;
-import melihovv.PetriDish.fieldObjects.Pig;
-import melihovv.PetriDish.fieldObjects.WoodenObstacle;
+import melihovv.PetriDish.fieldObjects.*;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.main.PetriDishGame;
-import melihovv.PetriDish.views.FieldObjectViews.BirdView;
+import melihovv.PetriDish.views.FieldObjectViews.RedBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 import melihovv.PetriDish.views.FieldObjectViews.PigView;
 import melihovv.PetriDish.views.FieldObjectViews.WoodenObstacleView;
@@ -60,8 +57,8 @@ public class GeneralFactory {
 
         if (fieldObject instanceof Pig) {
             fieldObjectView = new PigView(fieldObject);
-        } else if (fieldObject instanceof Bird) {
-            fieldObjectView = new BirdView(fieldObject);
+        } else if (fieldObject instanceof RedBird) {
+            fieldObjectView = new RedBirdView(fieldObject);
         } else if (fieldObject instanceof WoodenObstacle) {
             fieldObjectView = new WoodenObstacleView(fieldObject);
         }

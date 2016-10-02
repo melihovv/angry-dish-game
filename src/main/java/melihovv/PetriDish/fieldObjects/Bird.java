@@ -9,23 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The class represents main game character which is a player.
+ * The class represents abstract bird which is field object.
+ * Birds can move, eat pigs and hit obstacles.
  */
-public class Bird extends ActiveFieldObject {
-    /**
-     * The size of the bird.
-     */
-    private static final int DEFAULT_SIZE = 64;
-
+public abstract class Bird extends ActiveFieldObject {
     /**
      * The new position adjustment when hits a wooden obstacle.
      */
     private static final int POS_ADJUSTMENT = 400;
-
-    /**
-     * The amount of eaten pigs.
-     */
-    private int _eatenPigsCounter;
 
     /**
      * The set of bird listeners.
@@ -40,8 +31,6 @@ public class Bird extends ActiveFieldObject {
      */
     public Bird(final GeneralFactory generalFactory) {
         super(generalFactory);
-        setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
     }
 
     /**
@@ -110,17 +99,7 @@ public class Bird extends ActiveFieldObject {
      */
     public void eat(final FieldObject object) {
         Field.getInstance().removeFieldObject(object);
-        ++_eatenPigsCounter;
         firePigEaten();
-    }
-
-    /**
-     * The getter for _eatenPigsCounter class member.
-     *
-     * @return value of _eatenPigsCounter.
-     */
-    public int getEatenPigsCounter() {
-        return _eatenPigsCounter;
     }
 
     /**
@@ -137,7 +116,7 @@ public class Bird extends ActiveFieldObject {
      *
      * @param birdListener listener to remove.
      */
-    public void deleteObjectListener(final BirdListener birdListener) {
+    public void deleteBirdListener(final BirdListener birdListener) {
         _birdListeners.remove(birdListener);
     }
 
