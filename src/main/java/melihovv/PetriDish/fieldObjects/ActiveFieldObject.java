@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.controllers.PlayerController;
+import melihovv.PetriDish.controllers.ActiveFieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
@@ -12,7 +12,6 @@ import java.awt.Point;
  * other objects.
  */
 public abstract class ActiveFieldObject extends FieldObject {
-
     /**
      * The radius around the object where it starts decreasing its speed.
      */
@@ -41,7 +40,7 @@ public abstract class ActiveFieldObject extends FieldObject {
     /**
      * The object controller.
      */
-    private PlayerController _controller;
+    private ActiveFieldObjectController _controller;
 
     /**
      * The basic constructor for class members initialization.
@@ -126,7 +125,7 @@ public abstract class ActiveFieldObject extends FieldObject {
      * The getter for _controller class member.
      * @return value of _controller.
      */
-    public PlayerController getController() {
+    public ActiveFieldObjectController getController() {
         return _controller;
     }
 
@@ -134,7 +133,7 @@ public abstract class ActiveFieldObject extends FieldObject {
      * The setter for _controller class member.
      * @param controller value to set.
      */
-    public void setController(final PlayerController controller) {
+    public void setController(final ActiveFieldObjectController controller) {
         _controller = controller;
     }
 

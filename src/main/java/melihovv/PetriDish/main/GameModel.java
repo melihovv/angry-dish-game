@@ -5,17 +5,19 @@ import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
+import melihovv.PetriDish.controllers.AIController;
 import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
 import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -26,6 +28,11 @@ public class GameModel implements BirdListener {
      * The amount of pigs(game object) on start of the game.
      */
     private static final int PIGS_COUNT = 50;
+
+    /**
+     * The amount of computer controlled birds on start of the game.
+     */
+    private static final int COMPUTER_BIRDS_COUNT = 5;
 
     /**
      * The amount of wooden obstacles(game object) on start of the game.
@@ -89,6 +96,11 @@ public class GameModel implements BirdListener {
     private PlayerController _playerController;
 
     /**
+     * The ai controller to control computer bird's behaviour.
+     */
+    private AIController _aiController;
+
+    /**
      * The basic constructor for class members initialization.
      *
      * @param generalFactory general game factory to create basic game
@@ -136,17 +148,35 @@ public class GameModel implements BirdListener {
         _player.setController(_playerController);
         _player.addBirdListener(this);
 
+        _aiController = _generalFactory.createAIController();
+
         Field.getInstance().addFieldObject(
                 _player,
                 new Point(DEFAULT_PLAYER_X_POSITION, DEFAULT_PLAYER_Y_POSITION)
         );
+
+
+        /* Creating computer controlled birds */
+        for (int i = 0; i < COMPUTER_BIRDS_COUNT; ++i) {
+
+            GreenBird greenBird =
+                    (GreenBird) _fieldObjectsFactory.createFieldObject(
+                            GreenBird.class,
+                            _generalFactory
+                    );
+            greenBird.setController(_aiController);
+            greenBird.addBirdListener(this);
+
+            Field.getInstance().addFieldObjectToRandomPosition(greenBird);
+        }
 
         /* Creating pigs */
         for (int i = 0; i < PIGS_COUNT; ++i) {
 
             Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(
                     Pig.class,
-                    _generalFactory);
+                    _generalFactory
+            );
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
@@ -157,7 +187,8 @@ public class GameModel implements BirdListener {
             WoodenObstacle obstacle =
                     (WoodenObstacle) _fieldObjectsFactory.createFieldObject(
                             WoodenObstacle.class,
-                            _generalFactory);
+                            _generalFactory
+                    );
 
             Field.getInstance().addFieldObjectToRandomPosition(obstacle);
         }
@@ -234,7 +265,7 @@ public class GameModel implements BirdListener {
      */
     @Override
     public void woodenObstacleHit() {
-            fireBirdHitWoodenObstacle();
+        fireBirdHitWoodenObstacle();
     }
 
     /**
@@ -242,6 +273,6 @@ public class GameModel implements BirdListener {
      */
     @Override
     public void pigEaten() {
-            fireBirdEatPig();
+        fireBirdEatPig();
     }
 }

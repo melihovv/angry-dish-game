@@ -7,6 +7,7 @@ import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
@@ -63,6 +64,11 @@ public class PetriDishGame extends Game implements ModelListener {
      */
     private PlayerController _playerController;
 
+    /**
+     * The part of the game which controls computer bird's behaviour.
+     */
+    private AIController _aiController;
+
     // #TODO: Uncomment the line below when game is ready
     //{distribute=true;}
 
@@ -76,6 +82,7 @@ public class PetriDishGame extends Game implements ModelListener {
         _gameModel = new GameModel(generalFactory);
         _gameModel.addModelListener(this);
         _playerController = new PlayerController();
+        _aiController = new AIController();
         _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
 
         /* Setting up the timer */
@@ -173,6 +180,15 @@ public class PetriDishGame extends Game implements ModelListener {
     }
 
     /**
+     * The getter for _aiController class member.
+     *
+     * @return value of _aiController.
+     */
+    public AIController getAIController() {
+        return _aiController;
+    }
+
+    /**
      * The reaction on bird eat pig event.
      */
     @Override
@@ -230,7 +246,7 @@ public class PetriDishGame extends Game implements ModelListener {
         /**
          * The probability to change destination point.
          */
-        private static final double CHANGE_DESTINATION_PROBABILITY = 0.015;
+        private static final double CHANGE_DESTINATION_PROBABILITY = 0.0015;
 
         /**
          * Controls basic computer player movement.
@@ -242,19 +258,26 @@ public class PetriDishGame extends Game implements ModelListener {
             Random randomizer = new Random();
             int fieldWidth = Field.getFieldWidth();
             int fieldHeight = Field.getFieldHeight();
-            List<ActiveFieldObject> objects =
-                    (List<ActiveFieldObject>) Field.getInstance()
-                            .getFieldObjects(ActiveFieldObject.class);
+            List<FieldObject> objects =
+                    Field.getInstance().getFieldObjects();
 
             /* Setting a new destination for all computer players */
-            for (ActiveFieldObject object : objects) {
-                if (Math.random() < CHANGE_DESTINATION_PROBABILITY) {
-                    Point newDestination = new Point(
-                            randomizer.nextInt(fieldWidth),
-                            randomizer.nextInt(fieldHeight)
-                    );
+            for (FieldObject object : objects) {
 
-                    object.setDestination(newDestination);
+                if (object instanceof ActiveFieldObject
+                        && object != _gameModel.getPlayer()) {
+
+                    if (Math.random() < CHANGE_DESTINATION_PROBABILITY) {
+
+                        Point newDestination = new Point(
+                                randomizer.nextInt(fieldWidth),
+                                randomizer.nextInt(fieldHeight)
+                        );
+
+                        ((ActiveFieldObject) object).setDestination(
+                                newDestination
+                        );
+                    }
                 }
             }
         }
