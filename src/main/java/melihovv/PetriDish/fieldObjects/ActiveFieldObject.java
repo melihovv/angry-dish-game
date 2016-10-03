@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.controllers.FieldObjectController;
+import melihovv.PetriDish.controllers.ActiveFieldObjectController;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
@@ -12,7 +12,6 @@ import java.awt.Point;
  * other objects.
  */
 public abstract class ActiveFieldObject extends FieldObject {
-
     /**
      * The radius around the object where it starts decreasing its speed.
      */
@@ -29,6 +28,11 @@ public abstract class ActiveFieldObject extends FieldObject {
     private static final double BREAK_COEFFICIENT = 500;
 
     /**
+     * Speed per size factor.
+     */
+    private static final int SPEED_PER_SIZE = 50;
+
+    /**
      * The speed of the object.
      */
     private double _speed;
@@ -41,10 +45,11 @@ public abstract class ActiveFieldObject extends FieldObject {
     /**
      * The object controller.
      */
-    private FieldObjectController _controller;
+    private ActiveFieldObjectController _controller;
 
     /**
      * The basic constructor for class members initialization.
+     *
      * @param generalFactory general game factory to create basic game
      *                       components.
      */
@@ -55,6 +60,7 @@ public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * Updates object state.
+     *
      * @param elapsedTime time passed after the last update.
      */
     @Override
@@ -123,29 +129,29 @@ public abstract class ActiveFieldObject extends FieldObject {
     }
 
     /**
+     * Refreshes object speed depending on its size.
+     */
+    public void refreshSpeed() {
+        _speed = SPEED_PER_SIZE / (double) getSize();
+        System.out.println(_speed);
+    }
+
+    /**
      * The getter for _controller class member.
+     *
      * @return value of _controller.
      */
-    public FieldObjectController getController() {
+    public ActiveFieldObjectController getController() {
         return _controller;
     }
 
     /**
      * The setter for _controller class member.
+     *
      * @param controller value to set.
      */
-    public void setController(final FieldObjectController controller) {
+    public void setController(final ActiveFieldObjectController controller) {
         _controller = controller;
-    }
-
-    /**
-     * The setter for _size class member.
-     * @param size value to set.
-     */
-    @Override
-    public void setSize(final int size) {
-        super.setSize(size);
-        // #TODO: Adjust speed when size has changed?
     }
 
     /**
@@ -163,6 +169,7 @@ public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * The setter for _destination class member.
+     *
      * @param destination value to set.
      */
     public void setDestination(final Point destination) {
@@ -171,6 +178,7 @@ public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * The setter for _position class member.
+     *
      * @param position value to set.
      */
     @Override

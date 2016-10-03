@@ -54,7 +54,7 @@ public class GameView {
 
         /* Rendering game info interface */
         String eatenPigsInfo = "Съедено свиней: "
-                + _gameModel.getPlayer().getEatenPigsCounter()
+                + _gameModel.getPlayer().getTotalAmountOfEatenPigs()
                 + "/"
                 + Field.getInstance().getPigsCounter();
 

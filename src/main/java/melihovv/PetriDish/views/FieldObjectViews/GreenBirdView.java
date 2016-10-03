@@ -4,24 +4,26 @@ package melihovv.PetriDish.views.FieldObjectViews;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
 /**
- * The class represents the appearance of a bird.
+ * The class represents the appearance of a green bird.
  */
-public class BirdView extends ActiveFieldObjectView {
+public class GreenBirdView extends ActiveFieldObjectView {
     /**
      * The path to the bird image.
      */
-    private static final String IMAGE_PATH = "/heroes/birds/main_hero.png";
+    private static final String IMAGE_PATH = "/heroes/birds/computer_hero.png";
 
     /**
      * The basic constructor for class members initialization.
+     *
      * @param fieldObject object for the object view.
      */
-    public BirdView(final FieldObject fieldObject) {
+    public GreenBirdView(final FieldObject fieldObject) {
         super(fieldObject);
     }
 
     /**
      * Getter for the IMAGE_PATH class member.
+     *
      * @return value of IMAGE_PATH.
      */
     @Override

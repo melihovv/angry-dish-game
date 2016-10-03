@@ -1,15 +1,18 @@
 package melihovv.PetriDish.factories;
 
-import melihovv.PetriDish.controllers.FieldObjectController;
-import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.controllers.AIController;
+import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.fieldObjects.FieldObject;
+import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
+import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.main.PetriDishGame;
-import melihovv.PetriDish.views.FieldObjectViews.BirdView;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
+import melihovv.PetriDish.views.FieldObjectViews.GreenBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.PigView;
+import melihovv.PetriDish.views.FieldObjectViews.RedBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.WoodenObstacleView;
 import melihovv.PetriDish.views.FieldView;
 
@@ -60,8 +63,10 @@ public class GeneralFactory {
 
         if (fieldObject instanceof Pig) {
             fieldObjectView = new PigView(fieldObject);
-        } else if (fieldObject instanceof Bird) {
-            fieldObjectView = new BirdView(fieldObject);
+        } else if (fieldObject instanceof RedBird) {
+            fieldObjectView = new RedBirdView(fieldObject);
+        } else if (fieldObject instanceof GreenBird) {
+            fieldObjectView = new GreenBirdView(fieldObject);
         } else if (fieldObject instanceof WoodenObstacle) {
             fieldObjectView = new WoodenObstacleView(fieldObject);
         }
@@ -74,8 +79,18 @@ public class GeneralFactory {
      *
      * @return an instance of PlayerController class.
      */
-    public FieldObjectController createPlayerController() {
+    public PlayerController createPlayerController() {
 
         return _petriDishGame.getPlayerController();
+    }
+
+    /**
+     * Creates an instance of AIController class.
+     *
+     * @return an instance of AIController class.
+     */
+    public AIController createAIController() {
+
+        return _petriDishGame.getAIController();
     }
 }

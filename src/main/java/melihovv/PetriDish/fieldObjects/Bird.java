@@ -3,34 +3,38 @@ package melihovv.PetriDish.fieldObjects;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
+import melihovv.PetriDish.views.FieldObjectViews.ActiveFieldObjectView;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 
 /**
- * The class represents main game character which is a player.
+ * The class represents abstract bird which is field object.
+ * Birds can move, eat pigs and hit obstacles.
  */
-public class Bird extends ActiveFieldObject {
-    /**
-     * The size of the bird.
-     */
-    private static final int DEFAULT_SIZE = 64;
-
+public abstract class Bird extends ActiveFieldObject {
     /**
      * The new position adjustment when hits a wooden obstacle.
      */
     private static final int POS_ADJUSTMENT = 400;
 
     /**
-     * The amount of eaten pigs.
-     */
-    private int _eatenPigsCounter;
-
-    /**
      * The set of bird listeners.
      */
     private List<BirdListener> _birdListeners = new ArrayList<>();
+
+    /**
+     * The amount of eaten pigs after the last growth.
+     */
+    private int _eatenPigsAfterGrowth;
+
+    /**
+     * The amount of eaten objects to grow. An active field object must eat this
+     * amount to grow to a next size.
+     */
+    private int _birdsToGrowth;
 
     /**
      * The basic constructor for class members initialization.
@@ -40,8 +44,7 @@ public class Bird extends ActiveFieldObject {
      */
     public Bird(final GeneralFactory generalFactory) {
         super(generalFactory);
-        setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
+        _birdsToGrowth = 1;
     }
 
     /**
@@ -110,17 +113,9 @@ public class Bird extends ActiveFieldObject {
      */
     public void eat(final FieldObject object) {
         Field.getInstance().removeFieldObject(object);
-        ++_eatenPigsCounter;
+        ++_eatenPigsAfterGrowth;
+        resize();
         firePigEaten();
-    }
-
-    /**
-     * The getter for _eatenPigsCounter class member.
-     *
-     * @return value of _eatenPigsCounter.
-     */
-    public int getEatenPigsCounter() {
-        return _eatenPigsCounter;
     }
 
     /**
@@ -137,25 +132,58 @@ public class Bird extends ActiveFieldObject {
      *
      * @param birdListener listener to remove.
      */
-    public void deleteObjectListener(final BirdListener birdListener) {
+    public void deleteBirdListener(final BirdListener birdListener) {
         _birdListeners.remove(birdListener);
     }
 
     /**
      * Fires the event of hitting the wooden obstacle to all bird listeners.
      */
-    private void fireWoodenObstacleHit() {
+    protected void fireWoodenObstacleHit() {
+        EventObject event = new EventObject(this);
         for (BirdListener birdListener : _birdListeners) {
-            birdListener.woodenObstacleHit();
+            birdListener.woodenObstacleHit(event);
         }
     }
 
     /**
      * Fires the event of eating a pig to all bird listeners.
      */
-    private void firePigEaten() {
+    protected void firePigEaten() {
+        EventObject event = new EventObject(this);
         for (BirdListener birdListener : _birdListeners) {
-            birdListener.pigEaten();
+            birdListener.pigEaten(event);
+        }
+    }
+
+    /**
+     * Fires the event of fighting computer bird to all bird listeners.
+     */
+    protected void fireFoughtComputerBird() {
+        EventObject event = new EventObject(this);
+        for (BirdListener birdListener : _birdListeners) {
+            birdListener.foughtComputerBird(event);
+        }
+    }
+
+    /**
+     * Increases bird size if it ate enough birds.
+     */
+    private void resize() {
+
+        if (_eatenPigsAfterGrowth >= _birdsToGrowth) {
+
+            int currentSize = ((ActiveFieldObjectView) getFieldObjectView())
+                    .getOvalSize();
+
+            ((ActiveFieldObjectView) getFieldObjectView())
+                    .setOvalSize(++currentSize);
+
+            getFieldObjectView().createObjectView();
+            refreshSpeed();
+
+            ++_birdsToGrowth;
+            _eatenPigsAfterGrowth = 0;
         }
     }
 }
