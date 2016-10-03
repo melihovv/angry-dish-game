@@ -42,14 +42,27 @@ public class PetriDishGame extends Game implements ModelListener {
     private static final int SCREEN_HEIGHT = 720;
 
     /**
-     * The flag to control whether the game is able to play sound or not.
+     * The flag to control whether the game is able to play obstacle hit sound
+     * or not.
      */
-    private boolean _canPlaySound = true;
+    private boolean _canPlayObstacleSound = true;
 
     /**
-     * The timer to set _canPlaySound variable to true.
+     * The flag to control whether the game is able to play computer bird
+     * fight sound or not.
      */
-    private Timer _repeatSoundTimer;
+    private boolean _canPlayFightSound = true;
+
+    /**
+     * The timer to set _canPlayObstacleSound variable to true.
+     */
+    private Timer _repeatObstacleSoundTimer;
+
+    /**
+     * The timer to set _canPlayFightSound variable to true.
+     */
+    private Timer _repeatFightSoundTimer;
+
     /**
      * The part of the game which controls its appearance.
      */
@@ -86,17 +99,28 @@ public class PetriDishGame extends Game implements ModelListener {
         _aiController = new AIController();
         _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
 
-        /* Setting up the timer */
-        _repeatSoundTimer = new Timer(
+        /* Setting up the timers */
+        _repeatObstacleSoundTimer = new Timer(
                 REPEAT_SOUND_TIMER_TIME,
                 new ActionListener() {
                     @Override
                     public void actionPerformed(final ActionEvent e) {
-                        _canPlaySound = true;
+                        _canPlayObstacleSound = true;
                     }
                 });
-        _repeatSoundTimer.setRepeats(false);
-        _repeatSoundTimer.stop();
+        _repeatObstacleSoundTimer.setRepeats(false);
+        _repeatObstacleSoundTimer.stop();
+
+        _repeatFightSoundTimer = new Timer(
+                REPEAT_SOUND_TIMER_TIME,
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(final ActionEvent e) {
+                        _canPlayFightSound = true;
+                    }
+                });
+        _repeatFightSoundTimer.setRepeats(false);
+        _repeatFightSoundTimer.stop();
     }
 
     /**
@@ -208,11 +232,13 @@ public class PetriDishGame extends Game implements ModelListener {
      */
     @Override
     public void birdHitWoodenObstacle(final EventObject event) {
-        if (event.getSource().equals(_gameModel.getPlayer()) && _canPlaySound) {
+        if (event.getSource().equals(_gameModel.getPlayer())
+                && _canPlayObstacleSound) {
+
             bsSound.play("/sounds/hit_wood.wav");
             bsSound.play("/sounds/bird_ouch.wav");
-            _canPlaySound = false;
-            _repeatSoundTimer.start();
+            _canPlayObstacleSound = false;
+            _repeatObstacleSoundTimer.start();
         }
     }
 
@@ -223,8 +249,12 @@ public class PetriDishGame extends Game implements ModelListener {
      */
     @Override
     public void playerFoughtComputerBird(final EventObject event) {
-        if (event.getSource().equals(_gameModel.getPlayer())) {
+        if (event.getSource().equals(_gameModel.getPlayer())
+                && _canPlayFightSound) {
+
             bsSound.play("/sounds/fight_computer_bird.wav");
+            _canPlayFightSound = false;
+            _repeatFightSoundTimer.start();
         }
     }
 
