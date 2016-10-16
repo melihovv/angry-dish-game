@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.factories.FieldObjectsFactory;
 
 /**
  * The wooden obstacle object which player can't go through.
@@ -13,13 +13,10 @@ public class WoodenObstacle extends InactiveFieldObject {
 
     /**
      * The basic constructor for class members initialization.
-     *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public WoodenObstacle(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public WoodenObstacle() {
+        super();
         setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
+        setFieldObjectView(FieldObjectsFactory.createFieldObjectView(this));
     }
 }

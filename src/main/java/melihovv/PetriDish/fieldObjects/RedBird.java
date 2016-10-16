@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.factories.FieldObjectsFactory;
 
 /**
  * The class represents main game character controlled by a player.
@@ -18,14 +18,11 @@ public class RedBird extends Bird {
 
     /**
      * The basic constructor for class members initialization.
-     *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public RedBird(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public RedBird() {
+        super();
         setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
+        setFieldObjectView(FieldObjectsFactory.createFieldObjectView(this));
     }
 
     /**

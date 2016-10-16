@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.factories.FieldObjectsFactory;
 
 /**
  * The class represents game object which player can eat.
@@ -13,12 +13,10 @@ public class Pig extends InactiveFieldObject {
 
     /**
      * The basic constructor for class members initialization.
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public Pig(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public Pig() {
+        super();
         setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
+        setFieldObjectView(FieldObjectsFactory.createFieldObjectView(this));
     }
 }

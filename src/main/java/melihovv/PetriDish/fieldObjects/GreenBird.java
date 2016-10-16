@@ -1,6 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.factories.GeneralFactory;
+import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.main.Field;
 
 /**
@@ -14,14 +14,11 @@ public class GreenBird extends Bird {
 
     /**
      * The basic constructor for class members initialization.
-     *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public GreenBird(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public GreenBird() {
+        super();
         setSize(DEFAULT_SIZE);
-        setFieldObjectView(generalFactory.createFieldObjectView(this));
+        setFieldObjectView(FieldObjectsFactory.createFieldObjectView(this));
     }
 
     /**

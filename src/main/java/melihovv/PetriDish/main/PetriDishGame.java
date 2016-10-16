@@ -3,7 +3,6 @@ package melihovv.PetriDish.main;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 import melihovv.PetriDish.events.ModelListener;
-import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
@@ -82,15 +81,12 @@ public class PetriDishGame extends GameObject implements ModelListener {
     /**
      * The basic constructor for class members initialization.
      *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
-     * @param gameEngine     GameEngine object - parent.
+     * @param gameEngine GameEngine object - parent.
      */
-    public PetriDishGame(final GameEngine gameEngine,
-                         final GeneralFactory generalFactory) {
+    public PetriDishGame(final GameEngine gameEngine) {
         super(gameEngine);
         _gameEngine = gameEngine;
-        _gameModel = new GameModel(generalFactory, this);
+        _gameModel = new GameModel(this);
         _gameModel.addModelListener(this);
         _gameView = new GameView(_gameModel);
 

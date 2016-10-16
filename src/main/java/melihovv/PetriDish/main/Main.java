@@ -3,7 +3,6 @@ package melihovv.PetriDish.main;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.GameObject;
-import melihovv.PetriDish.factories.GeneralFactory;
 
 import java.awt.Dimension;
 
@@ -11,11 +10,6 @@ import java.awt.Dimension;
  * The basic application class which contains main function.
  */
 public final class Main extends GameEngine {
-    /**
-     * The general game factory to create basic game components.
-     */
-    private GeneralFactory _generalFactory = new GeneralFactory();
-
     /**
      * The basic private constructor.
      */
@@ -46,8 +40,8 @@ public final class Main extends GameEngine {
         switch (gameID) {
 
             case 0: {
-                
-                PetriDishGame game = new PetriDishGame(this, _generalFactory);
+
+                PetriDishGame game = new PetriDishGame(this);
                 game.startGame();
                 return game;
             }

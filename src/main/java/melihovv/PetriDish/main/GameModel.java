@@ -10,7 +10,6 @@ import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
-import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
@@ -75,11 +74,6 @@ public class GameModel implements BirdListener {
     private RedBird _player;
 
     /**
-     * The general game factory to create basic game components.
-     */
-    private GeneralFactory _generalFactory;
-
-    /**
      * The collision manager to control collisions between the player and pigs.
      */
     private CollisionManager _playerToPigsCollisionManager;
@@ -119,13 +113,9 @@ public class GameModel implements BirdListener {
     /**
      * The basic constructor for class members initialization.
      *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
-     * @param gameInstance   main game class instance.
+     * @param gameInstance main game class instance.
      */
-    public GameModel(final GeneralFactory generalFactory,
-                     final PetriDishGame gameInstance) {
-        _generalFactory = generalFactory;
+    public GameModel(final PetriDishGame gameInstance) {
         _fieldObjectsFactory = new FieldObjectsFactory();
         _pigsCreationTimer = new Timer(PIGS_CREATINON_TIME);
         _gameInstance = gameInstance;
@@ -146,9 +136,7 @@ public class GameModel implements BirdListener {
         if (_pigsCreationTimer.action(elapsedTime)) {
             System.out.println("God damn! A new pig is here!");
 
-            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(
-                    Pig.class,
-                    _generalFactory);
+            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(Pig.class);
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
@@ -161,8 +149,8 @@ public class GameModel implements BirdListener {
 
         /* Creating main player and its controller */
         _player = (RedBird) _fieldObjectsFactory.createFieldObject(
-                RedBird.class,
-                _generalFactory);
+                RedBird.class
+        );
 
         _playerController = new PlayerController();
         _player.setController(_playerController);
@@ -181,8 +169,7 @@ public class GameModel implements BirdListener {
 
             GreenBird greenBird =
                     (GreenBird) _fieldObjectsFactory.createFieldObject(
-                            GreenBird.class,
-                            _generalFactory
+                            GreenBird.class
                     );
             greenBird.setController(_aiController);
             greenBird.addBirdListener(this);
@@ -193,10 +180,7 @@ public class GameModel implements BirdListener {
         /* Creating pigs */
         for (int i = 0; i < PIGS_COUNT; ++i) {
 
-            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(
-                    Pig.class,
-                    _generalFactory
-            );
+            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(Pig.class);
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
@@ -206,8 +190,7 @@ public class GameModel implements BirdListener {
 
             WoodenObstacle obstacle =
                     (WoodenObstacle) _fieldObjectsFactory.createFieldObject(
-                            WoodenObstacle.class,
-                            _generalFactory
+                            WoodenObstacle.class
                     );
 
             Field.getInstance().addFieldObjectToRandomPosition(obstacle);

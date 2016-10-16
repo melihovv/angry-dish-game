@@ -1,7 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
 import melihovv.PetriDish.events.BirdListener;
-import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectViews.ActiveFieldObjectView;
 
@@ -43,12 +42,9 @@ public abstract class Bird extends ActiveFieldObject {
 
     /**
      * The basic constructor for class members initialization.
-     *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public Bird(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public Bird() {
+        super();
         _birdsToGrowth = 1;
         _eatenObjects = new ArrayList<>();
     }

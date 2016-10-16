@@ -1,7 +1,6 @@
 package melihovv.PetriDish.fieldObjects;
 
 import melihovv.PetriDish.controllers.ActiveFieldObjectController;
-import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
@@ -49,12 +48,9 @@ public abstract class ActiveFieldObject extends FieldObject {
 
     /**
      * The basic constructor for class members initialization.
-     *
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public ActiveFieldObject(final GeneralFactory generalFactory) {
-        super(generalFactory);
+    public ActiveFieldObject() {
+        super();
         _speed = DEFAULT_SPEED;
     }
 

@@ -1,6 +1,5 @@
 package melihovv.PetriDish.fieldObjects;
 
-import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
 import java.awt.Point;
@@ -21,14 +20,13 @@ public abstract class FieldObject {
 
     /**
      * The basic constructor for class members initialization.
-     * @param generalFactory general game factory to create basic game
-     *                       components.
      */
-    public FieldObject(final GeneralFactory generalFactory) {
+    public FieldObject() {
     }
 
     /**
      * Updates object view.
+     *
      * @param elapsedTime time passed after the last update.
      */
     public void update(final long elapsedTime) {
@@ -37,6 +35,7 @@ public abstract class FieldObject {
 
     /**
      * The getter for _size class member.
+     *
      * @return value of _size.
      */
     public int getSize() {
@@ -54,6 +53,7 @@ public abstract class FieldObject {
 
     /**
      * The getter for object position.
+     *
      * @return object position on field.
      */
     public Point getPosition() {
@@ -62,6 +62,7 @@ public abstract class FieldObject {
 
     /**
      * The setter for object position.
+     *
      * @param position position to set.
      */
     public void setPosition(final Point position) {
@@ -70,6 +71,7 @@ public abstract class FieldObject {
 
     /**
      * Getter for _fieldObjectView class member.
+     *
      * @return value of _fieldObjectView.
      */
     public FieldObjectView getFieldObjectView() {
@@ -78,6 +80,7 @@ public abstract class FieldObject {
 
     /**
      * Setter for _fieldObjectView class member.
+     *
      * @param fieldObjectView value to set.
      */
     public void setFieldObjectView(final FieldObjectView fieldObjectView) {
