@@ -35,18 +35,32 @@ public class RedBird extends Bird {
      * @param object object to eat.
      */
     @Override
-    public void eat(final FieldObject object) {
-        super.eat(object);
+    public void eatPig(final FieldObject object) {
+        super.eatPig(object);
         ++_totalAmountOfEatenPigs;
     }
 
     /**
      * Fights computer controlled birds.
+     *
+     * @param enemyBird bird to fight.
      */
-    public void fight() {
-        fireFoughtComputerBird();
-    }
+    public void fight(final GreenBird enemyBird) {
 
+        int enemyEatenObjectsCount = enemyBird.getEatenObjects().size();
+        int playerEatenObjectsCount = getEatenObjects().size();
+
+        if (playerEatenObjectsCount > enemyEatenObjectsCount) {
+
+            eat(enemyBird);
+            fireFoughtComputerBird();
+
+        } else if (playerEatenObjectsCount < enemyEatenObjectsCount) {
+
+            //#TODO: send a signal to show game over screen
+            boolean deleteThisLater = true;
+        }
+    }
 
     /**
      * The getter for _totalAmountOfEatenPigs class member.

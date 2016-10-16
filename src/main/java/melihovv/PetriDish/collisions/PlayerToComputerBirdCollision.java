@@ -4,6 +4,7 @@ import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import melihovv.PetriDish.fieldObjects.FieldObject;
+import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
@@ -39,8 +40,13 @@ public class PlayerToComputerBirdCollision extends BasicCollisionGroup {
         FieldObjectView fieldObjectView1 = (FieldObjectView) s1;
         FieldObject fieldObject1 = fieldObjectView1.getFieldObject();
 
-        if (fieldObject1 instanceof RedBird) {
-            ((RedBird) fieldObject1).fight();
+        FieldObjectView fieldObjectView2 = (FieldObjectView) s2;
+        FieldObject fieldObject2 = fieldObjectView2.getFieldObject();
+
+        if (fieldObject1 instanceof RedBird
+                && fieldObject2 instanceof GreenBird) {
+
+            ((RedBird) fieldObject1).fight((GreenBird) fieldObject2);
         }
     }
 }

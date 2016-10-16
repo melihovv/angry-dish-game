@@ -31,8 +31,8 @@ public class GreenBird extends Bird {
      * @param object object to eat.
      */
     @Override
-    public void eat(final FieldObject object) {
-        super.eat(object);
+    public void eatPig(final FieldObject object) {
+        super.eatPig(object);
         Field.getInstance().decreasePigsCounter();
     }
 }

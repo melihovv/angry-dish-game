@@ -51,7 +51,7 @@ public class BirdToPigCollision extends BasicCollisionGroup {
         FieldObject fieldObject2 = fieldObjectView2.getFieldObject();
 
         if (fieldObject1 instanceof Bird) {
-            ((Bird) fieldObject1).eat(fieldObject2);
+            ((Bird) fieldObject1).eatPig(fieldObject2);
         }
     }
 }

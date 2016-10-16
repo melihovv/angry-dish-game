@@ -28,13 +28,18 @@ public abstract class Bird extends ActiveFieldObject {
     /**
      * The amount of eaten pigs after the last growth.
      */
-    private int _eatenPigsAfterGrowth;
+    private int _eatenObjectsAfterGrowth;
 
     /**
      * The amount of eaten objects to grow. An active field object must eat this
      * amount to grow to a next size.
      */
     private int _birdsToGrowth;
+
+    /**
+     * The array of eaten objects.
+     */
+    private List<FieldObject> _eatenObjects;
 
     /**
      * The basic constructor for class members initialization.
@@ -45,6 +50,7 @@ public abstract class Bird extends ActiveFieldObject {
     public Bird(final GeneralFactory generalFactory) {
         super(generalFactory);
         _birdsToGrowth = 1;
+        _eatenObjects = new ArrayList<>();
     }
 
     /**
@@ -111,10 +117,9 @@ public abstract class Bird extends ActiveFieldObject {
      *
      * @param object object to eat.
      */
-    public void eat(final FieldObject object) {
-        Field.getInstance().removeFieldObject(object);
-        ++_eatenPigsAfterGrowth;
-        resize();
+    public void eatPig(final FieldObject object) {
+
+        eat(object);
         firePigEaten();
     }
 
@@ -171,7 +176,7 @@ public abstract class Bird extends ActiveFieldObject {
      */
     private void resize() {
 
-        if (_eatenPigsAfterGrowth >= _birdsToGrowth) {
+        if (_eatenObjectsAfterGrowth >= _birdsToGrowth) {
 
             int currentSize = ((ActiveFieldObjectView) getFieldObjectView())
                     .getOvalSize();
@@ -183,7 +188,31 @@ public abstract class Bird extends ActiveFieldObject {
             refreshSpeed();
 
             ++_birdsToGrowth;
-            _eatenPigsAfterGrowth = 0;
+            _eatenObjectsAfterGrowth = 0;
         }
+    }
+
+    /**
+     * Performs basic actions needed for eating a pig or a bird.
+     * Removes eaten object from the field, adds eaten object to the array of
+     * eaten objects, increases counters and resizes player.
+     *
+     * @param object object to eat.
+     */
+    protected void eat(final FieldObject object) {
+
+        Field.getInstance().removeFieldObject(object);
+        _eatenObjects.add(object);
+        ++_eatenObjectsAfterGrowth;
+        resize();
+    }
+
+    /**
+     * Getter for _eatenObjects class member.
+     *
+     * @return value of _eatenObjects.
+     */
+    public List<FieldObject> getEatenObjects() {
+        return _eatenObjects;
     }
 }
