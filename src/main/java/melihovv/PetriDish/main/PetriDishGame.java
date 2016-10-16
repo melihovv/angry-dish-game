@@ -2,23 +2,17 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
-import com.golden.gamedev.object.Background;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
-import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
-import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
 import javax.swing.Timer;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
-import java.util.List;
-import java.util.Random;
 
 /**
  * The basic game class which starts the game, controls its view and model, sets
@@ -73,16 +67,6 @@ public class PetriDishGame extends GameObject implements ModelListener {
     private GameModel _gameModel;
 
     /**
-     * The part of the game which controls player's behaviour.
-     */
-    private PlayerController _playerController;
-
-    /**
-     * The part of the game which controls computer bird's behaviour.
-     */
-    private AIController _aiController;
-
-    /**
      * The flag to control whether the game is over or not.
      */
     private boolean _isGameOver = false;
@@ -106,10 +90,8 @@ public class PetriDishGame extends GameObject implements ModelListener {
                          final GeneralFactory generalFactory) {
         super(gameEngine);
         _gameEngine = gameEngine;
-        _gameModel = new GameModel(generalFactory);
+        _gameModel = new GameModel(generalFactory, this);
         _gameModel.addModelListener(this);
-        _playerController = new PlayerController();
-        _aiController = new AIController();
         _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
 
         /* Setting up the timers */
@@ -210,24 +192,6 @@ public class PetriDishGame extends GameObject implements ModelListener {
     }
 
     /**
-     * The getter for _playerController class member.
-     *
-     * @return value of _playerController.
-     */
-    public PlayerController getPlayerController() {
-        return _playerController;
-    }
-
-    /**
-     * The getter for _aiController class member.
-     *
-     * @return value of _aiController.
-     */
-    public AIController getAIController() {
-        return _aiController;
-    }
-
-    /**
      * The reaction on bird eat pig event.
      *
      * @param event event object.
@@ -272,82 +236,22 @@ public class PetriDishGame extends GameObject implements ModelListener {
         }
     }
 
+    /**
+     * The reaction on player death event.
+     *
+     * @param event event object.
+     */
     @Override
     public void playerDied(final EventObject event) {
         _isGameOver = true;
     }
 
     /**
-     * The player controller class which controls player's behaviour.
+     * The getter for _gameView class member.
+     *
+     * @return value of _gameView.
      */
-    private class PlayerController
-            implements melihovv.PetriDish.controllers.PlayerController {
-        /**
-         * Controls basic player movement.
-         *
-         * @param bird player to control.
-         */
-        @Override
-        public void controlMovement(final ActiveFieldObject bird) {
-            /* Getting base mouse coordinates */
-            int baseMouseX = bsInput.getMouseX();
-            int baseMouseY = bsInput.getMouseY();
-
-            /* Getting background coordinates */
-            Background background = _gameView.getFieldView().getBackground();
-            int backgroundX = (int) background.getX();
-            int backgroundY = (int) background.getY();
-
-            /* Getting mouse coordinates on field */
-            int mouseX = baseMouseX + backgroundX;
-            int mouseY = baseMouseY + backgroundY;
-
-            bird.setDestination(new Point(mouseX, mouseY));
-        }
-    }
-
-    /**
-     * The AI controller class which controls computer player's behaviour.
-     */
-    private class AIController
-            implements melihovv.PetriDish.controllers.AIController {
-        /**
-         * The probability to change destination point.
-         */
-        private static final double CHANGE_DESTINATION_PROBABILITY = 0.0015;
-
-        /**
-         * Controls basic computer player movement.
-         *
-         * @param bird computer player to control.
-         */
-        @Override
-        public void controlMovement(final ActiveFieldObject bird) {
-            Random randomizer = new Random();
-            int fieldWidth = Field.getFieldWidth();
-            int fieldHeight = Field.getFieldHeight();
-            List<FieldObject> objects =
-                    Field.getInstance().getFieldObjects();
-
-            /* Setting a new destination for all computer players */
-            for (FieldObject object : objects) {
-
-                if (object instanceof ActiveFieldObject
-                        && object != _gameModel.getPlayer()) {
-
-                    if (Math.random() < CHANGE_DESTINATION_PROBABILITY) {
-
-                        Point newDestination = new Point(
-                                randomizer.nextInt(fieldWidth),
-                                randomizer.nextInt(fieldHeight)
-                        );
-
-                        ((ActiveFieldObject) object).setDestination(
-                                newDestination
-                        );
-                    }
-                }
-            }
-        }
+    public GameView getGameView() {
+        return _gameView;
     }
 }

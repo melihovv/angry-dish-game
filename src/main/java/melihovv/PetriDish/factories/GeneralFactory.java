@@ -1,8 +1,6 @@
 package melihovv.PetriDish.factories;
 
 import com.golden.gamedev.GameEngine;
-import melihovv.PetriDish.controllers.AIController;
-import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
@@ -89,23 +87,4 @@ public class GeneralFactory {
         return fieldObjectView;
     }
 
-    /**
-     * Creates an instance of PlayerController class.
-     *
-     * @return an instance of PlayerController class.
-     */
-    public PlayerController createPlayerController() {
-
-        return _petriDishGame.getPlayerController();
-    }
-
-    /**
-     * Creates an instance of AIController class.
-     *
-     * @return an instance of AIController class.
-     */
-    public AIController createAIController() {
-
-        return _petriDishGame.getAIController();
-    }
 }

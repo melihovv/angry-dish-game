@@ -1,19 +1,19 @@
 package melihovv.PetriDish.main;
 
+import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
 import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
 import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
-import melihovv.PetriDish.controllers.AIController;
-import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
 import melihovv.PetriDish.factories.GeneralFactory;
 import melihovv.PetriDish.fieldObjects.ActiveFieldObject;
 import melihovv.PetriDish.fieldObjects.Bird;
+import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
 import melihovv.PetriDish.fieldObjects.RedBird;
@@ -22,6 +22,8 @@ import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
+import java.util.Random;
 
 /**
  * The base game model class which controls game logic.
@@ -110,15 +112,23 @@ public class GameModel implements BirdListener {
     private AIController _aiController;
 
     /**
+     * Main game class instance.
+     */
+    private PetriDishGame _gameInstance;
+
+    /**
      * The basic constructor for class members initialization.
      *
      * @param generalFactory general game factory to create basic game
      *                       components.
+     * @param gameInstance   main game class instance.
      */
-    public GameModel(final GeneralFactory generalFactory) {
+    public GameModel(final GeneralFactory generalFactory,
+                     final PetriDishGame gameInstance) {
         _generalFactory = generalFactory;
         _fieldObjectsFactory = new FieldObjectsFactory();
         _pigsCreationTimer = new Timer(PIGS_CREATINON_TIME);
+        _gameInstance = gameInstance;
     }
 
     /**
@@ -154,11 +164,11 @@ public class GameModel implements BirdListener {
                 RedBird.class,
                 _generalFactory);
 
-        _playerController = _generalFactory.createPlayerController();
+        _playerController = new PlayerController();
         _player.setController(_playerController);
         _player.addBirdListener(this);
 
-        _aiController = _generalFactory.createAIController();
+        _aiController = new AIController();
 
         Field.getInstance().addFieldObject(
                 _player,
@@ -343,5 +353,80 @@ public class GameModel implements BirdListener {
     @Override
     public void died(final EventObject event) {
         firePlayerDied(event);
+    }
+
+    /**
+     * The AI controller class which controls computer player's behaviour.
+     */
+    private class AIController
+            implements melihovv.PetriDish.controllers.AIController {
+        /**
+         * The probability to change destination point.
+         */
+        private static final double CHANGE_DESTINATION_PROBABILITY = 0.0015;
+
+        /**
+         * Controls basic computer player movement.
+         *
+         * @param bird computer player to control.
+         */
+        @Override
+        public void controlMovement(final ActiveFieldObject bird) {
+            Random randomizer = new Random();
+            int fieldWidth = Field.getFieldWidth();
+            int fieldHeight = Field.getFieldHeight();
+            List<FieldObject> objects =
+                    Field.getInstance().getFieldObjects();
+
+            /* Setting a new destination for all computer players */
+            for (FieldObject object : objects) {
+
+                if (object instanceof ActiveFieldObject
+                        && object != getPlayer()) {
+
+                    if (Math.random() < CHANGE_DESTINATION_PROBABILITY) {
+
+                        Point newDestination = new Point(
+                                randomizer.nextInt(fieldWidth),
+                                randomizer.nextInt(fieldHeight)
+                        );
+
+                        ((ActiveFieldObject) object).setDestination(
+                                newDestination
+                        );
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * The player controller class which controls player's behaviour.
+     */
+    private class PlayerController
+            implements melihovv.PetriDish.controllers.PlayerController {
+        /**
+         * Controls basic player movement.
+         *
+         * @param bird player to control.
+         */
+        @Override
+        public void controlMovement(final ActiveFieldObject bird) {
+            /* Getting base mouse coordinates */
+            int baseMouseX = _gameInstance.getMouseX();
+            int baseMouseY = _gameInstance.getMouseY();
+
+            /* Getting background coordinates */
+            Background background = _gameInstance.getGameView().getFieldView()
+                    .getBackground();
+            int backgroundX = (int) background.getX();
+            int backgroundY = (int) background.getY();
+
+            /* Getting mouse coordinates on field */
+            int mouseX = baseMouseX + backgroundX;
+            int mouseY = baseMouseY + backgroundY;
+
+            bird.setDestination(new Point(mouseX, mouseY));
+        }
     }
 }
