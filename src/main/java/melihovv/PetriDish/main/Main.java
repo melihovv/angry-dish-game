@@ -46,15 +46,14 @@ public final class Main extends GameEngine {
         switch (gameID) {
 
             case 0: {
-
-                PetriDishGame game = _generalFactory.createPetriDishGame(this);
+                
+                PetriDishGame game = new PetriDishGame(this, _generalFactory);
                 game.startGame();
                 return game;
-
             }
             case 1: {
 
-                return _generalFactory.createPetriDishGameOver(this);
+                return new PetriDishGameOver(this);
             }
             default: {
 
