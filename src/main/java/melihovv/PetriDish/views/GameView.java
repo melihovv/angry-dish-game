@@ -34,17 +34,19 @@ public class GameView {
 
     /**
      * The basic constructor for class members initialization.
-     * @param fieldView field view instance.
+     *
      * @param gameModel game model instance.
      */
-    public GameView(final FieldView fieldView, final GameModel gameModel) {
+    public GameView(final GameModel gameModel) {
 
-        _fieldView = fieldView;
+        _fieldView = new FieldView();
+        Field.getInstance().addObjectListener(_fieldView);
         _gameModel = gameModel;
     }
 
     /**
      * Renders game view objects.
+     *
      * @param g2d graphics to render on.
      */
     public void render(final Graphics2D g2d) {
@@ -71,6 +73,7 @@ public class GameView {
 
     /**
      * The getter for _fieldView class member.
+     *
      * @return value of _fieldView.
      */
     public FieldView getFieldView() {

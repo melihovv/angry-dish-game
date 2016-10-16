@@ -6,7 +6,6 @@ import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.Pig;
 import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
-import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.main.PetriDishGame;
 import melihovv.PetriDish.main.PetriDishGameOver;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
@@ -14,7 +13,6 @@ import melihovv.PetriDish.views.FieldObjectViews.GreenBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.PigView;
 import melihovv.PetriDish.views.FieldObjectViews.RedBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.WoodenObstacleView;
-import melihovv.PetriDish.views.FieldView;
 
 /**
  * The factory to create instances of basic game objects.
@@ -50,18 +48,6 @@ public class GeneralFactory {
         return new PetriDishGameOver(gameEngine);
     }
 
-    /**
-     * Creates an instance of FieldView class and adds it to the field's
-     * listeners.
-     *
-     * @return FieldView class instance.
-     */
-    public FieldView createFieldView() {
-
-        FieldView fieldView = new FieldView();
-        Field.getInstance().addObjectListener(fieldView);
-        return fieldView;
-    }
 
     /**
      * Creates an instance of FieldObjectView subclass.

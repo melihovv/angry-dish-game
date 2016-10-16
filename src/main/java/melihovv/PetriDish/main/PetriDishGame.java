@@ -92,7 +92,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
         _gameEngine = gameEngine;
         _gameModel = new GameModel(generalFactory, this);
         _gameModel.addModelListener(this);
-        _gameView = new GameView(generalFactory.createFieldView(), _gameModel);
+        _gameView = new GameView(_gameModel);
 
         /* Setting up the timers */
         _repeatObstacleSoundTimer = new Timer(
