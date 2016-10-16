@@ -82,6 +82,16 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     private AIController _aiController;
 
+    /**
+     * The flag to control whether the game is over or not.
+     */
+    private boolean _isGameOver = false;
+
+    /**
+     * The GameEngine object - parent.
+     */
+    private GameEngine _gameEngine;
+
     // #TODO: Uncomment the line below when game is ready
     //{distribute=true;}
 
@@ -95,6 +105,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
     public PetriDishGame(final GameEngine gameEngine,
                          final GeneralFactory generalFactory) {
         super(gameEngine);
+        _gameEngine = gameEngine;
         _gameModel = new GameModel(generalFactory);
         _gameModel.addModelListener(this);
         _playerController = new PlayerController();
@@ -159,7 +170,16 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     @Override
     public void update(final long elapsedTime) {
-        _gameModel.update(elapsedTime);
+
+        if (!_isGameOver) {
+
+            _gameModel.update(elapsedTime);
+
+        } else {
+
+            _gameEngine.nextGameID = 1;
+            finish();
+        }
     }
 
     /**
@@ -250,6 +270,11 @@ public class PetriDishGame extends GameObject implements ModelListener {
             _canPlayFightSound = false;
             _repeatFightSoundTimer.start();
         }
+    }
+
+    @Override
+    public void playerDied(final EventObject event) {
+        _isGameOver = true;
     }
 
     /**

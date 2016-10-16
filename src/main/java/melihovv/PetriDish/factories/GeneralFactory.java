@@ -10,6 +10,7 @@ import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.main.PetriDishGame;
+import melihovv.PetriDish.main.PetriDishGameOver;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 import melihovv.PetriDish.views.FieldObjectViews.GreenBirdView;
 import melihovv.PetriDish.views.FieldObjectViews.PigView;
@@ -37,6 +38,18 @@ public class GeneralFactory {
         PetriDishGame application = new PetriDishGame(gameEngine, this);
         _petriDishGame = application;
         return _petriDishGame;
+    }
+
+    /**
+     * Creates an instance of PetriDishGameOver class.
+     *
+     * @param gameEngine GameEngine object - parent of PetriDishGameOver.
+     * @return PetriDishGameOver class instance.
+     */
+    public PetriDishGameOver createPetriDishGameOver(
+            final GameEngine gameEngine) {
+
+        return new PetriDishGameOver(gameEngine);
     }
 
     /**

@@ -298,6 +298,17 @@ public class GameModel implements BirdListener {
     }
 
     /**
+     * Fires the event of player's death to all model listeners.
+     *
+     * @param event event object.
+     */
+    private void firePlayerDied(final EventObject event) {
+        for (ModelListener modelListener : _modelListeners) {
+            modelListener.playerDied(event);
+        }
+    }
+
+    /**
      * The reaction on bird hit wooden obstacle event.
      *
      * @param event event object.
@@ -327,5 +338,10 @@ public class GameModel implements BirdListener {
     @Override
     public void foughtComputerBird(final EventObject event) {
         firePlayerFoughtComputerBird(event);
+    }
+
+    @Override
+    public void died(final EventObject event) {
+        firePlayerDied(event);
     }
 }

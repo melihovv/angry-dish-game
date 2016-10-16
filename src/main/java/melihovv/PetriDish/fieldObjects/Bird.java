@@ -172,6 +172,16 @@ public abstract class Bird extends ActiveFieldObject {
     }
 
     /**
+     * Fires the event of player's death to all bird listeners.
+     */
+    protected void fireDied() {
+        EventObject event = new EventObject(this);
+        for (BirdListener birdListener : _birdListeners) {
+            birdListener.died(event);
+        }
+    }
+
+    /**
      * Increases bird size if it ate enough birds.
      */
     private void resize() {

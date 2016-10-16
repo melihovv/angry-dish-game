@@ -57,8 +57,7 @@ public class RedBird extends Bird {
 
         } else if (playerEatenObjectsCount < enemyEatenObjectsCount) {
 
-            //#TODO: send a signal to show game over screen
-            boolean deleteThisLater = true;
+            fireDied();
         }
     }
 

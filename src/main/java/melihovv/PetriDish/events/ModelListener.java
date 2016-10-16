@@ -28,4 +28,11 @@ public interface ModelListener extends EventListener {
      * @param event event object.
      */
     void playerFoughtComputerBird(final EventObject event);
+
+    /**
+     * The method to fire the event of player's death.
+     *
+     * @param event event object.
+     */
+    void playerDied(final EventObject event);
 }

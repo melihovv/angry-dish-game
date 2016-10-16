@@ -54,9 +54,10 @@ public final class Main extends GameEngine {
             }
             case 1: {
 
-                return null;
+                return _generalFactory.createPetriDishGameOver(this);
             }
             default: {
+
                 return null;
             }
         }
