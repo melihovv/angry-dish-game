@@ -1,7 +1,7 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.Game;
-import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.GameEngine;
+import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.GeneralFactory;
@@ -12,7 +12,6 @@ import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
 
 import javax.swing.Timer;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -25,7 +24,7 @@ import java.util.Random;
  * The basic game class which starts the game, controls its view and model, sets
  * window size.
  */
-public class PetriDishGame extends Game implements ModelListener {
+public class PetriDishGame extends GameObject implements ModelListener {
     /**
      * The time to play sound again.
      */
@@ -91,8 +90,11 @@ public class PetriDishGame extends Game implements ModelListener {
      *
      * @param generalFactory general game factory to create basic game
      *                       components.
+     * @param gameEngine     GameEngine object - parent.
      */
-    public PetriDishGame(final GeneralFactory generalFactory) {
+    public PetriDishGame(final GameEngine gameEngine,
+                         final GeneralFactory generalFactory) {
+        super(gameEngine);
         _gameModel = new GameModel(generalFactory);
         _gameModel.addModelListener(this);
         _playerController = new PlayerController();
@@ -185,14 +187,6 @@ public class PetriDishGame extends Game implements ModelListener {
      */
     public void startGame() {
         _gameModel.startGame();
-
-        GameLoader gameLoader = new GameLoader();
-        gameLoader.setup(
-                this,
-                new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT),
-                false
-        );
-        gameLoader.start();
     }
 
     /**

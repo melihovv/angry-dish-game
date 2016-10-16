@@ -1,5 +1,6 @@
 package melihovv.PetriDish.factories;
 
+import com.golden.gamedev.GameEngine;
 import melihovv.PetriDish.controllers.AIController;
 import melihovv.PetriDish.controllers.PlayerController;
 import melihovv.PetriDish.fieldObjects.FieldObject;
@@ -28,11 +29,12 @@ public class GeneralFactory {
     /**
      * Creates an instance of PetriDishGame class and saves its.
      *
+     * @param gameEngine GameEngine object - parent of PetriDishGame.
      * @return PetriDishGame class instance.
      */
-    public PetriDishGame createPetriDishGame() {
+    public PetriDishGame createPetriDishGame(final GameEngine gameEngine) {
 
-        PetriDishGame application = new PetriDishGame(this);
+        PetriDishGame application = new PetriDishGame(gameEngine, this);
         _petriDishGame = application;
         return _petriDishGame;
     }
