@@ -59,11 +59,6 @@ public class GameModel implements BirdListener {
     private static final int PIGS_CREATINON_TIME = 10000;
 
     /**
-     * The factory to create field objects.
-     */
-    private FieldObjectsFactory _fieldObjectsFactory;
-
-    /**
      * The set of model listeners.
      */
     private ArrayList<ModelListener> _modelListeners = new ArrayList<>();
@@ -116,7 +111,6 @@ public class GameModel implements BirdListener {
      * @param gameInstance main game class instance.
      */
     public GameModel(final PetriDishGame gameInstance) {
-        _fieldObjectsFactory = new FieldObjectsFactory();
         _pigsCreationTimer = new Timer(PIGS_CREATINON_TIME);
         _gameInstance = gameInstance;
     }
@@ -136,7 +130,7 @@ public class GameModel implements BirdListener {
         if (_pigsCreationTimer.action(elapsedTime)) {
             System.out.println("God damn! A new pig is here!");
 
-            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(Pig.class);
+            Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
@@ -148,7 +142,7 @@ public class GameModel implements BirdListener {
     public void startGame() {
 
         /* Creating main player and its controller */
-        _player = (RedBird) _fieldObjectsFactory.createFieldObject(
+        _player = (RedBird) FieldObjectsFactory.createFieldObject(
                 RedBird.class
         );
 
@@ -168,7 +162,7 @@ public class GameModel implements BirdListener {
         for (int i = 0; i < COMPUTER_BIRDS_COUNT; ++i) {
 
             GreenBird greenBird =
-                    (GreenBird) _fieldObjectsFactory.createFieldObject(
+                    (GreenBird) FieldObjectsFactory.createFieldObject(
                             GreenBird.class
                     );
             greenBird.setController(_aiController);
@@ -180,7 +174,7 @@ public class GameModel implements BirdListener {
         /* Creating pigs */
         for (int i = 0; i < PIGS_COUNT; ++i) {
 
-            Pig pig = (Pig) _fieldObjectsFactory.createFieldObject(Pig.class);
+            Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
 
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
@@ -189,7 +183,7 @@ public class GameModel implements BirdListener {
         for (int i = 0; i < WOODEN_OBSTACLES_COUNT; ++i) {
 
             WoodenObstacle obstacle =
-                    (WoodenObstacle) _fieldObjectsFactory.createFieldObject(
+                    (WoodenObstacle) FieldObjectsFactory.createFieldObject(
                             WoodenObstacle.class
                     );
 
