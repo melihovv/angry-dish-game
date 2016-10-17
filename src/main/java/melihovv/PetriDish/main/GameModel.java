@@ -122,7 +122,6 @@ public class GameModel implements BirdListener {
      */
     public void update(final long elapsedTime) {
 
-
         Field.getInstance().update(elapsedTime);
 
         _playerToPigsCollisionManager.checkCollision();
@@ -134,7 +133,6 @@ public class GameModel implements BirdListener {
             System.out.println("God damn! A new pig is here!");
 
             Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
-
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
     }
@@ -349,11 +347,22 @@ public class GameModel implements BirdListener {
      */
     @Override
     public void foughtComputerBird(final EventObject event) {
+
+        /* Creating new enemy */
+        GreenBird enemyBird =
+                (GreenBird) FieldObjectsFactory.createFieldObject(
+                        GreenBird.class
+                );
+        enemyBird.setController(_aiController);
+        enemyBird.addBirdListener(this);
+        Field.getInstance().addFieldObjectToRandomPosition(enemyBird);
+
         firePlayerFoughtComputerBird(event);
     }
 
     @Override
     public void died(final EventObject event) {
+
         firePlayerDied(event);
     }
 
