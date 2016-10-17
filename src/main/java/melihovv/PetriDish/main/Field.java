@@ -86,6 +86,24 @@ public class Field {
     }
 
     /**
+     * Clears field when game is over.
+     */
+    public void clearField() {
+
+        /* Clear sprite groups */
+        _pigsGroup.clear();
+        _birdsGroup.clear();
+        _woodenObstacles.clear();
+        _mainPlayer.clear();
+
+        /* Reset pigs counter */
+        _pigsCounter = 0;
+
+        /* Delete field objects */
+        _fieldObjects.clear();
+    }
+
+    /**
      * The getter for FIELD_WIDTH class member.
      *
      * @return value of FIELD_WIDTH.

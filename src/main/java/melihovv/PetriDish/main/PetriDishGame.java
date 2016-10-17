@@ -155,6 +155,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
 
         } else {
 
+            finishGame();
             _gameEngine.nextGameID = 1;
             finish();
         }
@@ -185,6 +186,16 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     public void startGame() {
         _gameModel.startGame();
+    }
+
+    /**
+     * Finishes the game and reset its components when game is over.
+     */
+    public void finishGame() {
+
+        _gameModel.finishGame();
+        _gameModel.deleteModelListener(this);
+        Field.getInstance().deleteObjectListener(_gameView.getFieldView());
     }
 
     /**
@@ -239,6 +250,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     @Override
     public void playerDied(final EventObject event) {
+        bsSound.play("/sounds/game-over.wav");
         _isGameOver = true;
     }
 

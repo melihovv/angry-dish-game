@@ -121,6 +121,8 @@ public class GameModel implements BirdListener {
      * @param elapsedTime time passed after the last update.
      */
     public void update(final long elapsedTime) {
+
+
         Field.getInstance().update(elapsedTime);
 
         _playerToPigsCollisionManager.checkCollision();
@@ -128,6 +130,7 @@ public class GameModel implements BirdListener {
         _playerToComputerBirdsCollisionManager.checkCollision();
 
         if (_pigsCreationTimer.action(elapsedTime)) {
+
             System.out.println("God damn! A new pig is here!");
 
             Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
@@ -223,6 +226,28 @@ public class GameModel implements BirdListener {
     }
 
     /**
+     * Finishes the game and reset its components when game is over.
+     */
+    public void finishGame() {
+
+        /* Reset controllers */
+        _playerController = null;
+        _aiController = null;
+
+        /* Reset collision managers */
+        _playerToPigsCollisionManager = null;
+        _playerToWoodenObstaclesCollisionManager = null;
+        _playerToComputerBirdsCollisionManager = null;
+
+        /* Reset player */
+        _player.deleteBirdListener(this);
+        _player = null;
+
+        /* Reset field */
+        Field.getInstance().clearField();
+    }
+
+    /**
      * The getter for _player class member.
      *
      * @return value of _player.
@@ -245,7 +270,7 @@ public class GameModel implements BirdListener {
      *
      * @param modelListener listener to remove.
      */
-    public void deleteModelListener(final BirdListener modelListener) {
+    public void deleteModelListener(final ModelListener modelListener) {
         _modelListeners.remove(modelListener);
     }
 
