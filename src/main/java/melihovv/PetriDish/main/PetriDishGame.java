@@ -234,7 +234,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     @Override
     public void playerFoughtComputerBird(final EventObject event) {
-        
+
         if (event.getSource().equals(_gameModel.getPlayer())
                 && _canPlayFightSound) {
 
