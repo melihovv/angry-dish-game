@@ -188,7 +188,7 @@ public abstract class Bird extends ActiveFieldObject {
                     .getOvalSize();
 
             ((ActiveFieldObjectView) getFieldObjectView())
-                    .setOvalSize(++currentSize);
+                    .adjustSize(++currentSize);
 
             getFieldObjectView().createObjectView();
             refreshSpeed();

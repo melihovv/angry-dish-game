@@ -26,10 +26,37 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
     private static final int STROKE_WIDTH = 3;
 
     /**
+     * Default Saturation component in HSB color model.
+     * Used to paint oval around ActiveFieldObject.
+     */
+    private static final float OVAL_SATURATION = 0.9f;
+
+    /**
+     * Default Brightness component in HSB color model.
+     * Used to paint oval around ActiveFieldObject.
+     */
+    private static final float OVAL_BRIGHTNESS = 0.9f;
+
+    /**
+     * Maximum value for Hue component in HSB color model.
+     * Used to paint oval around ActiveFieldObject.
+     */
+    private static final float OVAL_HUE_MAX = 0.4f;
+
+    /**
+     * HUE component adjustment which changes the hueCoefficient value
+     * every time the object grows.
+     */
+    private static final float HUE_ADJUSTMENT = 0.05f;
+    /**
      * The default oval size. The oval is designed to show object growth.
      */
     private static final int DEFAULT_OVAL_SIZE = 7;
-
+    /**
+     * HUE component coefficient which changes the oval color when the object
+     * grows.
+     */
+    private float _hueCoefficient = 0.0f;
     /**
      * The oval size. The oval is designed to show object growth.
      */
@@ -37,6 +64,7 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
 
     /**
      * The basic constructor for class members initialization.
+     *
      * @param fieldObject object for the object view.
      */
     public ActiveFieldObjectView(final FieldObject fieldObject) {
@@ -61,7 +89,8 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
         Graphics2D g2d = image.createGraphics();
 
         /* Drawing an oval */
-        g2d.setColor(Color.ORANGE);
+        Color ovalColor = getHSBColor(_hueCoefficient);
+        g2d.setColor(ovalColor);
         g2d.setStroke(new BasicStroke(STROKE_WIDTH));
         g2d.drawOval(
                 1,
@@ -90,6 +119,7 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
 
     /**
      * Getter for _ovalSize class member.
+     *
      * @return value of _ovalSize.
      */
     public int getOvalSize() {
@@ -97,10 +127,37 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
     }
 
     /**
-     * Setter for _ovalSize class member.
+     * Adjusts object size.
+     *
      * @param ovalSize value of _ovalSize.
      */
-    public void setOvalSize(final int ovalSize) {
+    public void adjustSize(final int ovalSize) {
         _ovalSize = ovalSize;
+        _hueCoefficient += HUE_ADJUSTMENT;
+    }
+
+    /**
+     * Gets color depending on hueCoefficient.
+     * Uses HSB color model. Color range is limited by
+     * OVAL_HUE_MAX class constant and 0. Saturation and Brightness
+     * components are class constants.
+     *
+     * @param hueCoefficient HUE component coefficient to control color.
+     * @return new color.
+     */
+    public Color getHSBColor(final float hueCoefficient) {
+
+        /* Getiing HSB components */
+        float hue = OVAL_HUE_MAX - hueCoefficient;
+        float saturation = OVAL_SATURATION;
+        float brightness = OVAL_BRIGHTNESS;
+
+        /* Keeping red color as minimum */
+        if (hue < 0) {
+
+            hue = 0;
+        }
+
+        return Color.getHSBColor(hue, saturation, brightness);
     }
 }
