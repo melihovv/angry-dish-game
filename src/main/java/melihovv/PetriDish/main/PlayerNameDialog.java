@@ -14,14 +14,9 @@ public class PlayerNameDialog {
     private static final String DEFAULT_PLAYER_NAME = "Red Angry";
 
     /**
-     * The message to show within dialog.
+     * The maximum length of player name.
      */
-    private static final String DIALOG_MESSAGE = "Введите имя пользователя:";
-
-    /**
-     * The title of dialog.
-     */
-    private static final String DIALOG_TITLE = "Выбор имени пользователя";
+    private static final int MAXIMUM_NAME_LENGTH = 10;
 
     /**
      * The name of player.
@@ -44,21 +39,53 @@ public class PlayerNameDialog {
         /* Getting user name */
         JFrame frame = new JFrame();
         JOptionPane dialog = new JOptionPane();
-        _playerName = (String) dialog.showInputDialog(
-                frame,
-                DIALOG_MESSAGE,
-                DIALOG_TITLE,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                null,
-                DEFAULT_PLAYER_NAME
-        );
 
-        /* If user left input field empty */
-        if (_playerName.isEmpty()) {
+        /* Getting player name until user sets it correctly */
+        int playerNameLength = 0;
+        boolean validationSuccessful = true;
+        do {
 
-            _playerName = DEFAULT_PLAYER_NAME;
-        }
+            validationSuccessful = true;
+            _playerName = (String) dialog.showInputDialog(
+                    frame,
+                    "Введите имя пользователя:",
+                    "Выбор имени пользователя",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    null,
+                    DEFAULT_PLAYER_NAME
+            );
+
+            /* Validating player name */
+            if(_playerName != null) {
+
+                playerNameLength = _playerName.length();
+                if(playerNameLength > MAXIMUM_NAME_LENGTH) {
+
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Длина имени должна быть" + " меньше " +
+                                    MAXIMUM_NAME_LENGTH + " символов.",
+                            "Внимание!",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                    validationSuccessful = false;
+
+                } else if (playerNameLength == 0) {
+
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Вы не задали имя игрока.",
+                            "Внимание!",
+                            JOptionPane.WARNING_MESSAGE);
+                    validationSuccessful = false;
+                }
+
+            } else {
+
+                validationSuccessful = false;
+            }
+        } while(!validationSuccessful);
     }
 
 
