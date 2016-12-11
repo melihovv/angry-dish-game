@@ -11,41 +11,33 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * This game class represents game over screen and allows user to restart tne
- * game.
- */
-public class PetriDishGameOver extends GameObject {
+
+public class PetriDishGameStart extends GameObject {
     /**
      * The path to background image.
      */
     private static final String BACKGROUND_PATH =
-            "src/main/resources/game_over_background.jpg";
+            "src/main/resources/start_game_background.jpg";
 
     /**
-     * The left x-axis coordinate of reset button.
+     * The left x-axis coordinate of start button.
      */
-    private static final int RESET_BUTTON_BEGIN_X = 1198;
+    private static final int START_BUTTON_BEGIN_X = 572;
 
     /**
-     * The right x-axis coordinate of reset button.
+     * The right x-axis coordinate of start button.
      */
-    private static final int RESET_BUTTON_END_X = 1275;
+    private static final int START_BUTTON_END_X = 702;
 
     /**
-     * The top y-axis coordinate of reset button.
+     * The top y-axis coordinate of start button.
      */
-    private static final int RESET_BUTTON_BEGIN_Y = 635;
+    private static final int START_BUTTON_BEGIN_Y = 284;
 
     /**
-     * The bottom y-axis coordinate of reset button.
+     * The bottom y-axis coordinate of start button.
      */
-    private static final int RESET_BUTTON_END_Y = 710;
-
-    /**
-     * The game over background.
-     */
-    private Background _background;
+    private static final int START_BUTTON_END_Y = 342;
 
     /**
      * The GameEngine object - parent.
@@ -53,13 +45,18 @@ public class PetriDishGameOver extends GameObject {
     private GameEngine _gameEngine;
 
     /**
+     * The game over background.
+     */
+    private Background _background;
+
+    /**
      * The basic constructor for class members initialization.
      *
      * @param gameEngine GameEngine object - parent.
      */
-    public PetriDishGameOver(final GameEngine gameEngine) {
-
+    public PetriDishGameStart(final GameEngine gameEngine) {
         super(gameEngine);
+
         _gameEngine = gameEngine;
 
         /* Initializing background */
@@ -97,14 +94,13 @@ public class PetriDishGameOver extends GameObject {
         int mouseX = bsInput.getMouseX();
         int mouseY = bsInput.getMouseY();
 
-
         if (mousePressed == MouseEvent.BUTTON1
-                && mouseX >= RESET_BUTTON_BEGIN_X
-                && mouseX <= RESET_BUTTON_END_X
-                && mouseY >= RESET_BUTTON_BEGIN_Y
-                && mouseY <= RESET_BUTTON_END_Y) {
+                && mouseX >= START_BUTTON_BEGIN_X
+                && mouseX <= START_BUTTON_END_X
+                && mouseY >= START_BUTTON_BEGIN_Y
+                && mouseY <= START_BUTTON_END_Y) {
 
-            _gameEngine.nextGameID = 0;
+            _gameEngine.nextGameID = 1;
             finish();
         }
     }
@@ -116,7 +112,6 @@ public class PetriDishGameOver extends GameObject {
      */
     @Override
     public void render(final Graphics2D g2d) {
-
         _background.render(g2d);
     }
 }
