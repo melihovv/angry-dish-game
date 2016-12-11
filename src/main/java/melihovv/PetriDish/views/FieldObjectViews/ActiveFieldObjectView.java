@@ -63,6 +63,11 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
     private int _ovalSize = DEFAULT_OVAL_SIZE;
 
     /**
+     * The maximum size of oval.
+     */
+    private static final int MAXIMUM_OVAL_SIZE = 21;
+
+    /**
      * The basic constructor for class members initialization.
      *
      * @param fieldObject object for the object view.
@@ -134,10 +139,19 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
      * Adjusts object size.
      *
      * @param ovalSize value of _ovalSize.
+     * @return if size was adjusted.
      */
-    public void adjustSize(final int ovalSize) {
-        _ovalSize = ovalSize;
-        _hueCoefficient += HUE_ADJUSTMENT;
+    public boolean adjustSize(final int ovalSize) {
+
+        if(ovalSize < MAXIMUM_OVAL_SIZE) {
+            _ovalSize = ovalSize;
+            _hueCoefficient += HUE_ADJUSTMENT;
+            return true;
+
+        } else {
+
+            return false;
+        }
     }
 
     /**

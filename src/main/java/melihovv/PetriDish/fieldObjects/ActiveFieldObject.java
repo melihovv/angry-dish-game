@@ -129,7 +129,6 @@ public abstract class ActiveFieldObject extends FieldObject {
      */
     public void refreshSpeed() {
         _speed = SPEED_PER_SIZE / (double) getSize();
-        System.out.println(_speed);
     }
 
     /**
