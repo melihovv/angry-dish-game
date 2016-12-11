@@ -73,10 +73,12 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
     }
 
     /**
-     * Creates field object view for active field objects.
+     * Creates field object view for active field objects with size oval.
+     *
+     * @return object view.
      */
     @Override
-    public void createObjectView() {
+    public Graphics2D createObjectView() {
         URI imageUri = null;
         int fieldObjectSize = getFieldObject().getSize();
 
@@ -115,6 +117,8 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
         }
 
         getFieldObject().setSize(fieldObjectSize + _ovalSize);
+
+        return g2d;
     }
 
     /**

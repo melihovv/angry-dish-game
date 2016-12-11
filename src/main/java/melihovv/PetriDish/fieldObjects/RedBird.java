@@ -10,11 +10,18 @@ public class RedBird extends Bird {
      * The size of the bird.
      */
     private static final int DEFAULT_SIZE = 64;
-
+    /**
+     * The default player name.
+     */
+    private static final String DEFAULT_PLAYER_NAME = "Red Angry";
     /**
      * The amount of eaten pigs.
      */
     private int _totalAmountOfEatenPigs;
+    /**
+     * The name of player.
+     */
+    private String _playerName = DEFAULT_PLAYER_NAME;
 
     /**
      * The basic constructor for class members initialization.
@@ -65,5 +72,23 @@ public class RedBird extends Bird {
      */
     public int getTotalAmountOfEatenPigs() {
         return _totalAmountOfEatenPigs;
+    }
+
+    /**
+     * The getter for _playerName class member.
+     *
+     * @return value of _playerName.
+     */
+    public String getPlayerName() {
+        return _playerName;
+    }
+
+    /**
+     * The setter for _playerName class member.
+     *
+     * @param playerName value to set.
+     */
+    public void setPlayerName(final String playerName) {
+        _playerName = playerName;
     }
 }
