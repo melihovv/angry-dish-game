@@ -19,14 +19,14 @@ public class RedBirdView extends ActiveFieldObjectView {
     private static final int START_OVAL_SIZE = 9;
 
     /**
-     * X-axis coordinate of player name.
+     * X-axis coordinate offset of player name.
      */
-    private static final int PLAYER_NAME_START_X = 30;
+    private static final int X_OFFSET = 23;
 
     /**
      * Y-axis coordinate offset of player name.
      */
-    private static final int Y_OFFSET = 9;
+    private static final int Y_OFFSET = 40;
 
     /**
      * The path to the bird image.
@@ -66,8 +66,8 @@ public class RedBirdView extends ActiveFieldObjectView {
         if (ovalSize > START_OVAL_SIZE) {
             objectView.drawString(
                     playerName,
-                    PLAYER_NAME_START_X,
-                    playerSize - Y_OFFSET
+                    (playerSize / 2) - X_OFFSET,
+                    (playerSize / 2) + Y_OFFSET
             );
         }
 
