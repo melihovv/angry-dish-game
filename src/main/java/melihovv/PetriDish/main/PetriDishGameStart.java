@@ -13,8 +13,10 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-
-public class PetriDishGameStart extends GameObject {
+/**
+ * This game class represents game start screen and allows user to start tne
+ * game .
+ */public class PetriDishGameStart extends GameObject {
     /**
      * The path to background image.
      */
@@ -151,6 +153,25 @@ public class PetriDishGameStart extends GameObject {
     private void showInfoMessage() {
 
         /* Showing info message */
+        String mainTasks = "Задания\n\n" +
+                "- Реализовать ограничения по размеру поля. " +
+                "  Размер поля – произвольный\n" +
+                "- Реализовать препятствия и их случайную расстановку " +
+                "  по полю\n" +
+                "- Реализовать объект агара и его случайное появление " +
+                "  на поле.\n " +
+                "  У агара должен быть лимит по количеству объектов на " +
+                "  поле.\n   Агар должен появляться спустя определенный " +
+                "  промежуток\n   и появляться на части поля, но не под " +
+                "игроком" +
+                "." +
+                "  Реализовать поглощение агара игроком\n" +
+                "- Реализовать изменения размера игрока и врагов\n" +
+                "- Реализовать счетчик агара и его отображение\n" +
+                "- Реализовать появление новых врагов по мере исчезания старых\n" +
+                "- Реализовать экран поражения в игре и возможность начать " +
+                "новую игру\n\n";
+
         String text = "Модификация №1\n" +
                 "- Сделать, чтобы цвет клетки зависел от ее массы\n" +
                 "  Например, чем больше клетка, тем она краснее.\n\n" +
@@ -166,7 +187,7 @@ public class PetriDishGameStart extends GameObject {
         JFrame frame = new JFrame();
         JOptionPane.showMessageDialog(
                 frame,
-                text,
+                mainTasks + text,
                 "Модификации",
                 JOptionPane.INFORMATION_MESSAGE
         );
