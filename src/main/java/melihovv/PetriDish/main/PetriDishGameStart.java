@@ -6,6 +6,8 @@ import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ImageBackground;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -73,6 +75,27 @@ public class PetriDishGameStart extends GameObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /* Showing info message */
+        String text = "Модификация №1\n" +
+                "- Сделать, чтобы цвет клетки зависел от ее массы\n" +
+                "  Например, чем больше клетка, тем она краснее.\n\n" +
+                "Модификация №2\n" +
+                "- Показывать список возможностей игры и " +
+                "выбранные модификации в начале запуска приложения.\n- " +
+                "Сделать предельный размер клетки, больше которого нельзя " +
+                "было бы физически набрать.\n" +
+                "- Дать возможность игроку вводить никнейм перед началом " +
+                "игры.\n" +
+                "  Никнейм должен отображаться поверх клетки игрока";
+
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(
+                frame,
+                text,
+                "Модификации",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 
     /**
