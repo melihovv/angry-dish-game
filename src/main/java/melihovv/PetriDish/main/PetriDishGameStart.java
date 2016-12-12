@@ -42,6 +42,26 @@ public class PetriDishGameStart extends GameObject {
     private static final int START_BUTTON_END_Y = 342;
 
     /**
+     * The left x-axis coordinate of info button.
+     */
+    private static final int INFO_BUTTON_BEGIN_X = 1016;
+
+    /**
+     * The right x-axis coordinate of info button.
+     */
+    private static final int INFO_BUTTON_END_X = 1064;
+
+    /**
+     * The top y-axis coordinate of info button.
+     */
+    private static final int INFO_BUTTON_BEGIN_Y = 610;
+
+    /**
+     * The bottom y-axis coordinate of info button.
+     */
+    private static final int INFO_BUTTON_END_Y = 654;
+
+    /**
      * The GameEngine object - parent.
      */
     private GameEngine _gameEngine;
@@ -75,27 +95,6 @@ public class PetriDishGameStart extends GameObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /* Showing info message */
-        String text = "Модификация №1\n" +
-                "- Сделать, чтобы цвет клетки зависел от ее массы\n" +
-                "  Например, чем больше клетка, тем она краснее.\n\n" +
-                "Модификация №2\n" +
-                "- Показывать список возможностей игры и " +
-                "выбранные модификации в начале запуска приложения.\n- " +
-                "Сделать предельный размер клетки, больше которого нельзя " +
-                "было бы физически набрать.\n" +
-                "- Дать возможность игроку вводить никнейм перед началом " +
-                "игры.\n" +
-                "  Никнейм должен отображаться поверх клетки игрока";
-
-        JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(
-                frame,
-                text,
-                "Модификации",
-                JOptionPane.INFORMATION_MESSAGE
-        );
     }
 
     /**
@@ -125,6 +124,14 @@ public class PetriDishGameStart extends GameObject {
 
             _gameEngine.nextGameID = 1;
             finish();
+
+        } else if (mousePressed == MouseEvent.BUTTON1
+                && mouseX >= INFO_BUTTON_BEGIN_X
+                && mouseX <= INFO_BUTTON_END_X
+                && mouseY >= INFO_BUTTON_BEGIN_Y
+                && mouseY <= INFO_BUTTON_END_Y) {
+
+            showInfoMessage();
         }
     }
 
@@ -136,5 +143,32 @@ public class PetriDishGameStart extends GameObject {
     @Override
     public void render(final Graphics2D g2d) {
         _background.render(g2d);
+    }
+
+    /**
+     * Shows information about realized modifications.
+     */
+    private void showInfoMessage() {
+
+        /* Showing info message */
+        String text = "Модификация №1\n" +
+                "- Сделать, чтобы цвет клетки зависел от ее массы\n" +
+                "  Например, чем больше клетка, тем она краснее.\n\n" +
+                "Модификация №2\n" +
+                "- Показывать список возможностей игры и " +
+                "выбранные модификации в начале запуска приложения.\n- " +
+                "Сделать предельный размер клетки, больше которого нельзя " +
+                "было бы физически набрать.\n" +
+                "- Дать возможность игроку вводить никнейм перед началом " +
+                "игры.\n" +
+                "  Никнейм должен отображаться поверх клетки игрока";
+
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(
+                frame,
+                text,
+                "Модификации",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }
