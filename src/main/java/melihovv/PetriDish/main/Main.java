@@ -34,6 +34,12 @@ public final class Main extends GameEngine {
         gameLoader.start();
     }
 
+    /**
+     * Chooses what game screen to show depending on current gameID.
+     *
+     * @param gameID current game id.
+     * @return game screen.
+     */
     @Override
     public GameObject getGame(final int gameID) {
 
@@ -41,11 +47,15 @@ public final class Main extends GameEngine {
 
             case 0: {
 
+                return new PetriDishGameStart(this);
+            }
+            case 1: {
+
                 PetriDishGame game = new PetriDishGame(this);
                 game.startGame();
                 return game;
             }
-            case 1: {
+            case 2: {
 
                 return new PetriDishGameOver(this);
             }

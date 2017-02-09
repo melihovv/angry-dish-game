@@ -15,6 +15,7 @@ import java.net.URI;
 public abstract class InactiveFieldObjectView extends FieldObjectView {
     /**
      * The basic constructor for class members initialization.
+     *
      * @param fieldObject object for the object view.
      */
     public InactiveFieldObjectView(final FieldObject fieldObject) {
@@ -24,9 +25,11 @@ public abstract class InactiveFieldObjectView extends FieldObjectView {
 
     /**
      * Creates field object view for inactive field objects.
+     *
+     * @return object view.
      */
     @Override
-    public void createObjectView() {
+    public Graphics2D createObjectView() {
         URI imageUri = null;
         int fieldObjectSize = getFieldObject().getSize();
 
@@ -53,5 +56,7 @@ public abstract class InactiveFieldObjectView extends FieldObjectView {
 
         /* GTGE super class method */
         setImage(image);
+
+        return g2d;
     }
 }

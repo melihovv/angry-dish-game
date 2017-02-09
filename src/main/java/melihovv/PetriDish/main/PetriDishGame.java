@@ -156,7 +156,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
         } else {
 
             finishGame();
-            _gameEngine.nextGameID = 1;
+            _gameEngine.nextGameID = 2;
             finish();
         }
     }

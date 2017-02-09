@@ -83,7 +83,6 @@ public class PetriDishGameOver extends GameObject {
      */
     @Override
     public void initResources() {
-
     }
 
     /**

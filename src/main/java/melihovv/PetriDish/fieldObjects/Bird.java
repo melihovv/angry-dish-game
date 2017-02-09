@@ -20,6 +20,11 @@ public abstract class Bird extends ActiveFieldObject {
     private static final int POS_ADJUSTMENT = 400;
 
     /**
+     * The maximum size of oval.
+     */
+    private static final int MAXIMUM_OVAL_SIZE = 20;
+
+    /**
      * The set of bird listeners.
      */
     private List<BirdListener> _birdListeners = new ArrayList<>();
@@ -187,14 +192,17 @@ public abstract class Bird extends ActiveFieldObject {
             int currentSize = ((ActiveFieldObjectView) getFieldObjectView())
                     .getOvalSize();
 
-            ((ActiveFieldObjectView) getFieldObjectView())
+            boolean wasAdjusted = ((ActiveFieldObjectView) getFieldObjectView())
                     .adjustSize(++currentSize);
 
-            getFieldObjectView().createObjectView();
-            refreshSpeed();
+            if(wasAdjusted) {
 
-            ++_birdsToGrowth;
-            _eatenObjectsAfterGrowth = 0;
+                getFieldObjectView().createObjectView();
+                refreshSpeed();
+
+                ++_birdsToGrowth;
+                _eatenObjectsAfterGrowth = 0;
+            }
         }
     }
 

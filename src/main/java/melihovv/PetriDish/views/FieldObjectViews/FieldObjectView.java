@@ -3,6 +3,7 @@ package melihovv.PetriDish.views.FieldObjectViews;
 import com.golden.gamedev.object.Sprite;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 /**
@@ -25,8 +26,10 @@ public abstract class FieldObjectView extends Sprite {
 
     /**
      * Creates field object view.
+     *
+     * @return object view.
      */
-    public abstract void createObjectView();
+    public abstract Graphics2D createObjectView();
 
     /**
      * The getter for the field object view position.
