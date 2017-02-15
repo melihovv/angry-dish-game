@@ -31,7 +31,7 @@ public class RedBirdView extends ActiveFieldObjectView {
     /**
      * The path to the bird image.
      */
-    private static final String IMAGE_PATH = "/heroes/birds/main_hero.png";
+    private static final String IMAGE_PATH = "heroes/birds/main_hero.png";
 
     /**
      * The basic constructor for class members initialization.

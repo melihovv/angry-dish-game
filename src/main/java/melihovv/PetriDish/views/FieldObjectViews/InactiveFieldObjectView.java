@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URI;
 
 /**
@@ -41,9 +42,11 @@ public abstract class InactiveFieldObjectView extends FieldObjectView {
         Graphics2D g2d = image.createGraphics();
 
         try {
-            imageUri = getClass().getResource(getImagePath()).toURI();
+            final InputStream stream = getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(getImagePath());
 
-            BufferedImage hero = ImageIO.read(new File(imageUri));
+            BufferedImage hero = ImageIO.read(stream);
             g2d.drawImage(
                     hero,
                     (fieldObjectSize - hero.getWidth()) / 2,

@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * This game class represents game start screen and allows user to start tne
@@ -20,8 +20,7 @@ import java.io.IOException;
     /**
      * The path to background image.
      */
-    private static final String BACKGROUND_PATH =
-            "src/main/resources/start_game_background.jpg";
+    private static final String BACKGROUND_PATH = "start_game_background.jpg";
 
     /**
      * The left x-axis coordinate of start button.
@@ -85,9 +84,10 @@ import java.io.IOException;
 
         /* Initializing background */
         try {
-            _background = new ImageBackground(
-                    ImageIO.read(new File(BACKGROUND_PATH))
-            );
+            final InputStream stream = getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(BACKGROUND_PATH);
+            _background = new ImageBackground(ImageIO.read(stream));
             _background.setClip(
                     0,
                     0,

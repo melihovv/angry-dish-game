@@ -9,8 +9,8 @@ import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +21,7 @@ public class FieldView implements FieldObjectListener {
     /**
      * The path to background image.
      */
-    private static final String BACKGROUND_PATH =
-            "src/main/resources/background.jpg";
+    private static final String BACKGROUND_PATH = "background.jpg";
 
     /**
      * The game field background.
@@ -39,9 +38,10 @@ public class FieldView implements FieldObjectListener {
      */
     public FieldView() {
         try {
-            _background = new ImageBackground(
-                    ImageIO.read(new File(BACKGROUND_PATH))
-            );
+            final InputStream stream = getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(BACKGROUND_PATH);
+            _background = new ImageBackground(ImageIO.read(stream));
             _background.setClip(
                     0,
                     0,

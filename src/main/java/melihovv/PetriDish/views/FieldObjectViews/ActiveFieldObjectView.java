@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URI;
 
 /**
@@ -108,9 +109,11 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
         setImage(image);
 
         try {
-            imageUri = getClass().getResource(getImagePath()).toURI();
+            final InputStream stream = getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(getImagePath());
 
-            BufferedImage hero = ImageIO.read(new File(imageUri));
+            BufferedImage hero = ImageIO.read(stream);
             g2d.drawImage(
                     hero,
                     (fieldObjectSize + _ovalSize - hero.getWidth()) / 2,

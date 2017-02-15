@@ -10,7 +10,7 @@ public class GreenBirdView extends ActiveFieldObjectView {
     /**
      * The path to the bird image.
      */
-    private static final String IMAGE_PATH = "/heroes/birds/computer_hero.png";
+    private static final String IMAGE_PATH = "heroes/birds/computer_hero.png";
 
     /**
      * The basic constructor for class members initialization.

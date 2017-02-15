@@ -10,7 +10,7 @@ public class WoodenObstacleView extends InactiveFieldObjectView {
     /**
      * The path to the wooden obstacle image.
      */
-    private static final String IMAGE_PATH = "/obstacles/wooden_brick.png";
+    private static final String IMAGE_PATH = "obstacles/wooden_brick.png";
 
     /**
      * The basic constructor for class members initialization.

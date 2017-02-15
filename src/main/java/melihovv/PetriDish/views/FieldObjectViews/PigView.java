@@ -10,7 +10,7 @@ public class PigView extends InactiveFieldObjectView {
     /**
      * The path to the pig image.
      */
-    private static final String IMAGE_PATH = "/heroes/pigs/pig32px.png";
+    private static final String IMAGE_PATH = "heroes/pigs/pig32px.png";
 
     /**
      * The basic constructor for class members initialization.
