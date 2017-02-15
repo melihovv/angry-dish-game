@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
+group = 'melihovv'
+version = '1.0-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+repositories {
+    maven { url 'http://repo.maven.apache.org/maven2' }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'melihovv.PetriDish.main.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+checkstyle {
+    toolVersion = '7.5.1'
+    configFile = new File(rootDir, 'checkstyle.xml')
+    ignoreFailures = true
+}
+
+findbugs {
+    ignoreFailures = true
+}
+
+task checkFindBugsReport << {
+    def xmlReport = findbugsMain.reports.xml
+    def slurped = new XmlSlurper().parse(xmlReport.destination)
+    def bugsFound = slurped.BugInstance.size()
+    if (bugsFound > 0) {
+        throw new GradleException("$bugsFound FindBugs rule violations were found. See the report at: $xmlReport.destination")
+    }
+}
+
+findbugsMain.finalizedBy checkFindBugsReport
+
+pmd {
+    ignoreFailures = true
+    consoleOutput = true
+}
