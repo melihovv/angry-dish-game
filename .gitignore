@@ -6,3 +6,10 @@
 *.iml
 /.gradle
 /build
+/main/.gradle
+/main/build
+/gtge/.gradle
+/gtge/build
+/gdx/.gradle
+/gdx/build
+!/gtge/libs/golden_0_2_3.jar
