@@ -5,6 +5,7 @@ sourceSets.main.java.srcDirs = ['src/']
 
 project.ext.mainClassName = 'melihovv.PetriDish.Main'
 project.ext.assetsDir = new File('./assets');
+sourceSets.main.resources.srcDirs = ['./assets']
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
