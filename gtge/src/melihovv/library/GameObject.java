@@ -26,7 +26,7 @@ public class GameObject extends com.golden.gamedev.GameObject {
         renderInContext(context);
     }
 
-    private void renderInContext(Graphics2D g) {
+    public void renderInContext(Graphics2D g) {
 
     }
 
