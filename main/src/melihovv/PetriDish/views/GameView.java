@@ -21,7 +21,7 @@ public class GameView {
      * The y coordinate of the string with the information about eaten pigs.
      */
 
-    private static final int EATEN_PIGS_INFO_STRING_Y = 710;
+    private static final int EATEN_PIGS_INFO_STRING_Y = 680;
 
     /**
      * The part of game view which controls the appearance of game field.
