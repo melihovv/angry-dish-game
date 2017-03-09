@@ -20,7 +20,7 @@ public class BasicCollisionGroup extends
     @Override
     public void collided(com.golden.gamedev.object.Sprite first,
                          com.golden.gamedev.object.Sprite second) {
-        this.collided(first, second);
+        this.collided((Sprite)first, (Sprite)second);
     }
 
     public void collided(Sprite first, Sprite second) {
