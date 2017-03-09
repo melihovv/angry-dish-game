@@ -26,7 +26,7 @@ public class RedBirdView extends ActiveFieldObjectView {
     /**
      * Y-axis coordinate offset of player name.
      */
-    private static final int Y_OFFSET = 40;
+    private static final int Y_OFFSET = 30;
 
     /**
      * The path to the bird image.
