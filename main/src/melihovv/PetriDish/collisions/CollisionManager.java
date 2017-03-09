@@ -1,11 +1,8 @@
-package melihovv.library;
+package melihovv.PetriDish.collisions;
 
-import melihovv.PetriDish.collisions.BirdToPigCollision;
-import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
-import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
+import melihovv.library.SpriteGroup;
 
-public class CollisionManager extends
-        com.golden.gamedev.object.CollisionManager {
+public class CollisionManager {
 
     private BirdToPigCollision _birdToPigCollision;
     private BirdToWoodenObstacleCollision _birdToWoodenObstacleCollision;
@@ -32,15 +29,7 @@ public class CollisionManager extends
         );
     }
 
-    @Override
-    public void setCollisionGroup(
-            com.golden.gamedev.object.SpriteGroup spriteGroup,
-            com.golden.gamedev.object.SpriteGroup spriteGroup1) {
 
-        super.setCollisionGroup(spriteGroup, spriteGroup1);
-    }
-
-    @Override
     public void checkCollision() {
         _birdToPigCollision.checkCollision();
         _birdToWoodenObstacleCollision.checkCollision();

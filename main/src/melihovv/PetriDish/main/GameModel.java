@@ -20,7 +20,7 @@ import java.util.Random;
 import melihovv.library.SpriteGroup;
 import melihovv.library.ImageBackground;
 import melihovv.library.Timer;
-import melihovv.library.CollisionManager;
+import melihovv.PetriDish.collisions.CollisionManager;
 
 
 /**
