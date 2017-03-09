@@ -8,8 +8,6 @@ import java.awt.image.ImageObserver;
 public class Graphics2D {
 
     private java.awt.Graphics2D _graphics2D;
-    private BasicStroke _stroke;
-    private Color _color;
 
     public Graphics2D(java.awt.Graphics2D g) {
         _graphics2D = g;
@@ -31,11 +29,10 @@ public class Graphics2D {
     }
 
     public void setStroke(BasicStroke stroke) {
-
-        this._stroke = stroke;
+        _graphics2D.setStroke(stroke);
     }
 
     public void setColor(Color color) {
-        this._color = color;
+        _graphics2D.setColor(color);
     }
 }
