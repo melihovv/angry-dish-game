@@ -1,12 +1,14 @@
 package melihovv.PetriDish.collisions;
 
-import com.golden.gamedev.object.Sprite;
-import com.golden.gamedev.object.SpriteGroup;
-import com.golden.gamedev.object.collision.BasicCollisionGroup;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.GreenBird;
 import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
+
+import melihovv.library.Sprite;
+import melihovv.library.SpriteGroup;
+import melihovv.library.BasicCollisionGroup;
+
 
 /**
  * The collision manager that controls collisions between a player

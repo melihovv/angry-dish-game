@@ -2,7 +2,6 @@ package melihovv.PetriDish.main;
 
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
-import com.golden.gamedev.object.SpriteGroup;
 import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
@@ -23,6 +22,8 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Random;
+
+import melihovv.library.SpriteGroup;
 
 /**
  * The base game model class which controls game logic.

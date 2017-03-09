@@ -1,6 +1,5 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.object.SpriteGroup;
 import melihovv.PetriDish.events.FieldObjectListener;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.fieldObjects.FieldObject;
@@ -12,6 +11,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import melihovv.library.SpriteGroup;
 
 /**
  * The class represents game field.
