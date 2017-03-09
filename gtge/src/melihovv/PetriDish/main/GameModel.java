@@ -1,9 +1,5 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.object.CollisionManager;
-import melihovv.PetriDish.collisions.BirdToPigCollision;
-import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
-import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
 import melihovv.PetriDish.events.BirdListener;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.factories.FieldObjectsFactory;
@@ -24,6 +20,8 @@ import java.util.Random;
 import melihovv.library.SpriteGroup;
 import melihovv.library.ImageBackground;
 import melihovv.library.Timer;
+import melihovv.library.CollisionManager;
+
 
 /**
  * The base game model class which controls game logic.
@@ -70,21 +68,9 @@ public class GameModel implements BirdListener {
     private RedBird _player;
 
     /**
-     * The collision manager to control collisions between the player and pigs.
+     * The general collision manager to control collisions between game objects.
      */
-    private CollisionManager _playerToPigsCollisionManager;
-
-    /**
-     * The collision manager to control collisions between the player and
-     * wooden obstacles.
-     */
-    private CollisionManager _playerToWoodenObstaclesCollisionManager;
-
-    /**
-     * The collision manager to control collisions between the player and
-     * computer birds.
-     */
-    private CollisionManager _playerToComputerBirdsCollisionManager;
+    private CollisionManager _collisionManager;
 
     /**
      * The timer to create new pigs when the time's up.
@@ -125,9 +111,7 @@ public class GameModel implements BirdListener {
 
         Field.getInstance().update(elapsedTime);
 
-        _playerToPigsCollisionManager.checkCollision();
-        _playerToWoodenObstaclesCollisionManager.checkCollision();
-        _playerToComputerBirdsCollisionManager.checkCollision();
+        _collisionManager.checkCollision();
 
         if (_pigsCreationTimer.action(elapsedTime)) {
 
@@ -210,23 +194,12 @@ public class GameModel implements BirdListener {
         SpriteGroup mainPlayerGroup =
                 Field.getInstance().getSpriteGroup(RedBird.class);
 
-        _playerToPigsCollisionManager =
-                new BirdToPigCollision(
-                        birdsGroup,
-                        pigsGroup
-                );
-
-        _playerToWoodenObstaclesCollisionManager =
-                new BirdToWoodenObstacleCollision(
-                        birdsGroup,
-                        woodenObstaclesGroup
-                );
-
-        _playerToComputerBirdsCollisionManager =
-                new PlayerToComputerBirdCollision(
-                        mainPlayerGroup,
-                        birdsGroup
-                );
+        _collisionManager = new CollisionManager(
+                birdsGroup,
+                pigsGroup,
+                mainPlayerGroup,
+                woodenObstaclesGroup
+        );
     }
 
     /**
@@ -239,9 +212,7 @@ public class GameModel implements BirdListener {
         _aiController = null;
 
         /* Reset collision managers */
-        _playerToPigsCollisionManager = null;
-        _playerToWoodenObstaclesCollisionManager = null;
-        _playerToComputerBirdsCollisionManager = null;
+        _collisionManager = null;
 
         /* Reset player */
         _player.deleteBirdListener(this);
