@@ -1,8 +1,6 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.CollisionManager;
-import com.golden.gamedev.object.Timer;
 import melihovv.PetriDish.collisions.BirdToPigCollision;
 import melihovv.PetriDish.collisions.BirdToWoodenObstacleCollision;
 import melihovv.PetriDish.collisions.PlayerToComputerBirdCollision;
@@ -24,6 +22,8 @@ import java.util.List;
 import java.util.Random;
 
 import melihovv.library.SpriteGroup;
+import melihovv.library.ImageBackground;
+import melihovv.library.Timer;
 
 /**
  * The base game model class which controls game logic.
@@ -434,7 +434,8 @@ public class GameModel implements BirdListener {
             int baseMouseY = _gameInstance.getMouseY();
 
             /* Getting background coordinates */
-            Background background = _gameInstance.getGameView().getFieldView()
+            ImageBackground background = _gameInstance.getGameView()
+                    .getFieldView()
                     .getBackground();
             int backgroundX = (int) background.getX();
             int backgroundY = (int) background.getY();
