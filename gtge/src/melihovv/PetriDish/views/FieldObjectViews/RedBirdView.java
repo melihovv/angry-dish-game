@@ -1,12 +1,12 @@
 package melihovv.PetriDish.views.FieldObjectViews;
 
-
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.fieldObjects.RedBird;
-
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
+
+import melihovv.library.Graphics2D;
+import melihovv.library.SystemFont;
 
 /**
  * The class represents the appearance of a red bird.
@@ -55,7 +55,9 @@ public class RedBirdView extends ActiveFieldObjectView {
 
         /* Setting graphics */
         objectView.setColor(Color.RED);
-        objectView.setFont(new Font("Lucida", Font.ITALIC, 10));
+
+        final int fontSize = 10;
+        SystemFont font = new SystemFont("Lucida", Font.ITALIC, 10, Color.RED);
 
         RedBird player = ((RedBird) getFieldObject());
         String playerName = player.getPlayerName();
@@ -64,7 +66,9 @@ public class RedBirdView extends ActiveFieldObjectView {
 
         /* Painting player name */
         if (ovalSize > START_OVAL_SIZE) {
-            objectView.drawString(
+
+            font.drawString(
+                    objectView,
                     playerName,
                     (playerSize / 2) - X_OFFSET,
                     (playerSize / 2) + Y_OFFSET

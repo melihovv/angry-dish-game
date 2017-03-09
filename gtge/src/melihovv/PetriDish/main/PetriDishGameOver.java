@@ -1,15 +1,14 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
-import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.background.ImageBackground;
-
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+
+import melihovv.library.GameEngine;
+import melihovv.library.GameObject;
+import melihovv.library.Graphics2D;
+import melihovv.library.ImageBackground;
 
 /**
  * This game class represents game over screen and allows user to restart tne
@@ -44,7 +43,7 @@ public class PetriDishGameOver extends GameObject {
     /**
      * The game over background.
      */
-    private Background _background;
+    private ImageBackground _background;
 
     /**
      * The GameEngine object - parent.
@@ -115,8 +114,7 @@ public class PetriDishGameOver extends GameObject {
      * @param g2d graphics to render on.
      */
     @Override
-    public void render(final Graphics2D g2d) {
-
+    public void renderInContext(final Graphics2D g2d) {
         _background.render(g2d);
     }
 }

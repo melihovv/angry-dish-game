@@ -1,10 +1,10 @@
 package melihovv.PetriDish.views.FieldObjectViews;
 
-import com.golden.gamedev.object.Sprite;
 import melihovv.PetriDish.fieldObjects.FieldObject;
-
-import java.awt.Graphics2D;
 import java.awt.Point;
+
+import melihovv.library.Graphics2D;
+import melihovv.library.Sprite;
 
 /**
  * The class represents the appearance of a basic field object.

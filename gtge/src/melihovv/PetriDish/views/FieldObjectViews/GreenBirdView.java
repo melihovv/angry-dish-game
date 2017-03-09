@@ -1,6 +1,5 @@
 package melihovv.PetriDish.views.FieldObjectViews;
 
-
 import melihovv.PetriDish.fieldObjects.FieldObject;
 
 /**

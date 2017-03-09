@@ -2,10 +2,11 @@ package melihovv.PetriDish.views;
 
 import melihovv.PetriDish.main.Field;
 import melihovv.PetriDish.main.GameModel;
-
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
+
+import melihovv.library.SystemFont;
+import melihovv.library.Graphics2D;
 
 /**
  * The main game view class which controls all its graphics.
@@ -61,10 +62,16 @@ public class GameView {
                 + Field.getInstance().getPigsCounter();
 
         final int fontSize = 25;
-        g2d.setFont(new Font("Impact", Font.BOLD, fontSize));
-        g2d.setColor(Color.green.darker());
+        SystemFont font = new SystemFont(
+                "Impact",
+                Font.BOLD,
+                fontSize,
+                Color
+                .green.darker()
+        );
 
-        g2d.drawString(
+        font.drawString(
+                g2d,
                 eatenPigsInfo,
                 EATEN_PIGS_INFO_STRING_X,
                 EATEN_PIGS_INFO_STRING_Y

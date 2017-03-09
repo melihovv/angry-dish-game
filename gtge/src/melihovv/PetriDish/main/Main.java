@@ -1,10 +1,10 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameLoader;
-import com.golden.gamedev.GameObject;
-
 import java.awt.Dimension;
+
+import melihovv.library.GameEngine;
+import melihovv.library.GameLoader;
+import melihovv.library.GameObject;
 
 /**
  * The basic application class which contains main function.

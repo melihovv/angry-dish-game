@@ -1,17 +1,18 @@
 package melihovv.PetriDish.main;
 
-import com.golden.gamedev.GameEngine;
-import com.golden.gamedev.GameObject;
 import melihovv.PetriDish.events.ModelListener;
 import melihovv.PetriDish.fieldObjects.Bird;
 import melihovv.PetriDish.views.FieldView;
 import melihovv.PetriDish.views.GameView;
-
 import javax.swing.Timer;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
+
+import melihovv.library.GameEngine;
+import melihovv.library.GameObject;
+import melihovv.library.Graphics2D;
+
 
 /**
  * The basic game class which starts the game, controls its view and model, sets
@@ -167,7 +168,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
      * @param g2d graphics to render on.
      */
     @Override
-    public void render(final Graphics2D g2d) {
+    public void renderInContext(final Graphics2D g2d) {
         FieldView fieldView = _gameView.getFieldView();
         Bird player = _gameModel.getPlayer();
         int playerX = player.getPosition().x;

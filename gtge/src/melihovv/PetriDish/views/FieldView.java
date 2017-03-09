@@ -1,18 +1,17 @@
 package melihovv.PetriDish.views;
 
-import com.golden.gamedev.object.Background;
-import com.golden.gamedev.object.background.ImageBackground;
 import melihovv.PetriDish.events.FieldObjectListener;
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import melihovv.PetriDish.main.PetriDishGame;
 import melihovv.PetriDish.views.FieldObjectViews.FieldObjectView;
-
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import melihovv.library.ImageBackground;
+import melihovv.library.Graphics2D;
 
 /**
  * The class represents the appearance of a game field.
@@ -26,7 +25,7 @@ public class FieldView implements FieldObjectListener {
     /**
      * The game field background.
      */
-    private Background _background;
+    private ImageBackground _background;
 
     /**
      * The set of field object views.
@@ -71,7 +70,7 @@ public class FieldView implements FieldObjectListener {
      *
      * @return value of _background.
      */
-    public Background getBackground() {
+    public ImageBackground getBackground() {
         return _background;
     }
 

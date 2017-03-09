@@ -1,14 +1,12 @@
 package melihovv.PetriDish.views.FieldObjectViews;
 
-
 import melihovv.PetriDish.fieldObjects.FieldObject;
-
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
+
+import melihovv.library.Graphics2D;
 
 /**
  * The class represents the appearance of an inactive field object.
@@ -39,7 +37,7 @@ public abstract class InactiveFieldObjectView extends FieldObjectView {
                 fieldObjectSize,
                 BufferedImage.TYPE_INT_ARGB
         );
-        Graphics2D g2d = image.createGraphics();
+        Graphics2D g2d = new Graphics2D(image.createGraphics());
 
         try {
             final InputStream stream = getClass()
