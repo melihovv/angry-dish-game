@@ -1,4 +1,4 @@
-def libProp = ':gtge'
+def libProp = ':gdx'
 
 task customizeLib() {
     if(project.hasProperty('lib')){
