@@ -12,14 +12,10 @@ import melihovv.PetriDish.fieldObjects.RedBird;
 import melihovv.PetriDish.fieldObjects.WoodenObstacle;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import melihovv.library.SpriteGroup;
 import melihovv.library.ImageBackground;
-import melihovv.library.Timer;
 import melihovv.PetriDish.collisions.CollisionManager;
 
 
@@ -98,7 +94,16 @@ public class GameModel implements BirdListener {
      * @param gameInstance main game class instance.
      */
     public GameModel(final PetriDishGame gameInstance) {
-        _pigsCreationTimer = new Timer(PIGS_CREATINON_TIME);
+        _pigsCreationTimer = new Timer();
+        _pigsCreationTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("God damn! A new pig is here!");
+
+                Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
+                Field.getInstance().addFieldObjectToRandomPosition(pig);
+            }
+        }, PIGS_CREATINON_TIME, PIGS_CREATINON_TIME);
         _gameInstance = gameInstance;
     }
 
@@ -112,14 +117,6 @@ public class GameModel implements BirdListener {
         Field.getInstance().update(elapsedTime);
 
         _collisionManager.checkCollision();
-
-        if (_pigsCreationTimer.action(elapsedTime)) {
-
-            System.out.println("God damn! A new pig is here!");
-
-            Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
-            Field.getInstance().addFieldObjectToRandomPosition(pig);
-        }
     }
 
     /**
