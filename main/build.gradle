@@ -3,7 +3,7 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = ['src/']
 
-project.ext.mainClassName = 'melihovv.PetriDish.Main'
+project.ext.mainClassName = 'melihovv.PetriDish.main.Main'
 project.ext.assetsDir = new File('./assets');
 sourceSets.main.resources.srcDirs = ['./assets']
 
