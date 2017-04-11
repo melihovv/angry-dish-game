@@ -39,4 +39,9 @@ public class SpriteGroup {
     public List<Sprite> toList() {
         return _list;
     }
+
+    public void clear() {
+        _list.clear();
+        _name = "";
+    }
 }

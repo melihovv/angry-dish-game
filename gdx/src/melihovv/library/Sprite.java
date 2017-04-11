@@ -137,4 +137,13 @@ public class Sprite {
             this.setVerticalSpeed(0);
         }
     }
+
+    public void setBackground(ImageBackground background) {
+        // TODO
+    }
+
+    public void setSpeed(double horizontalSpeed, double verticalSpeed) {
+        setHorizontalSpeed(horizontalSpeed);
+        setVerticalSpeed(verticalSpeed);
+    }
 }

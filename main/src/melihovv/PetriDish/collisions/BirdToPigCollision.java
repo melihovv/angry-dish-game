@@ -28,7 +28,6 @@ public class BirdToPigCollision extends BasicCollisionGroup {
             final SpriteGroup group2
     ) {
         setCollisionGroup(group1, group2);
-        pixelPerfectCollision = true;
     }
 
 
