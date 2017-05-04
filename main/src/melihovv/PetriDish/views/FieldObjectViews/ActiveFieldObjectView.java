@@ -7,8 +7,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URI;
-
-import melihovv.library.Graphics2D;
+import java.awt.Graphics2D;
 
 /**
  * The class represents the appearance of an active field object.
@@ -92,7 +91,7 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
                 fieldObjectSize + _ovalSize + IMAGE_SIZE_ADJUSTMENT,
                 BufferedImage.TYPE_INT_ARGB
         );
-        Graphics2D g2d = new Graphics2D(image.createGraphics());
+        Graphics2D g2d = image.createGraphics();
 
         /* Drawing an oval */
         Color ovalColor = getHSBColor(_hueCoefficient);

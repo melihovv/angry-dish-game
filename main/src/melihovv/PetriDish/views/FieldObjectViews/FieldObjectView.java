@@ -2,8 +2,8 @@ package melihovv.PetriDish.views.FieldObjectViews;
 
 import melihovv.PetriDish.fieldObjects.FieldObject;
 import java.awt.Point;
+import java.awt.Graphics2D;
 
-import melihovv.library.Graphics2D;
 import melihovv.library.Sprite;
 
 /**
