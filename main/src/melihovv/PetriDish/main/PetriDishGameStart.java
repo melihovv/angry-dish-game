@@ -113,11 +113,10 @@ import melihovv.library.Graphics2D;
     @Override
     public void update(final long elapsedTime) {
 
-        int mousePressed = bsInput.getMousePressed();
-        int mouseX = bsInput.getMouseX();
-        int mouseY = bsInput.getMouseY();
+        int mouseX = getMouseX();
+        int mouseY = getMouseY();
 
-        if (mousePressed == MouseEvent.BUTTON1
+        if (isLeftMouseKeyPressed()
                 && mouseX >= START_BUTTON_BEGIN_X
                 && mouseX <= START_BUTTON_END_X
                 && mouseY >= START_BUTTON_BEGIN_Y
@@ -126,7 +125,7 @@ import melihovv.library.Graphics2D;
             _gameEngine.nextGameID = 1;
             finish();
 
-        } else if (mousePressed == MouseEvent.BUTTON1
+        } else if (isLeftMouseKeyPressed()
                 && mouseX >= INFO_BUTTON_BEGIN_X
                 && mouseX <= INFO_BUTTON_END_X
                 && mouseY >= INFO_BUTTON_BEGIN_Y

@@ -2,6 +2,8 @@ package melihovv.library;
 
 import com.golden.gamedev.GameEngine;
 
+import java.awt.event.MouseEvent;
+
 public class GameObject extends com.golden.gamedev.GameObject {
 
     public GameObject(GameEngine gameEngine) {
@@ -38,5 +40,10 @@ public class GameObject extends com.golden.gamedev.GameObject {
     @Override
     public int getMouseY() {
         return super.getMouseY();
+    }
+
+    public boolean isLeftMouseKeyPressed(){
+        int mousePressed = bsInput.getMousePressed();
+        return mousePressed == MouseEvent.BUTTON1;
     }
 }

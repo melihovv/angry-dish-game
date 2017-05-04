@@ -92,12 +92,11 @@ public class PetriDishGameOver extends GameObject {
     @Override
     public void update(final long elapsedTime) {
 
-        int mousePressed = bsInput.getMousePressed();
-        int mouseX = bsInput.getMouseX();
-        int mouseY = bsInput.getMouseY();
+        int mouseX = getMouseX();
+        int mouseY = getMouseY();
 
 
-        if (mousePressed == MouseEvent.BUTTON1
+        if (isLeftMouseKeyPressed()
                 && mouseX >= RESET_BUTTON_BEGIN_X
                 && mouseX <= RESET_BUTTON_END_X
                 && mouseY >= RESET_BUTTON_BEGIN_Y

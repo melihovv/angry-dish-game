@@ -76,9 +76,6 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     private GameEngine _gameEngine;
 
-    // #TODO: Uncomment the line below when game is ready
-    //{distribute=true;}
-
     /**
      * The basic constructor for class members initialization.
      *
@@ -174,10 +171,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
         int playerX = player.getPosition().x;
         int playerY = player.getPosition().y;
         fieldView.getBackground().setToCenter(
-                playerX,
-                playerY,
-                player.getSize(),
-                player.getSize()
+                player.getFieldObjectView()
         );
         _gameView.render(g2d);
     }
@@ -207,7 +201,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
     @Override
     public void birdEatPig(final EventObject event) {
         if (event.getSource().equals(_gameModel.getPlayer())) {
-            bsSound.play("/sounds/pig_grunt.wav");
+            //bsSound.play("/sounds/pig_grunt.wav");
         }
     }
 
@@ -221,8 +215,8 @@ public class PetriDishGame extends GameObject implements ModelListener {
         if (event.getSource().equals(_gameModel.getPlayer())
                 && _canPlayObstacleSound) {
 
-            bsSound.play("/sounds/hit_wood.wav");
-            bsSound.play("/sounds/bird_ouch.wav");
+            //bsSound.play("/sounds/hit_wood.wav");
+            //bsSound.play("/sounds/bird_ouch.wav");
             _canPlayObstacleSound = false;
             _repeatObstacleSoundTimer.start();
         }
@@ -239,7 +233,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
         if (event.getSource().equals(_gameModel.getPlayer())
                 && _canPlayFightSound) {
 
-            bsSound.play("/sounds/fight_computer_bird.wav");
+            //bsSound.play("/sounds/fight_computer_bird.wav");
             _canPlayFightSound = false;
             _repeatFightSoundTimer.start();
         }
@@ -252,7 +246,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     @Override
     public void playerDied(final EventObject event) {
-        bsSound.play("/sounds/game-over.wav");
+        //bsSound.play("/sounds/game-over.wav");
         _isGameOver = true;
     }
 
