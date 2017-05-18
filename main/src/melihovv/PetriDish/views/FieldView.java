@@ -36,6 +36,7 @@ public class FieldView implements FieldObjectListener {
      * The basic constructor which sets up the background.
      */
     public FieldView() {
+
         try {
             final InputStream stream = getClass()
                     .getClassLoader()
@@ -47,6 +48,7 @@ public class FieldView implements FieldObjectListener {
                     PetriDishGame.getScreenWidth(),
                     PetriDishGame.getScreenHeight()
             );
+            _background.setTotalClip(5000, 3750);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,6 +60,7 @@ public class FieldView implements FieldObjectListener {
      * @param g2d graphics to render on.
      */
     public void render(final Graphics2D g2d) {
+
         _background.render(g2d);
 
         for (FieldObjectView objectView : _fieldObjectViews) {
