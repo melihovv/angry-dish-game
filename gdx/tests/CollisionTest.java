@@ -21,9 +21,9 @@ public class CollisionTest {
             double b = 1;
             Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
             assertEquals(pair.x1, -1.0, 0.001);
-            assertEquals(pair.y1, 0.0, 0.001);
+            assertEquals(pair.y1, 1.0, 0.001);
             assertEquals(pair.x2, 1.0, 0.001);
-            assertEquals(pair.y2, 0.0, 0.001);
+            assertEquals(pair.y2, -1.0, 0.001);
         }
         {
             double k1 = 1;
