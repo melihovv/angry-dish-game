@@ -22,6 +22,17 @@ public class FieldView implements FieldObjectListener {
      */
     private static final String BACKGROUND_PATH = "background.jpg";
 
+
+    /*
+     * The width of the background image.
+     */
+    private static final int BACKGROUND_WIDTH = 5000;
+
+    /*
+     * The height of the background image.
+     */
+    private static final int BACKGROUND_HEIGHT = 3750;
+
     /**
      * The game field background.
      */
@@ -48,7 +59,7 @@ public class FieldView implements FieldObjectListener {
                     PetriDishGame.getScreenWidth(),
                     PetriDishGame.getScreenHeight()
             );
-            _background.setTotalClip(5000, 3750);
+            _background.setTotalClip(BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
         } catch (IOException e) {
             e.printStackTrace();
         }
