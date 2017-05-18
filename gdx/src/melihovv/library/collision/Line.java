@@ -3,9 +3,9 @@ package melihovv.library.collision;
 import static java.lang.Math.abs;
 
 public class Line {
-    double k1;
-    double k2;
-    double k3;
+    public double k1;
+    public double k2;
+    public double k3;
     
     public Line(double x1, double y1, double x2, double y2) {
         boolean xAreEqual = abs(x1 - x2) < 0.001;
