@@ -29,4 +29,5 @@ test:
     - ./gradlew checkstyleMain
     - ./gradlew pmdMain
     - ./gradlew findbugsMain
+    - ./gradlew gdx:test
 
