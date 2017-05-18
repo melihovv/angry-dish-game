@@ -102,8 +102,8 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
                 1,
                 fieldObjectSize + _ovalSize,
                 fieldObjectSize + _ovalSize);
-        /* GTGE super class method */
-        setImage(image);
+
+
 
         try {
             final InputStream stream = getClass()
@@ -121,6 +121,7 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
             e.printStackTrace();
         }
 
+        setImage(image);
         getFieldObject().setSize(fieldObjectSize + _ovalSize);
 
         return g2d;
