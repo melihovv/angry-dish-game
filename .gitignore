@@ -13,3 +13,5 @@
 /gdx/.gradle
 /gdx/build
 !/gtge/libs/golden_0_2_3.jar
+
+classes/

@@ -125,8 +125,8 @@ public class GameModel implements BirdListener {
     public void startGame() {
 
         /* Get player name */
-        PlayerNameDialog dialog = new PlayerNameDialog();
-        dialog.askUserName();
+        //PlayerNameDialog dialog = new PlayerNameDialog();
+        //dialog.askUserName();
 
         /* Creating main player and its controller */
         _player = (RedBird) FieldObjectsFactory.createFieldObject(
@@ -136,7 +136,7 @@ public class GameModel implements BirdListener {
         _playerController = new PlayerController();
         _player.setController(_playerController);
         _player.addBirdListener(this);
-        _player.setPlayerName(dialog.getPlayerName());
+        _player.setPlayerName("Bird");
 
         _aiController = new AIController();
 
@@ -167,7 +167,6 @@ public class GameModel implements BirdListener {
             Field.getInstance().addFieldObjectToRandomPosition(pig);
         }
 
-        /* Creating wooden obstacles */
         for (int i = 0; i < WOODEN_OBSTACLES_COUNT; ++i) {
 
             WoodenObstacle obstacle =
@@ -179,6 +178,7 @@ public class GameModel implements BirdListener {
         }
 
         /* Setting up collision manager */
+        /* Creating wooden obstacles */
         SpriteGroup birdsGroup =
                 Field.getInstance().getSpriteGroup(Bird.class);
 

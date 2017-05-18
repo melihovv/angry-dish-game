@@ -24,7 +24,7 @@ public final class Main  {
     public static void main(final String[] args) {
 
         PetriDishGame game = new PetriDishGame();
-        GameLoader gameLoader = new GameLoader();
+        GameLoader gameLoader  = new GameLoader();
         gameLoader.setup(
                 game,
                 new Dimension(

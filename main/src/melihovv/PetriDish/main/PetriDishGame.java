@@ -178,9 +178,9 @@ public class PetriDishGame extends GameObject implements ModelListener {
         Bird player = _gameModel.getPlayer();
         int playerX = player.getPosition().x;
         int playerY = player.getPosition().y;
-        fieldView.getBackground().setToCenter(
-                player.getFieldObjectView()
-        );
+//        fieldView.getBackground().setToCenter(
+//                player.getFieldObjectView()
+//        );
         _gameView.render(g2d);
     }
 
