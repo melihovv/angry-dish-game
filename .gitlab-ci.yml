@@ -15,7 +15,7 @@ cache:
 build:
   stage: build
   script:
-      - ./gradlew main:dist -Plib='gtge'
+      - ./gradlew main:dist
   artifacts:
     paths:
       - main/build/libs/*.jar
