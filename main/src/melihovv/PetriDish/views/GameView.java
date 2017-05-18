@@ -56,7 +56,7 @@ public class GameView {
         _fieldView.render(g2d);
 
         /* Rendering game info interface */
-        String eatenPigsInfo = "Съедено свиней: "
+        String eatenPigsInfo = "Pigs eaten: "
                 + _gameModel.getPlayer().getTotalAmountOfEatenPigs()
                 + "/"
                 + Field.getInstance().getPigsCounter();
