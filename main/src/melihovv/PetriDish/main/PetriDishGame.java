@@ -71,6 +71,17 @@ public class PetriDishGame extends GameObject implements ModelListener {
      */
     private boolean _isGameOver = false;
 
+    @Override
+    public void create() {
+        super.create();
+
+        _gameModel = new GameModel(this);
+        _gameModel.addModelListener(this);
+        _gameView = new GameView(_gameModel);
+
+        startGame();
+    }
+
     /**
      * The GameEngine object - parent.
      */
@@ -84,9 +95,6 @@ public class PetriDishGame extends GameObject implements ModelListener {
     public PetriDishGame(/*final GameEngine gameEngine*/) {
         //super(gameEngine);
         //_gameEngine = gameEngine;
-        _gameModel = new GameModel(this);
-        _gameModel.addModelListener(this);
-        _gameView = new GameView(_gameModel);
 
         /* Setting up the timers */
         _repeatObstacleSoundTimer = new Timer(

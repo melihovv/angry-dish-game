@@ -94,16 +94,16 @@ public class GameModel implements BirdListener {
      * @param gameInstance main game class instance.
      */
     public GameModel(final PetriDishGame gameInstance) {
-        _pigsCreationTimer = new Timer();
-        _pigsCreationTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("God damn! A new pig is here!");
-
-                Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
-                Field.getInstance().addFieldObjectToRandomPosition(pig);
-            }
-        }, PIGS_CREATINON_TIME, PIGS_CREATINON_TIME);
+//        _pigsCreationTimer = new Timer();
+//        _pigsCreationTimer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                System.out.println("God damn! A new pig is here!");
+//
+//                Pig pig = (Pig) FieldObjectsFactory.createFieldObject(Pig.class);
+//                Field.getInstance().addFieldObjectToRandomPosition(pig);
+//            }
+//        }, PIGS_CREATINON_TIME, PIGS_CREATINON_TIME);
         _gameInstance = gameInstance;
     }
 
