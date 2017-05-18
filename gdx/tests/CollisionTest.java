@@ -12,101 +12,57 @@ public class CollisionTest {
     @Test
     public void testCollision() {
         {
-            double k1 = 0;
-            double k2 = 1;
-            double k3 = 0;
-            double x0 = 0;
-            double y0 = 0;
-            double a = 1;
-            double b = 1;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math.
+                    getCollisionPointsBetweenLineAndEllipse(0, 1, 0, 0, 0, 1, 1);
             assertEquals(pair.x1, -1.0, 0.001);
             assertEquals(pair.y1, 0.0, 0.001);
             assertEquals(pair.x2, 1.0, 0.001);
             assertEquals(pair.y2, 0.0, 0.001);
         }
         {
-            double k1 = 1;
-            double k2 = 0;
-            double k3 = 0;
-            double x0 = 0;
-            double y0 = 0;
-            double a = 2;
-            double b = 2;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math
+                    .getCollisionPointsBetweenLineAndEllipse(1, 0, 0, 0, 0, 2, 2);
             assertEquals(pair.x1, 0.0, 0.001);
             assertEquals(pair.y1, 2.0, 0.001);
             assertEquals(pair.x2, 0.0, 0.001);
             assertEquals(pair.y2, -2.0, 0.001);
         }
-        // Начало координат, эллипс
         {
-            double k1 = 0;
-            double k2 = 1;
-            double k3 = 0;
-            double x0 = 0;
-            double y0 = 0;
-            double a = 2;
-            double b = 1;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math.
+                    getCollisionPointsBetweenLineAndEllipse(0, 1, 0, 0, 0, 2, 1);
             assertEquals(pair.x1, -2.0, 0.001);
             assertEquals(pair.y1, 0.0, 0.001);
             assertEquals(pair.x2, 2.0, 0.001);
             assertEquals(pair.y2, 0.0, 0.001);
         }
         {
-            double k1 = 1;
-            double k2 = 0;
-            double k3 = 0;
-            double x0 = 0;
-            double y0 = 0;
-            double a = 1;
-            double b = 2;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math.
+                    getCollisionPointsBetweenLineAndEllipse(1, 0, 0, 0, 0, 1, 2);
             assertEquals(pair.x1, 0.0, 0.001);
             assertEquals(pair.y1, 2.0, 0.001);
             assertEquals(pair.x2, 0.0, 0.001);
             assertEquals(pair.y2, -2.0, 0.001);
         }
-        // Смещение кординат
         {
-            double k1 = 0;
-            double k2 = 1;
-            double k3 = 3;
-            double x0 = 2;
-            double y0 = 3;
-            double a = 2;
-            double b = 1;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math.
+                    getCollisionPointsBetweenLineAndEllipse(0, 1, 3, 2,
+                            3, 2, 1);
             assertEquals(pair.x1, 0.0, 0.001);
             assertEquals(pair.y1, 3.0, 0.001);
             assertEquals(pair.x2, 4.0, 0.001);
             assertEquals(pair.y2, 3.0, 0.001);
         }
         {
-            double k1 = 1;
-            double k2 = 0;
-            double k3 = 2;
-            double x0 = 2;
-            double y0 = 3;
-            double a = 1;
-            double b = 2;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math.
+                    getCollisionPointsBetweenLineAndEllipse(1, 0, 2, 2, 3, 1, 2);
             assertEquals(pair.x1, 2.0, 0.001);
             assertEquals(pair.y1, 5.0, 0.001);
             assertEquals(pair.x2, 2.0, 0.001);
             assertEquals(pair.y2, 1.0, 0.001);
         }
-        // Диагональ
         {
-            double k1 = 1;
-            double k2 = -1;
-            double k3 = 0;
-            double x0 = 2;
-            double y0 = 2;
-            double a = 2;
-            double b = 2;
-            Math.CollisionPointPair pair = Math.getCollisionPointsBetweenLineAndEllipse(k1, k2, k3, x0, y0, a, b);
+            Math.CollisionPointPair pair = Math
+                    .getCollisionPointsBetweenLineAndEllipse(1, -1, 0, 2, 2, 2, 2);
             assertEquals(pair.x1, 3.4142, 0.001);
             assertEquals(pair.y1, 3.4142, 0.001);
             assertEquals(pair.x2, 0.5857, 0.001);
