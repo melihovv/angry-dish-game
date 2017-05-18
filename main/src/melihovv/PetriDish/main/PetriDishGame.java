@@ -81,9 +81,9 @@ public class PetriDishGame extends GameObject implements ModelListener {
      *
      * @param gameEngine GameEngine object - parent.
      */
-    public PetriDishGame(final GameEngine gameEngine) {
-        super(gameEngine);
-        _gameEngine = gameEngine;
+    public PetriDishGame(/*final GameEngine gameEngine*/) {
+        //super(gameEngine);
+        //_gameEngine = gameEngine;
         _gameModel = new GameModel(this);
         _gameModel.addModelListener(this);
         _gameView = new GameView(_gameModel);
@@ -154,8 +154,8 @@ public class PetriDishGame extends GameObject implements ModelListener {
         } else {
 
             finishGame();
-            _gameEngine.nextGameID = 2;
-            finish();
+            //_gameEngine.nextGameID = 2;
+            //finish();
         }
     }
 

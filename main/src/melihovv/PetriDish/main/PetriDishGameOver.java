@@ -57,7 +57,7 @@ public class PetriDishGameOver extends GameObject {
      */
     public PetriDishGameOver(final GameEngine gameEngine) {
 
-        super(gameEngine);
+        //super(gameEngine);
         _gameEngine = gameEngine;
 
         /* Initializing background */
@@ -102,8 +102,8 @@ public class PetriDishGameOver extends GameObject {
                 && mouseY >= RESET_BUTTON_BEGIN_Y
                 && mouseY <= RESET_BUTTON_END_Y) {
 
-            _gameEngine.nextGameID = 0;
-            finish();
+            //_gameEngine.nextGameID = 0;
+            //finish();
         }
     }
 

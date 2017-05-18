@@ -9,7 +9,7 @@ import melihovv.library.GameObject;
 /**
  * The basic application class which contains main function.
  */
-public final class Main extends GameEngine {
+public final class Main  {
     /**
      * The basic private constructor.
      */
@@ -23,46 +23,15 @@ public final class Main extends GameEngine {
      */
     public static void main(final String[] args) {
 
+        PetriDishGame game = new PetriDishGame();
         GameLoader gameLoader = new GameLoader();
         gameLoader.setup(
-                new Main(),
+                game,
                 new Dimension(
                         PetriDishGame.getScreenWidth(),
                         PetriDishGame.getScreenHeight()),
                 false
         );
         gameLoader.start();
-    }
-
-    /**
-     * Chooses what game screen to show depending on current gameID.
-     *
-     * @param gameID current game id.
-     * @return game screen.
-     */
-    @Override
-    public GameObject getGame(final int gameID) {
-
-        switch (gameID) {
-
-            case 0: {
-
-                return new PetriDishGameStart(this);
-            }
-            case 1: {
-
-                PetriDishGame game = new PetriDishGame(this);
-                game.startGame();
-                return game;
-            }
-            case 2: {
-
-                return new PetriDishGameOver(this);
-            }
-            default: {
-
-                return null;
-            }
-        }
     }
 }

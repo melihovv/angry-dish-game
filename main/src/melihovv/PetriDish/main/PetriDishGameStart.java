@@ -77,7 +77,7 @@ import melihovv.library.Graphics2D;
      * @param gameEngine GameEngine object - parent.
      */
     public PetriDishGameStart(final GameEngine gameEngine) {
-        super(gameEngine);
+        //super(gameEngine);
 
         _gameEngine = gameEngine;
 
@@ -122,8 +122,8 @@ import melihovv.library.Graphics2D;
                 && mouseY >= START_BUTTON_BEGIN_Y
                 && mouseY <= START_BUTTON_END_Y) {
 
-            _gameEngine.nextGameID = 1;
-            finish();
+            //_gameEngine.nextGameID = 1;
+            //finish();
 
         } else if (isLeftMouseKeyPressed()
                 && mouseX >= INFO_BUTTON_BEGIN_X

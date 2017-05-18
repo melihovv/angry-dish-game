@@ -10,14 +10,15 @@ public class GameLoader {
 
     private LwjglApplication _app;
 
-    private GameEngine _game;
+    private GameObject _game;
 
     public GameLoader() {
         _config = new LwjglApplicationConfiguration();
+        System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL", "true");
         _app = null;
     }
 
-    public void setup(GameEngine game, Dimension windowSize, boolean
+    public void setup(GameObject game, Dimension windowSize, boolean
             fullscreen) {
         _config.width = windowSize.width;
         _config.height = windowSize.height;
