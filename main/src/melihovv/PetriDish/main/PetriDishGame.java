@@ -158,6 +158,7 @@ public class PetriDishGame extends GameObject implements ModelListener {
         if (!_isGameOver) {
 
             _gameModel.update(elapsedTime);
+            updateCamera(_gameModel.getPlayer().getFieldObjectView());
 
         } else {
 

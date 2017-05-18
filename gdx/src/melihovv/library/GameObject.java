@@ -36,6 +36,7 @@ public class GameObject extends ApplicationAdapter {
     }
 
     public void render () {
+
         _camera.update();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -52,6 +53,13 @@ public class GameObject extends ApplicationAdapter {
     public void renderInContext(melihovv.library.Graphics2D g) {
 
     }
+
+    public void updateCamera(Sprite sprite) {
+
+        _camera.position.set((float)sprite.getX(), (float)sprite.getY(), 0);
+        _camera.update();
+    }
+
 
     public void dispose () {
         TextureManager.disposeTextures();
