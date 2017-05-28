@@ -5,6 +5,7 @@ import melihovv.PetriDish.main.GameModel;
 import java.awt.Color;
 import java.awt.Font;
 
+import melihovv.PetriDish.main.LangUtil;
 import melihovv.library.SystemFont;
 import melihovv.library.Graphics2D;
 
@@ -50,13 +51,13 @@ public class GameView {
      *
      * @param g2d graphics to render on.
      */
-    public void render(final Graphics2D g2d) {
+    public void render(final Graphics2D g2d) throws Exception {
 
         /* Rendering field */
         _fieldView.render(g2d);
 
         /* Rendering game info interface */
-        String eatenPigsInfo = "Pigs eaten: "
+        String eatenPigsInfo = LangUtil.get("pigs_eaten") + ": "
                 + _gameModel.getPlayer().getTotalAmountOfEatenPigs()
                 + "/"
                 + Field.getInstance().getPigsCounter();

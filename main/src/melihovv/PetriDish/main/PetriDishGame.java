@@ -182,7 +182,11 @@ public class PetriDishGame extends GameObject implements ModelListener {
 //        fieldView.getBackground().setToCenter(
 //                player.getFieldObjectView()
 //        );
-        _gameView.render(g2d);
+        try {
+            _gameView.render(g2d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -128,6 +128,9 @@ public class GameModel implements BirdListener {
         LanguageDialog dialog = new LanguageDialog();
         dialog.askLang();
 
+        (new LangUtil()).init();
+        LangUtil.setLang(dialog.getLang());
+
         /* Creating main player and its controller */
         _player = (RedBird) FieldObjectsFactory.createFieldObject(
                 RedBird.class
