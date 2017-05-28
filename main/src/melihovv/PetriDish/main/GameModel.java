@@ -125,8 +125,8 @@ public class GameModel implements BirdListener {
     public void startGame() {
 
         /* Get player name */
-        //PlayerNameDialog dialog = new PlayerNameDialog();
-        //dialog.askUserName();
+        LanguageDialog dialog = new LanguageDialog();
+        dialog.askLang();
 
         /* Creating main player and its controller */
         _player = (RedBird) FieldObjectsFactory.createFieldObject(
