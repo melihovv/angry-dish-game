@@ -6,10 +6,12 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 class TextureManager {
     private static List<Entry> _entries;
+    private static HashMap<String, Texture> _cache = new HashMap<>();
 
     private static class Entry {
         Texture _texture;
@@ -17,6 +19,11 @@ class TextureManager {
     }
 
     public static Texture imageToTexture(BufferedImage img) {
+        String s = img.toString();
+        if (_cache.containsKey(s)) {
+            return _cache.get(s);
+        }
+
         Pixmap px = new Pixmap(
                 img.getWidth(),
                 img.getHeight(),
@@ -41,7 +48,11 @@ class TextureManager {
                 px.drawPixel(i, j);
             }
         }
-        return new Texture(px);
+
+        Texture t = new Texture(px);
+        _cache.put(s, t);
+
+        return t;
     }
 
     public static Texture getTexture(BufferedImage img) {
