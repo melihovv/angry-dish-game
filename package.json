@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/melihovv/petri-dish.git"
+    "url": "git+ssh://git@github.com:melihovv/angry-dish.git"
   },
   "keywords": [
     "angry dish"
@@ -15,9 +15,9 @@
   "authors": "Alexander Melihov <amelihovv@ya.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/melihovv/petri-dish/issues"
+    "url": "https://github.com/melihovv/angry-dish/issues"
   },
-  "homepage": "https://gitlab.com/melihovv/petri-dish#README",
+  "homepage": "https://github.com/melihovv/angry-dish",
   "contributors": [
     {
       "name": "Alexander Petrenko",
