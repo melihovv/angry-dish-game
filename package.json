@@ -1,7 +1,7 @@
 {
-  "name": "petri-dish",
+  "name": "angry-dish",
   "version": "0.0.1",
-  "description": "Petri dish game",
+  "description": "Angry Dish game",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "url": "git+ssh://git@gitlab.com/melihovv/petri-dish.git"
   },
   "keywords": [
-    "petri dish"
+    "angry dish"
   ],
   "authors": "Alexander Melihov <amelihovv@ya.ru>",
   "license": "MIT",
