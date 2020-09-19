@@ -108,7 +108,7 @@ public abstract class ActiveFieldObjectView extends FieldObjectView {
         setImage(image);
 
         try {
-            final InputStream stream = getClass()
+            InputStream stream = getClass()
                     .getClassLoader()
                     .getResourceAsStream(getImagePath());
 

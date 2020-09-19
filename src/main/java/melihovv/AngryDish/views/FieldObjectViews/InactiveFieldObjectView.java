@@ -41,7 +41,7 @@ public abstract class InactiveFieldObjectView extends FieldObjectView {
         Graphics2D g2d = image.createGraphics();
 
         try {
-            final InputStream stream = getClass()
+            InputStream stream = getClass()
                     .getClassLoader()
                     .getResourceAsStream(getImagePath());
 
